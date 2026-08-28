@@ -89,11 +89,29 @@
     }
     .logo-name { align-self: end; font-family: "Fraunces", serif; font-size: 20px; font-weight: 700; }
     .logo-subtitle { align-self: start; margin-top: 5px; color: var(--ink-faint); font-family: "Fira Code", monospace; font-size: 9px; font-weight: 500; letter-spacing: .13em; }
-    .nav-links { display: flex; align-items: center; gap: 22px; }
-    .nav-links a { position: relative; color: var(--ink-light); text-decoration: none; font-size: 13px; font-weight: 600; }
+    .nav-links { display: flex; align-items: center; gap: clamp(11px, 1.45vw, 20px); }
+    .nav-links a { position: relative; display: inline-flex; align-items: center; gap: 7px; color: var(--ink-light); text-decoration: none; font-size: 13px; font-weight: 600; white-space: nowrap; }
     .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px; height: 3px; background: var(--yellow); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
     .nav-links a:hover::after { transform: scaleX(1); }
-    .nav-cta { padding: 9px 16px; border-radius: 999px; background: var(--blue); color: var(--cream) !important; }
+    .nav-icon {
+      width: 27px;
+      height: 27px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      background: rgba(43,127,216,.09);
+      color: var(--blue-deep);
+      transition: transform .2s cubic-bezier(.16,1,.3,1), background .2s ease;
+    }
+    .nav-icon svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+    .nav-links a:nth-child(2) .nav-icon, .nav-links a:nth-child(4) .nav-icon { background: rgba(244,215,88,.25); color: #806900; }
+    .nav-links a:nth-child(3) .nav-icon, .nav-links a:nth-child(5) .nav-icon { background: rgba(232,74,95,.09); color: var(--red); }
+    .nav-links a:hover .nav-icon { transform: translateY(-2px); background: var(--yellow-soft); }
+    .nav-cta { padding: 8px 15px 8px 10px; border-radius: 999px; background: var(--blue); color: var(--cream) !important; }
+    .nav-cta::after { display: none; }
+    .nav-cta .nav-icon { background: rgba(254,252,246,.14); color: var(--cream); }
+    .nav-cta:hover .nav-icon { background: rgba(254,252,246,.24); }
 
     .label {
       display: block;
@@ -162,12 +180,13 @@
     .section--dark .note, .section--blue .note { background: rgba(254,252,246,.07); border-color: rgba(244,215,88,.45); }
     .section--dark .note::before, .section--blue .note::before { background: var(--dark-panel); color: var(--yellow); }
 
-    .reason-nav { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 54px; }
-    .reason-link { position: relative; min-height: 190px; padding: 26px 20px; background: rgba(254,252,246,.76); border-top: 5px solid var(--blue); text-decoration: none; overflow: hidden; }
+    .reason-nav { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 54px; }
+    .reason-link { position: relative; min-height: 168px; padding: 26px 20px; background: rgba(254,252,246,.76); border-top: 5px solid var(--blue); text-decoration: none; overflow: hidden; }
     .reason-link:nth-child(2) { border-top-color: var(--yellow); }
     .reason-link:nth-child(3) { border-top-color: var(--red); }
     .reason-link:nth-child(4) { border-top-color: var(--blue-deep); }
     .reason-link:nth-child(5) { border-top-color: var(--yellow); }
+    .reason-link:nth-child(6) { border-top-color: var(--red); }
     .reason-link::after { content: attr(data-num); position: absolute; right: 6px; bottom: -28px; font-family: "Fraunces", serif; font-size: 6.6rem; color: var(--blue); opacity: .08; }
     .reason-link h3 { font-size: 1.12rem; position: relative; }
     .reason-link p { margin-top: 12px; font-size: .86rem; line-height: 1.65; position: relative; }
@@ -268,6 +287,27 @@
     .why-col:nth-child(2) { border-top-color: var(--blue); }
     .why-col h3 { margin-bottom: 16px; }
 
+    .region-choice-grid { display: grid; grid-template-columns: .68fr 1.32fr; gap: clamp(46px, 7vw, 104px); align-items: start; }
+    .region-choice-copy { position: sticky; top: 110px; }
+    .region-choice-mark { font-family: "Fraunces", serif; font-size: clamp(7rem, 15vw, 12rem); font-style: italic; font-weight: 700; line-height: .74; color: var(--blue); opacity: .13; }
+    .region-choice-copy h2 { margin-top: -12px; font-size: clamp(2rem, 3.7vw, 3.2rem); }
+    .region-choice-copy .lead { margin-top: 24px; }
+    .region-choice-list { border-top: 4px solid var(--ink); }
+    .region-choice-item { display: grid; grid-template-columns: 54px minmax(145px, .42fr) 1fr; gap: 20px; align-items: start; padding: 28px 0; border-bottom: 1px solid var(--line); }
+    .region-choice-icon { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: rgba(232,74,95,.09); color: var(--red); }
+    .region-choice-icon svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .region-choice-item:nth-child(2) .region-choice-icon { background: rgba(244,215,88,.25); color: #806900; }
+    .region-choice-item h3 { font-size: clamp(1.15rem, 1.7vw, 1.45rem); }
+    .region-choice-item p { font-size: .94rem; line-height: 1.82; }
+    .region-choice-item--selected { margin-top: 20px; padding: 30px 28px; background: var(--blue-deep); color: var(--cream); border-bottom: 8px solid var(--yellow); }
+    .region-choice-item--selected .region-choice-icon { background: var(--yellow); color: var(--ink); }
+    .region-choice-item--selected h3 { color: var(--cream); }
+    .region-choice-item--selected p { color: rgba(254,252,246,.82); }
+    .region-choice-sources { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .region-choice-sources a { display: inline-flex; align-items: center; gap: 7px; padding: 9px 12px; background: rgba(43,127,216,.07); border-bottom: 3px solid rgba(43,127,216,.2); color: var(--blue-deep); text-decoration: none; font-size: .76rem; font-weight: 600; }
+    .region-choice-sources a:hover { background: var(--yellow-soft); }
+    .region-choice-sources svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
     .test-panel { display: grid; grid-template-columns: .42fr 1fr; gap: 48px; align-items: center; margin-top: 58px; padding: 42px; background: rgba(254,252,246,.85); }
     .test-panel .number { font-family: "Fraunces", serif; font-size: clamp(7rem, 14vw, 12rem); color: var(--blue); line-height: .78; text-align: center; }
     .test-panel .number small { display: block; margin-top: 16px; font-family: "Noto Sans SC", sans-serif; font-size: .9rem; color: var(--ink-faint); letter-spacing: .1em; }
@@ -291,7 +331,9 @@
 
     .contact-grid { display: grid; grid-template-columns: .68fr 1.32fr; gap: 58px; align-items: start; }
     .qr { padding: 30px; background: var(--cream-dark); border-bottom: 7px solid var(--yellow); text-align: center; }
-    .qr img { width: 280px; aspect-ratio: 1; object-fit: contain; display: block; margin: 0 auto 16px; }
+    .qr img { width: min(100%, 360px); height: auto; object-fit: contain; display: block; margin: 0 auto 18px; }
+    .qr h3 { color: var(--ink); font-size: clamp(1.2rem, 2vw, 1.55rem); }
+    .qr-hint { margin-top: 7px; color: var(--ink-faint) !important; font-size: .8rem; letter-spacing: .06em; }
     .contact-copy .plain-list { margin-top: 24px; }
     .contact-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 30px; }
     .contact-method { padding: 22px; background: rgba(254,252,246,.08); border-bottom: 5px solid var(--yellow); }
@@ -311,10 +353,10 @@
     @media (max-width: 1000px) {
       .nav-links a:not(.nav-cta) { display: none; }
       .hero::after { width: 24vw; }
-      .hero-grid, .content-split, .content-split--balanced, .content-split--reverse, .contact-grid, .warranty-grid, .intro-grid, .proof-intro { grid-template-columns: 1fr; }
+      .hero-grid, .content-split, .content-split--balanced, .content-split--reverse, .contact-grid, .warranty-grid, .intro-grid, .proof-intro, .region-choice-grid { grid-template-columns: 1fr; }
       .hero-visual { max-width: 760px; }
       .hero-shot { width: 100%; }
-      .sticky-copy, .intro-mark { position: static; }
+      .sticky-copy, .intro-mark, .region-choice-copy { position: static; }
       .reason-nav { grid-template-columns: repeat(2, 1fr); }
       .flow { grid-template-columns: 1fr 1fr; gap: 28px; }
       .flow::before { display: none; }
@@ -336,6 +378,11 @@
       .gallery-dots { max-width: 48%; }
       .warning-repeat { grid-template-columns: 1fr; }
       .test-panel { grid-template-columns: 1fr; padding: 26px; }
+      .region-choice-item { grid-template-columns: 44px 1fr; gap: 10px 14px; }
+      .region-choice-icon { width: 42px; height: 42px; }
+      .region-choice-item p { grid-column: 2; }
+      .region-choice-item--selected { padding: 24px 18px; }
+      .region-choice-sources { flex-direction: column; align-items: stretch; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -354,12 +401,12 @@
         <small class="logo-subtitle">AI · 编程 · 创作</small>
       </a>
       <div class="nav-links">
-        <a href="#why">为什么选择</a>
-        <a href="#price">费用</a>
-        <a href="#flow">流程</a>
-        <a href="#shipping">物流</a>
-        <a href="#faq">百问</a>
-        <a class="nav-cta" href="#contact">联系购买</a>
+        <a href="#why"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="m15.5 8.5-2.1 4.9-4.9 2.1 2.1-4.9 4.9-2.1Z"></path></svg></span><span>为什么选择</span></a>
+        <a href="#price"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12 12 20l-8-8V4h8l8 8Z"></path><circle cx="8.5" cy="8.5" r="1.2"></circle></svg></span><span>费用</span></a>
+        <a href="#flow"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="M8 6h5a3 3 0 0 1 3 3v6M13 12H8a3 3 0 0 0-3 3v1"></path></svg></span><span>流程</span></a>
+        <a href="#shipping"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"></path><circle cx="7" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg></span><span>物流</span></a>
+        <a href="#faq"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.8 9a2.4 2.4 0 0 1 4.6 1c0 1.8-2.4 2.1-2.4 3.8M12 17.4h.01"></path></svg></span><span>百问</span></a>
+        <a class="nav-cta" href="#contact"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15a4 4 0 0 1-4 4H9l-5 3v-7a7 7 0 1 1 16 0Z"></path><path d="M8 10h8M8 14h5"></path></svg></span><span>联系购买</span></a>
       </div>
     </div>
   </nav>
@@ -402,6 +449,7 @@
           <a class="reason-link" data-num="3" href="#reason-3"><h3>真实客户有办卡难题</h3><p>自己操作办一张卡仍有难度。</p></a>
           <a class="reason-link" data-num="4" href="#reason-4"><h3>源于一段对话</h3><p>从帮忙收验证码，到直接卖卡。</p></a>
           <a class="reason-link" data-num="5" href="#reason-5"><h3>折腾成本和直接买差不多</h3><p>125 元，主打省心。</p></a>
+          <a class="reason-link" data-num="6" href="#region-choice"><h3>为什么不选其他国家 / 香港</h3><p>实名要求、服务地区与本地执行条件。</p></a>
         </div>
       </div>
     </section>
@@ -521,15 +569,50 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <span class="label reveal">CHAPTER 06 · 07 · 08</span><h2 class="reveal">长期养号、选择新西兰与实测结论</h2>
-        <div class="why-grid reveal reveal-d1"><article class="why-col"><h3>为什么需要长期养一个手机号？</h3><p>未来国外 AI 产品只会越来越多，封锁会如何发展不确定。对没条件出国的人而言，拥有海外手机号仍然必要。不少新产品都要验证手机号，这不是使用🪜可以解决、办理的。</p></article><article class="why-col"><h3>为什么是新西兰？</h3><ul class="plain-list"><li>我朋友刚刚好在新西兰。</li><li>新西兰支持匿名办理手机卡。</li><li>国内合规（能过海关就是最好的证明）。</li><li>新西兰是老美的狗腿子。</li></ul></article></div>
-        <div class="test-panel reveal"><div class="number">2<small>CODEX ACCOUNTS</small></div><div><h3>实测：一张卡支持激活两个 Codex 账号</h3><p style="margin-top:14px;">中间间隔 1 周，实际你们可以自行测试。建议最好用在自己的账号，不要借此共享。此结论未经过批量测试，实际不支持也不要死磕。</p><p class="small muted" style="margin-top:14px;">2. 待增加；</p></div></div>
+    <section class="section" id="region-choice">
+      <div class="container region-choice-grid">
+        <div class="region-choice-copy reveal">
+          <div class="region-choice-mark">NZ</div>
+          <span class="label">CHAPTER 06 · REGION CHOICE</span>
+          <h2>为什么不选<br>其他国家、香港？</h2>
+          <p class="lead">不是做一场纸面上的全球比价，而是选择一条能采购、能激活、能寄出、也能负责售后的真实链路。</p>
+        </div>
+        <div class="reveal reveal-d1">
+          <div class="region-choice-list">
+            <article class="region-choice-item">
+              <span class="region-choice-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="8" cy="11" r="2"></circle><path d="M5.5 16c.7-1.5 1.5-2.2 2.5-2.2s1.8.7 2.5 2.2M13 10h5M13 14h4"></path></svg></span>
+              <h3>其他国家 / 地区</h3>
+              <p>部分候选地开卡需要实名登记、证件或现场核验，规则也会随运营商与政策变化。没有可靠的当地人协助时，采购、激活和售后很难形成稳定链路。</p>
+            </article>
+            <article class="region-choice-item">
+              <span class="region-choice-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span>
+              <h3>香港</h3>
+              <p>香港本地 SIM 卡激活前需要实名登记。更关键的是，香港目前不在 ChatGPT 与 Claude 的官方支持地区名单中；即使有香港号码，使用相关服务通常仍需代理等额外网络方案，并承担平台与账号风险。</p>
+            </article>
+            <article class="region-choice-item region-choice-item--selected">
+              <span class="region-choice-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12.5 10.5 15 16 9.5"></path><circle cx="12" cy="12" r="9"></circle></svg></span>
+              <h3>最后选择新西兰</h3>
+              <p>最现实的原因是：我的朋友就在新西兰，可以协助购卡、激活、与运营商沟通、国际邮寄和售后；同时，新西兰在 ChatGPT 与 Claude 的官方支持地区名单中。这条链路不是理论上最好，而是目前最能落地。</p>
+            </article>
+          </div>
+          <div class="region-choice-sources" aria-label="政策依据">
+            <a href="https://www.ofca.gov.hk/en/consumer_focus/guide/hot_topics/sim_registration/index.html" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M10 14 19 5M19 13v6H5V5h6"></path></svg>香港通讯办 · SIM 实名登记</a>
+            <a href="https://help.openai.com/en/articles/7947663-chatgpt-supported-countries" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M10 14 19 5M19 13v6H5V5h6"></path></svg>OpenAI · 支持地区</a>
+            <a href="https://www.anthropic.com/supported-countries" target="_blank" rel="noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M10 14 19 5M19 13v6H5V5h6"></path></svg>Anthropic · 支持地区</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section section--alt" id="faq">
+    <section class="section section--alt">
+      <div class="container">
+        <span class="label reveal">CHAPTER 07 · 08</span><h2 class="reveal">长期养号与实测结论</h2>
+        <div class="why-grid reveal reveal-d1"><article class="why-col"><h3>为什么需要长期养一个手机号？</h3><p>未来海外 AI 产品只会越来越多，服务地区和验证规则也可能变化。对暂时没条件出国的人而言，稳定持有一个海外手机号仍有价值；不少新产品需要手机验证，这不是单靠网络代理就能解决的。</p></article><article class="why-col"><h3>为什么这条新西兰链路更可靠？</h3><ul class="plain-list"><li>朋友就在当地，采购、激活与运营商沟通都有人负责。</li><li>新西兰处于 ChatGPT 与 Claude 的官方支持地区。</li><li>实体卡通过真实国际物流寄回，路径可查询。</li><li>不追求理论最优，优先选择能长期执行、能售后的方案。</li></ul></article></div>
+        <div class="test-panel reveal"><div class="number">2<small>CODEX ACCOUNTS</small></div><div><h3>实测：一张卡支持激活两个 Codex 账号</h3><p style="margin-top:14px;">中间间隔 1 周，实际你们可以自行测试。建议最好用在自己的账号，不要借此共享。此结论未经过批量测试，实际不支持也不要死磕。</p></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
       <div class="container">
         <span class="label reveal">CHAPTER 09 · SIM CARD FAQ</span><h2 class="reveal">手机卡百问<br>不定期更新</h2>
         <div class="faq-list reveal reveal-d1">
@@ -557,7 +640,7 @@
 
     <section class="section section--dark" id="contact">
       <div class="container contact-grid">
-        <div class="qr reveal"><img src="assets/source-images/gzh.jpg" alt="AI悦创公众号二维码"><h3>公众号：AI悦创</h3></div>
+        <div class="qr reveal"><img src="assets/source-images/wechat-qr.jpg" alt="AI悦创个人微信二维码"><h3>微信：扫码添加好友</h3><p class="qr-hint">微信号 · Jiabcdefh</p></div>
         <div class="contact-copy reveal reveal-d1">
           <span class="label">AI悦创 · 编程一对一</span><h2>一对一辅导、答疑、作业与项目实践</h2>
           <ul class="plain-list"><li>Python 语言、C++、java、算法 / 数据结构、少儿编程、pygame 游戏开发、Web、Linux。</li><li>面向国内外学员，国外占 80%。全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践。</li><li>另有线下线上摄影课程、Photoshop、Premiere 一对一教学，QQ、微信在线，随时响应。</li><li>C++ 信息奥赛题解长期更新，长期招收一对一中小学信息奥赛集训。莆田、厦门地区有机会线下上门，其他地区线上。</li></ul>
