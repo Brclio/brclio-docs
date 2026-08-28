@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="新西兰实体 SIM 卡购买、Codex 验证、长期养号、国际物流与售后说明。">
+  <title>新西兰 SIM 卡｜Claude / Codex 账号激活与长期养号</title>
+  <link rel="icon" href="assets/brand/brclio-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&amp;family=Fira+Code:wght@400;500&amp;family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,600&amp;family=Noto+Sans+SC:wght@400;500;600;700&amp;family=Noto+Serif+SC:wght@700;900&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --_esther-ds: "esthersjw-v1";
+      --blue: #2B7FD8;
+      --blue-deep: #1E5BA8;
+      --yellow: #F4D758;
+      --yellow-soft: #FFF3CD;
+      --red: #E84A5F;
+      --cream: #fefcf6;
+      --cream-dark: #faf6eb;
+      --ink: #1A1A2E;
+      --ink-light: #4A4A5A;
+      --ink-faint: #8A8A9A;
+      --dark-panel: #151821;
+      --line: rgba(26, 26, 46, .12);
+      --shadow: 0 18px 60px rgba(26, 26, 46, .09);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: "Noto Sans SC", -apple-system, "PingFang SC", "Helvetica Neue", sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--yellow); color: var(--ink); }
+    img { max-width: 100%; }
+    a { color: inherit; }
+    button, a { font: inherit; }
+
+    .container { width: min(1300px, calc(100% - 48px)); margin-inline: auto; }
+    .section { padding: clamp(88px, 11vw, 154px) 0; position: relative; }
+    .section--alt { background: var(--cream-dark); }
+    .section--dark {
+      background:
+        radial-gradient(circle at 90% 12%, rgba(43, 127, 216, .24), transparent 28%),
+        var(--dark-panel);
+      color: #f8f2df;
+    }
+    .section--blue {
+      background:
+        radial-gradient(circle at 12% 18%, rgba(244, 215, 88, .18), transparent 30%),
+        var(--blue-deep);
+      color: var(--cream);
+    }
+    .section--yellow {
+      background:
+        radial-gradient(circle at 82% 15%, rgba(254,252,246,.58), transparent 28%),
+        var(--yellow);
+    }
+
+    .nav {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .logo {
+      display: grid;
+      grid-template-columns: 44px auto;
+      grid-template-rows: auto auto;
+      align-items: center;
+      column-gap: 12px;
+      text-decoration: none;
+      line-height: 1;
+    }
+    .logo-image {
+      grid-row: 1 / 3;
+      width: 44px;
+      height: 44px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .logo-name { align-self: end; font-family: "Fraunces", serif; font-size: 20px; font-weight: 700; }
+    .logo-subtitle { align-self: start; margin-top: 5px; color: var(--ink-faint); font-family: "Fira Code", monospace; font-size: 9px; font-weight: 500; letter-spacing: .13em; }
+    .nav-links { display: flex; align-items: center; gap: 22px; }
+    .nav-links a { position: relative; color: var(--ink-light); text-decoration: none; font-size: 13px; font-weight: 600; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -7px; height: 3px; background: var(--yellow); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { padding: 9px 16px; border-radius: 999px; background: var(--blue); color: var(--cream) !important; }
+
+    .label {
+      display: block;
+      color: var(--blue);
+      font-family: "Fira Code", monospace;
+      font-size: .76rem;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .section--dark .label, .section--blue .label { color: var(--yellow); }
+    h1, h2, h3, h4 { font-family: "Noto Serif SC", serif; font-weight: 900; }
+    h1 { font-size: clamp(3.3rem, 7.2vw, 6.9rem); line-height: 1.05; letter-spacing: -.045em; }
+    h2 { font-size: clamp(2rem, 4.4vw, 3.8rem); line-height: 1.16; letter-spacing: -.035em; }
+    h3 { font-size: clamp(1.22rem, 2vw, 1.65rem); line-height: 1.38; }
+    p { color: var(--ink-light); }
+    .section--dark p, .section--blue p { color: rgba(254,252,246,.8); }
+    .lead { font-size: clamp(1.05rem, 1.6vw, 1.32rem); line-height: 1.9; }
+    .small { font-size: .86rem; }
+    .muted { color: var(--ink-faint); }
+    .hand { font-family: "Caveat", cursive; font-size: clamp(1.7rem, 3vw, 2.45rem); font-weight: 700; color: var(--blue); line-height: 1.08; }
+    .section--dark .hand, .section--blue .hand { color: var(--yellow); }
+    .hl { background: linear-gradient(transparent 60%, rgba(244,215,88,.62) 60%); padding: 0 .08em; }
+    .red { color: var(--red); }
+
+    .hero {
+      min-height: 100vh;
+      padding: 120px 0 72px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 90% 8%, rgba(244, 215, 88, .35), transparent 25%),
+        radial-gradient(circle at 5% 94%, rgba(43, 127, 216, .12), transparent 28%),
+        var(--cream);
+    }
+    .hero::after { content: ""; position: absolute; top: 0; right: 0; width: 32vw; height: 100%; background: var(--yellow); z-index: 0; }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: .93fr 1.07fr; gap: clamp(44px, 6vw, 90px); align-items: center; }
+    .hero h1 span { color: var(--blue); }
+    .hero-copy .lead { margin-top: 28px; max-width: 660px; }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+    .pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; background: var(--yellow-soft); color: var(--ink); font-size: .8rem; font-weight: 600; }
+    .pill--blue { background: rgba(43,127,216,.1); color: var(--blue-deep); }
+    .pill--red { background: rgba(232,74,95,.1); color: var(--red); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 24px; border: 2px solid var(--blue); border-radius: 12px; text-decoration: none; font-weight: 700; transition: transform .2s, background .2s, color .2s; }
+    .btn--primary { background: var(--blue); color: var(--cream); }
+    .btn--secondary { color: var(--blue); background: transparent; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--secondary:hover { background: var(--yellow-soft); }
+    .hero-visual { position: relative; }
+    .hero-shot { width: calc(100% + 5vw); height: min(70vh, 720px); object-fit: contain; background: var(--cream-dark); border-radius: 24px 0 0 24px; box-shadow: 22px 24px 0 rgba(30,91,168,.17); }
+    .float-price { position: absolute; left: -28px; bottom: 44px; min-width: 220px; padding: 18px 22px; background: var(--cream); box-shadow: var(--shadow); border-bottom: 5px solid var(--red); }
+    .float-price span { display: block; color: var(--ink-faint); font-size: .74rem; letter-spacing: .12em; }
+    .float-price strong { display: block; font-family: "Fraunces", serif; color: var(--blue); font-size: 3.2rem; line-height: 1.05; }
+    .float-price small { color: var(--ink-light); }
+
+    .intro-grid { display: grid; grid-template-columns: .58fr 1fr; gap: clamp(44px, 8vw, 110px); align-items: start; }
+    .intro-mark { position: sticky; top: 110px; }
+    .intro-mark .giant { font-family: "Fraunces", serif; font-size: clamp(6rem, 13vw, 11rem); font-style: italic; line-height: .78; color: var(--blue); opacity: .15; }
+    .intro-copy p + p { margin-top: 18px; }
+    .note { position: relative; padding: 30px; border: 2px dashed rgba(43,127,216,.28); border-radius: 14px; background: rgba(254,252,246,.85); }
+    .note::before { content: attr(data-note); position: absolute; top: -17px; left: 20px; background: var(--cream); padding: 0 10px; color: var(--blue); font-family: "Caveat", cursive; font-size: 1.25rem; font-weight: 700; }
+    .section--dark .note, .section--blue .note { background: rgba(254,252,246,.07); border-color: rgba(244,215,88,.45); }
+    .section--dark .note::before, .section--blue .note::before { background: var(--dark-panel); color: var(--yellow); }
+
+    .reason-nav { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 54px; }
+    .reason-link { position: relative; min-height: 190px; padding: 26px 20px; background: rgba(254,252,246,.76); border-top: 5px solid var(--blue); text-decoration: none; overflow: hidden; }
+    .reason-link:nth-child(2) { border-top-color: var(--yellow); }
+    .reason-link:nth-child(3) { border-top-color: var(--red); }
+    .reason-link:nth-child(4) { border-top-color: var(--blue-deep); }
+    .reason-link:nth-child(5) { border-top-color: var(--yellow); }
+    .reason-link::after { content: attr(data-num); position: absolute; right: 6px; bottom: -28px; font-family: "Fraunces", serif; font-size: 6.6rem; color: var(--blue); opacity: .08; }
+    .reason-link h3 { font-size: 1.12rem; position: relative; }
+    .reason-link p { margin-top: 12px; font-size: .86rem; line-height: 1.65; position: relative; }
+
+    .content-split { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(44px, 7vw, 96px); align-items: start; }
+    .content-split--balanced { grid-template-columns: 1fr 1fr; }
+    .content-split--reverse { grid-template-columns: 1.18fr .82fr; }
+    .sticky-copy { position: sticky; top: 110px; }
+    .sticky-copy p { margin-top: 22px; }
+    .link-list { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+    .link-list a { display: block; padding: 13px 15px; background: rgba(43,127,216,.08); color: var(--blue-deep); font-family: "Fira Code", monospace; font-size: .76rem; line-height: 1.55; overflow-wrap: anywhere; text-decoration: none; border-bottom: 3px solid rgba(43,127,216,.18); }
+    .link-list a:hover { background: var(--yellow-soft); }
+
+    .gallery { display: grid; grid-template-rows: auto auto; gap: 14px; min-width: 0; }
+    .gallery-stage { position: relative; height: clamp(380px, 56vw, 670px); overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--cream-dark); border: 1px solid var(--line); border-radius: 18px; cursor: pointer; }
+    .gallery--compact .gallery-stage { height: clamp(330px, 45vw, 540px); }
+    .gallery--tall .gallery-stage { height: min(76vh, 760px); }
+    .gallery-item { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 0; visibility: hidden; transform: translateY(14px); transition: opacity .4s cubic-bezier(.16,1,.3,1), transform .4s cubic-bezier(.16,1,.3,1); background: var(--cream-dark); }
+    .gallery-item.is-active { opacity: 1; visibility: visible; transform: none; }
+    .gallery-controls { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .gallery-caption { font-size: .78rem; color: var(--ink-faint); }
+    .section--dark .gallery-caption, .section--blue .gallery-caption { color: rgba(254,252,246,.62); }
+    .gallery-nav { display: flex; gap: 8px; }
+    .gallery-btn { width: 42px; height: 42px; border: 1.5px solid var(--blue); border-radius: 50%; background: transparent; color: var(--blue); cursor: pointer; transition: transform .2s, background .2s, color .2s; }
+    .section--dark .gallery-btn, .section--blue .gallery-btn { border-color: var(--yellow); color: var(--yellow); }
+    .gallery-btn:hover { transform: translateY(-2px); background: var(--blue); color: var(--cream); }
+    .section--dark .gallery-btn:hover, .section--blue .gallery-btn:hover { background: var(--yellow); color: var(--ink); }
+    .gallery-dots { display: flex; flex-wrap: wrap; gap: 7px; justify-content: flex-end; }
+    .gallery-dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 50%; background: rgba(43,127,216,.2); cursor: pointer; }
+    .gallery-dot.is-active { background: var(--red); transform: scale(1.35); }
+
+    .proof-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin: 44px 0 58px; }
+    .proof-card { display: grid; grid-template-rows: 1fr auto; min-height: 0; gap: 12px; }
+    .proof-card img { width: 100%; height: 520px; object-fit: contain; background: #f6f0e3; border-radius: 16px; }
+    .proof-card span { color: rgba(254,252,246,.64); font-size: .8rem; }
+    .proof-intro { display: grid; grid-template-columns: .6fr 1fr; gap: 50px; align-items: end; }
+    .proof-intro .giant { font-family: "Fraunces", serif; font-size: clamp(7rem, 16vw, 13rem); color: var(--yellow); line-height: .78; font-style: italic; }
+
+    .plain-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .plain-list li { position: relative; padding-left: 28px; color: var(--ink-light); }
+    .plain-list li::before { content: ""; position: absolute; left: 0; top: .72em; width: 9px; height: 9px; border-radius: 50%; background: var(--yellow); box-shadow: 0 0 0 4px rgba(43,127,216,.1); }
+    .section--dark .plain-list li, .section--blue .plain-list li { color: rgba(254,252,246,.8); }
+    .section--dark .plain-list li::before, .section--blue .plain-list li::before { box-shadow: 0 0 0 4px rgba(254,252,246,.12); }
+
+    .cost-image { width: 100%; height: min(78vh, 830px); object-fit: contain; background: var(--cream-dark); border-radius: 18px; }
+    .price-hero { font-family: "Fraunces", serif; font-size: clamp(6rem, 12vw, 10rem); line-height: .82; color: var(--blue); font-weight: 700; letter-spacing: -.06em; }
+    .price-hero small { font-family: "Noto Sans SC", sans-serif; font-size: 1.2rem; letter-spacing: 0; }
+
+    .compare-grid { display: grid; grid-template-columns: .8fr 1fr 1fr; margin-top: 54px; border-top: 3px solid var(--ink); border-bottom: 1px solid var(--line); }
+    .compare-grid > div { min-height: 78px; padding: 18px 20px; display: flex; align-items: center; border-bottom: 1px solid var(--line); line-height: 1.55; }
+    .compare-grid .head { background: var(--ink); color: var(--cream); font-family: "Noto Serif SC", serif; font-size: 1.12rem; font-weight: 900; }
+    .compare-grid .dim { color: var(--ink-faint); font-size: .78rem; font-weight: 700; letter-spacing: .08em; }
+    .compare-grid .one { background: rgba(43,127,216,.07); }
+    .compare-grid .spark { background: rgba(244,215,88,.18); }
+    .compare-grid .last { border-bottom: 0; }
+
+    .price-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 38px; }
+    .price-card { padding: clamp(28px, 3.5vw, 44px); background: rgba(254,252,246,.88); border-bottom: 7px solid var(--blue); }
+    .price-card--dark { background: var(--ink); color: var(--cream); border-bottom-color: var(--yellow); }
+    .price-card .tag { color: var(--blue); font-size: .74rem; font-weight: 700; letter-spacing: .12em; }
+    .price-card--dark .tag { color: var(--yellow); }
+    .price-card .amount { margin: 18px 0; color: var(--blue); font-family: "Fraunces", serif; font-size: clamp(4rem, 7vw, 6rem); line-height: 1; }
+    .price-card--dark .amount { color: var(--yellow); }
+    .price-card .amount small { font-family: "Noto Sans SC", sans-serif; font-size: 1.1rem; }
+    .price-card p { font-size: .92rem; line-height: 1.85; }
+    .price-card--dark p { color: rgba(254,252,246,.76); }
+    .premium-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
+    .premium { padding: 19px 22px; background: rgba(43,127,216,.08); }
+    .premium strong { color: var(--blue); font-size: 1.35rem; }
+
+    .flow { display: grid; grid-template-columns: repeat(5, 1fr); position: relative; margin-top: 58px; }
+    .flow::before { content: ""; position: absolute; left: 7%; right: 7%; top: 31px; height: 3px; background: linear-gradient(90deg, var(--yellow), var(--blue)); }
+    .flow-step { position: relative; padding: 0 16px; text-align: center; }
+    .flow-step .dot { width: 64px; height: 64px; margin: 0 auto 22px; border-radius: 50%; background: var(--blue); color: var(--cream); display: grid; place-items: center; font-family: "Fraunces", serif; font-size: 1.3rem; position: relative; z-index: 1; }
+    .flow-step:nth-child(2n) .dot { background: var(--yellow); color: var(--ink); }
+    .flow-step h3 { font-size: 1.05rem; margin-bottom: 9px; }
+    .flow-step p { font-size: .82rem; line-height: 1.65; }
+
+    .prep-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 42px; margin-top: 56px; }
+    .prep-list { display: flex; flex-direction: column; gap: 18px; }
+    .prep { padding: 28px 30px; background: rgba(254,252,246,.86); border-bottom: 5px solid var(--yellow); }
+    .prep:nth-child(2) { border-bottom-color: var(--blue); }
+    .prep h3 { margin-bottom: 10px; }
+    .book { padding: 40px; background: var(--blue); color: var(--cream); display: flex; flex-direction: column; justify-content: space-between; }
+    .book p { color: rgba(254,252,246,.82); margin-top: 18px; }
+    .book .hand { color: var(--yellow); margin-top: 34px; }
+
+    .shipping-number { font-family: "Fraunces", serif; font-size: clamp(8rem, 18vw, 15rem); font-weight: 700; line-height: .72; color: var(--blue); }
+    .shipping-number small { font-family: "Noto Sans SC", sans-serif; font-size: 1.6rem; }
+    .shipping-points { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; }
+    .shipping-point { padding: 24px; background: rgba(254,252,246,.6); border-top: 5px solid var(--blue); }
+    .shipping-point:nth-child(2) { border-top-color: var(--red); }
+    .shipping-point:nth-child(3) { border-top-color: var(--yellow); }
+    .shipping-point span { display: block; color: var(--blue); font-family: "Fraunces", serif; font-size: 2.2rem; opacity: .3; }
+
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 48px; }
+    .why-col { padding-top: 22px; border-top: 4px solid var(--yellow); }
+    .why-col:nth-child(2) { border-top-color: var(--blue); }
+    .why-col h3 { margin-bottom: 16px; }
+
+    .test-panel { display: grid; grid-template-columns: .42fr 1fr; gap: 48px; align-items: center; margin-top: 58px; padding: 42px; background: rgba(254,252,246,.85); }
+    .test-panel .number { font-family: "Fraunces", serif; font-size: clamp(7rem, 14vw, 12rem); color: var(--blue); line-height: .78; text-align: center; }
+    .test-panel .number small { display: block; margin-top: 16px; font-family: "Noto Sans SC", sans-serif; font-size: .9rem; color: var(--ink-faint); letter-spacing: .1em; }
+
+    .faq-list { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 52px; }
+    .faq { padding: 28px 30px; background: var(--cream); border-bottom: 5px solid var(--blue); }
+    .faq:nth-child(2n) { border-bottom-color: var(--yellow); }
+    .faq h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .faq p { font-size: .9rem; line-height: 1.8; }
+    .faq--wide { grid-column: 1 / -1; }
+    .warning-repeat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; }
+    .warning-repeat span { padding: 12px 10px; background: var(--red); color: var(--cream); text-align: center; font-weight: 700; font-size: .85rem; }
+
+    .warranty-grid { display: grid; grid-template-columns: .55fr 1fr; gap: 60px; align-items: center; }
+    .warranty { aspect-ratio: 1; max-width: 420px; border-radius: 50%; background: var(--yellow); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: var(--ink); }
+    .warranty strong { color: var(--blue); font-family: "Fraunces", serif; font-size: clamp(7rem, 14vw, 11rem); line-height: .75; }
+    .warranty span { margin-top: 18px; font-size: 1.5rem; font-weight: 700; }
+    .blank-chapter { min-height: 55vh; display: grid; place-items: center; position: relative; overflow: hidden; text-align: center; }
+    .blank-chapter::before { content: "10"; position: absolute; font-family: "Fraunces", serif; font-size: clamp(18rem, 45vw, 38rem); line-height: 1; color: var(--blue); opacity: .06; }
+    .blank-chapter h2 { position: relative; }
+
+    .contact-grid { display: grid; grid-template-columns: .68fr 1.32fr; gap: 58px; align-items: start; }
+    .qr { padding: 30px; background: var(--cream-dark); border-bottom: 7px solid var(--yellow); text-align: center; }
+    .qr img { width: 280px; aspect-ratio: 1; object-fit: contain; display: block; margin: 0 auto 16px; }
+    .contact-copy .plain-list { margin-top: 24px; }
+    .contact-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 30px; }
+    .contact-method { padding: 22px; background: rgba(254,252,246,.08); border-bottom: 5px solid var(--yellow); }
+    .contact-method span { display: block; color: var(--yellow); font-size: .75rem; letter-spacing: .1em; }
+    .contact-method strong, .contact-method a { display: block; margin-top: 9px; color: var(--cream); font-family: "Fraunces", serif; font-size: 1.35rem; text-decoration: none; }
+    .zsxq { width: 100%; max-height: 380px; object-fit: contain; margin-top: 28px; background: var(--cream-dark); }
+    .footer { padding: 34px 0; background: var(--dark-panel); color: rgba(254,252,246,.65); }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; font-family: "Fira Code", monospace; font-size: .75rem; letter-spacing: .08em; }
+    .footer-title { display: inline-flex; align-items: center; gap: 10px; color: var(--cream); font-family: "Noto Sans SC", sans-serif; font-size: .78rem; font-weight: 600; letter-spacing: .12em; }
+    .footer-title::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--yellow); }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: .1s; }
+    .reveal-d2 { transition-delay: .2s; }
+
+    @media (max-width: 1000px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero::after { width: 24vw; }
+      .hero-grid, .content-split, .content-split--balanced, .content-split--reverse, .contact-grid, .warranty-grid, .intro-grid, .proof-intro { grid-template-columns: 1fr; }
+      .hero-visual { max-width: 760px; }
+      .hero-shot { width: 100%; }
+      .sticky-copy, .intro-mark { position: static; }
+      .reason-nav { grid-template-columns: repeat(2, 1fr); }
+      .flow { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .flow::before { display: none; }
+      .prep-grid { grid-template-columns: 1fr; }
+      .proof-pair { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .container { width: min(100% - 32px, 1300px); }
+      .hero { padding-top: 100px; }
+      .hero::after { display: none; }
+      .float-price { position: relative; left: 0; bottom: auto; margin-top: 18px; }
+      .hero-shot { height: 58vh; border-radius: 18px; }
+      .reason-nav, .price-cards, .premium-row, .faq-list, .why-grid, .contact-methods, .shipping-points, .flow { grid-template-columns: 1fr; }
+      .compare-grid { grid-template-columns: .8fr 1fr 1fr; overflow-x: auto; font-size: .82rem; }
+      .compare-grid > div { min-width: 130px; padding: 14px 12px; }
+      .gallery-stage { height: 62vh; }
+      .proof-card img { height: 58vh; }
+      .gallery-controls { align-items: flex-start; }
+      .gallery-dots { max-width: 48%; }
+      .warning-repeat { grid-template-columns: 1fr; }
+      .test-panel { grid-template-columns: 1fr; padding: 26px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" aria-label="主导航">
+    <div class="container nav-inner">
+      <a class="logo" href="#top" aria-label="Brclio，返回页面顶部">
+        <img class="logo-image" src="assets/brand/brclio-logo.png" alt="" aria-hidden="true">
+        <strong class="logo-name">Brclio</strong>
+        <small class="logo-subtitle">AI · 编程 · 创作</small>
+      </a>
+      <div class="nav-links">
+        <a href="#why">为什么选择</a>
+        <a href="#price">费用</a>
+        <a href="#flow">流程</a>
+        <a href="#shipping">物流</a>
+        <a href="#faq">百问</a>
+        <a class="nav-cta" href="#contact">联系购买</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="label">NEW ZEALAND · PHYSICAL SIM</span>
+          <h1>新西兰<br><span>SIM 卡</span></h1>
+          <p class="lead">新西兰手机号购买，支持 Claude / Codex 账号激活与长期养号。</p>
+          <div class="hero-pills"><span class="pill pill--blue">实体卡</span><span class="pill">One.nz / Spark</span><span class="pill pill--red">1～3 周国际物流</span></div>
+          <div class="hero-actions"><a class="btn btn--primary" href="#price">查看费用</a><a class="btn btn--secondary" href="#flow">查看交易流程</a></div>
+          <div class="hand" style="margin-top:34px;">Hello, 我是 Brclio.</div>
+        </div>
+        <div class="hero-visual reveal reveal-d1">
+          <img class="hero-shot" src="assets/source-images/image-20260822220904196.png" alt="海外 GG 卡注册教程发布后的截图">
+          <div class="float-price"><span>ONE.NZ 入手价</span><strong>125 元</strong><small>再无其它额外费用</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container intro-grid">
+        <div class="intro-mark reveal"><div class="giant">00</div><span class="label">START HERE</span><h2>从爆火到封号</h2></div>
+        <div class="intro-copy reveal reveal-d1">
+          <p class="lead">之前在视频号发布了海外 GG 卡注册教程，没想到爆火了。很多人实操成功，不过后来因为线上、虚拟卡等各种原因，GG 卡实施了大规模封号。</p>
+          <div class="note" data-note="这次的方向" style="margin-top:42px;"><p>不再继续围绕虚拟卡折腾，而是转向<span class="hl">新西兰实体手机卡</span>。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="container">
+        <span class="label reveal">CHAPTER 01</span>
+        <h2 class="reveal">为什么选择「新西兰🇳🇿实体手机卡」</h2>
+        <div class="reason-nav reveal reveal-d1">
+          <a class="reason-link" data-num="1" href="#reason-1"><h3>OpenAI 不允许换绑</h3><p>绑定号码后期不能修改。</p></a>
+          <a class="reason-link" data-num="2" href="#reason-2"><h3>折腾半天仍可能被封</h3><p>邮件、搜索与群聊截图的实际反馈。</p></a>
+          <a class="reason-link" data-num="3" href="#reason-3"><h3>真实客户有办卡难题</h3><p>自己操作办一张卡仍有难度。</p></a>
+          <a class="reason-link" data-num="4" href="#reason-4"><h3>源于一段对话</h3><p>从帮忙收验证码，到直接卖卡。</p></a>
+          <a class="reason-link" data-num="5" href="#reason-5"><h3>折腾成本和直接买差不多</h3><p>125 元，主打省心。</p></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="reason-1">
+      <div class="container content-split">
+        <div class="sticky-copy reveal">
+          <span class="label">01 · OPENAI PHONE NUMBER</span>
+          <h2>OpenAI 不允许换绑</h2>
+          <p class="lead">OpenAI 不允许修改账号已绑定的手机号，并且不知道后期会不会开始：仅限手机号登录。</p>
+          <div class="link-list">
+            <a href="https://help.openai.com/zh-hans-cn/articles/9135134-how-to-change-the-phone-number-associated-with-your-account" target="_blank" rel="noreferrer">help.openai.com / how-to-change-the-phone-number-associated-with-your-account</a>
+            <a href="https://help.openai.com/zh-hans-cn/articles/10388702-phone-only-signups" target="_blank" rel="noreferrer">help.openai.com / phone-only-signups</a>
+          </div>
+        </div>
+        <div class="gallery reveal reveal-d1" data-gallery>
+          <div class="gallery-stage" title="点击切换下一张"><img class="gallery-item is-active" src="assets/source-images/image-20260822222343095.png" alt="OpenAI 帮助页面截图 1"><img class="gallery-item" src="assets/source-images/image-20260822222453275.png" alt="OpenAI 帮助页面截图 2"></div>
+          <div class="gallery-controls"><span class="gallery-caption">点击图片切换 · <span data-gallery-count></span></span><div class="gallery-nav"><button class="gallery-btn" data-gallery-prev aria-label="上一张">←</button><button class="gallery-btn" data-gallery-next aria-label="下一张">→</button></div><div class="gallery-dots"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="reason-2">
+      <div class="container">
+        <div class="proof-intro reveal"><div class="giant">02</div><div><span class="label">RISK EVIDENCE</span><h2>折腾半天有可能被封</h2><p class="lead" style="margin-top:20px;">群友官方邮件、谷歌查询，以及粉丝群里的实际截图。</p></div></div>
+        <div class="proof-pair reveal reveal-d1">
+          <figure class="proof-card"><img src="assets/source-images/image-20260822225238959.png" alt="群友收到的官方邮件"><span>群友官方邮件</span></figure>
+          <figure class="proof-card"><img src="assets/source-images/image11111111.png" alt="谷歌查询截图"><span>谷歌查询</span></figure>
+        </div>
+        <div class="content-split content-split--balanced">
+          <div class="reveal"><span class="label">11 SCREENSHOTS</span><h2>粉丝群里实际截图</h2><p class="lead" style="margin-top:22px;">折腾半天还有被封号的可能。还是选择直接卖吧～</p><div class="hand" style="margin-top:28px;">特别的闹心，费心。</div></div>
+          <div class="gallery gallery--compact reveal reveal-d1" data-gallery>
+            <div class="gallery-stage" title="点击切换下一张">
+              <img class="gallery-item is-active" src="assets/source-images/image-20260822224650681.png" alt="粉丝群实际截图 1"><img class="gallery-item" src="assets/source-images/image-20260822224800279.png" alt="粉丝群实际截图 2"><img class="gallery-item" src="assets/source-images/image-20260822224929641.png" alt="粉丝群实际截图 3"><img class="gallery-item" src="assets/source-images/image-20260822225032691.png" alt="粉丝群实际截图 4"><img class="gallery-item" src="assets/source-images/image-20260822225634177.png" alt="粉丝群实际截图 5"><img class="gallery-item" src="assets/source-images/image-20260822225835518.png" alt="粉丝群实际截图 6"><img class="gallery-item" src="assets/source-images/image-20260822225943701.png" alt="粉丝群实际截图 7"><img class="gallery-item" src="assets/source-images/image-20260822230952472.png" alt="特别的闹心，费心"><img class="gallery-item" src="assets/source-images/image-20260823092614459.png" alt="粉丝群实际截图 8B"><img class="gallery-item" src="assets/source-images/image-20260823180229147.png" alt="粉丝群实际截图 9"><img class="gallery-item" src="assets/source-images/image.png" alt="粉丝群实际截图 10">
+            </div>
+            <div class="gallery-controls"><span class="gallery-caption">粉丝群实际截图 · <span data-gallery-count></span></span><div class="gallery-nav"><button class="gallery-btn" data-gallery-prev aria-label="上一张">←</button><button class="gallery-btn" data-gallery-next aria-label="下一张">→</button></div><div class="gallery-dots"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="reason-3">
+      <div class="container content-split content-split--reverse">
+        <div class="gallery reveal" data-gallery>
+          <div class="gallery-stage" title="点击切换下一张"><img class="gallery-item is-active" src="assets/source-images/image-20260823092750590.png" alt="真实客户需求截图 1"><img class="gallery-item" src="assets/source-images/image-20260823092811320.png" alt="真实客户需求截图 2"><img class="gallery-item" src="assets/source-images/image-20260823112223356.png" alt="真实客户需求截图 3"></div>
+          <div class="gallery-controls"><span class="gallery-caption">真实客户的需求与情况 · <span data-gallery-count></span></span><div class="gallery-nav"><button class="gallery-btn" data-gallery-prev aria-label="上一张">←</button><button class="gallery-btn" data-gallery-next aria-label="下一张">→</button></div><div class="gallery-dots"></div></div>
+        </div>
+        <div class="sticky-copy reveal reveal-d1"><span class="label">03 · REAL NEEDS</span><h2>真实客户的需求与面临的情况</h2><p class="lead">市面上的大部分店家，没有我这样得天独厚的条件。我的朋友定居新西兰，并且也和我一致想做这个业务。</p><p class="lead">对大部分人来说，自己操作办一张卡，还是有难度的。</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="reason-4">
+      <div class="container content-split">
+        <div class="sticky-copy reveal"><span class="label">04 · THE CONVERSATION</span><h2>为什么要做？<br>源于一段对话</h2><ul class="plain-list" style="margin-top:28px;"><li>现在新账号用 Codex 都要用手机号。</li><li>一开始想法是不做假手机卡；可以邮寄，但是运费客户出；也可以不邮寄，收日常管理费与少量维护话费，用的时候提前联系、插卡收验证码。</li><li>最后得出：直接卖卡方便，用户自己养号。</li><li>得天独厚的匿名开卡。</li></ul></div>
+        <div class="gallery reveal reveal-d1" data-gallery>
+          <div class="gallery-stage" title="点击切换下一张"><img class="gallery-item is-active" src="assets/source-images/image-20260823185934000.png" alt="关于新西兰手机卡的对话 1"><img class="gallery-item" src="assets/source-images/image-20260823190907000.png" alt="关于新西兰手机卡的对话 2"><img class="gallery-item" src="assets/source-images/image-20260823190959000.png" alt="关于新西兰手机卡的对话 3"></div>
+          <div class="gallery-controls"><span class="gallery-caption">一段对话 · <span data-gallery-count></span></span><div class="gallery-nav"><button class="gallery-btn" data-gallery-prev aria-label="上一张">←</button><button class="gallery-btn" data-gallery-next aria-label="下一张">→</button></div><div class="gallery-dots"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="reason-5">
+      <div class="container content-split content-split--reverse">
+        <img class="cost-image reveal" src="assets/source-images/image-20260823191427000.jpg" alt="自己折腾手机卡的成本截图">
+        <div class="sticky-copy reveal reveal-d1"><span class="label">05 · COST</span><h2>自己折腾的钱，和买一张差不多</h2><div class="price-hero" style="margin-top:40px;">125<small> 元</small></div><p class="lead" style="margin-top:24px;">前后折腾要花的钱约<span class="hl">一百来块</span>，直接买 One.nz 只需要 125 元。</p><div class="hand" style="margin-top:26px;">主打：省心！</div></div>
+      </div>
+    </section>
+
+    <section class="section" id="price">
+      <div class="container">
+        <span class="label reveal">CHAPTER 02 · PRICE &amp; PURCHASE</span>
+        <h2 class="reveal">新西兰卡的费用与购买方式</h2>
+        <p class="lead reveal" style="max-width:820px;margin-top:22px;">One.nz 和 Spark 的区别，就像中国移动和中国联通。以下结论均要结合自己实际情况，仅供参考。</p>
+        <div class="compare-grid reveal reveal-d1" role="table" aria-label="One.nz 与 Spark 对比">
+          <div class="head">对比维度</div><div class="head">One.nz</div><div class="head">Spark</div>
+          <div class="dim">国内信号接入</div><div class="one">插卡、获取国内信号稍慢</div><div class="spark">插卡秒入国内网</div>
+          <div class="dim">网络体验</div><div class="one">4G、5G 切换</div><div class="spark">稳定 5G</div>
+          <div class="dim">个人感受</div><div class="one">信号稍弱，但不影响使用</div><div class="spark">个人喜欢大牌</div>
+          <div class="dim last">价格</div><div class="one last"><strong>125 元</strong>，无其它额外费用</div><div class="spark last"><strong>185 元</strong>，无其它额外费用</div>
+        </div>
+        <div class="price-cards reveal">
+          <article class="price-card"><span class="tag">ONE.NZ</span><div class="amount">125<small> 元</small></div><p>先付 120 元，等卡从新西兰寄到国内、到我手里。我再联系你进行 Codex 激活，确保手机卡可用，然后微信小店下单 5 元，走小店物流便于查询。可直接微信、支付宝转账。</p><p style="margin-top:14px;"><strong>缺点：</strong>国内信号接入慢一点，插卡到有信号会慢一些，信号稍弱，但不影响使用。</p></article>
+          <article class="price-card price-card--dark"><span class="tag">SPARK · 最大牌卡（推荐）</span><div class="amount">185<small> 元</small></div><p>先付 180 元，等卡从新西兰寄到国内、到我手里。我再联系你进行 Codex 激活，确保手机卡可用，然后微信小店下单 5 元，走小店物流便于查询。</p></article>
+        </div>
+        <p class="small muted reveal" style="margin-top:20px;">优质号码就是所谓的靓号，适合想要长期养号的人。</p>
+        <div class="premium-row reveal"><div class="premium"><strong>One.nz 优质号码 145 元</strong><br>基础价 125 + 20 元</div><div class="premium"><strong>Spark 优质号码 205 元</strong><br>基础价 185 + 20 元</div></div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="flow">
+      <div class="container">
+        <span class="label reveal">CHAPTER 03 · TRANSACTION FLOW</span><h2 class="reveal">交易总流程</h2>
+        <div class="flow reveal reveal-d1"><div class="flow-step"><div class="dot">1</div><h3>微信 / 支付宝付款</h3><p>直接转账。</p></div><div class="flow-step"><div class="dot">2</div><h3>手机卡到我手里</h3><p>等待真实国际物流。</p></div><div class="flow-step"><div class="dot">3</div><h3>联系激活 Codex</h3><p>寄出前先验证，确保卡正常。</p></div><div class="flow-step"><div class="dot">4</div><h3>微信小店下单</h3><p>5 元物流单，便于查询。</p></div><div class="flow-step"><div class="dot">5</div><h3>寄出快递</h3><p>收到后自行使用。</p></div></div>
+        <div class="note reveal" data-note="真实国际物流" style="margin-top:56px;"><p>购买的不要着急，耐心等待。海关和新西兰工作效率较慢，我会按顺序联系。无论你们之后用手机号做什么，邮寄前会先帮助验证 Codex，保证验证通过且手机卡正常。</p><p style="margin-top:14px;">欢迎推荐给好友，让大家一起降低门槛使用海外 AI。当然，有出国旅游的也可以购买。</p></div>
+        <div class="prep-grid reveal"><div class="prep-list"><article class="prep"><h3>01 · 提前准备谷歌账号</h3><p>网页版注册、手机 Gamil 注册都试一试，因为有时候谷歌风控，不好注册。</p></article><article class="prep"><h3>02 · 注册 ChatGPT，安装 Codex</h3><p>用谷歌账号注册 ChatGPT，安装客户端 Codex。提示手机验证，就可以正式开始。</p></article></div><aside class="book"><div><span class="label" style="color:var(--yellow);">NETWORK</span><h3>需要 🪜，大家应该都有</h3><p>如果没有，新书《编程启蒙：思维与代码》由北航出版。购书 + 好评，福利：一年🪜。</p></div><div class="hand">各自做好准备。</div></aside></div>
+      </div>
+    </section>
+
+    <section class="section section--yellow" id="shipping">
+      <div class="container content-split content-split--balanced">
+        <div class="reveal"><span class="label">CHAPTER 04 · SHIPPING</span><div class="shipping-number">1～3<small> 周</small></div></div>
+        <div class="reveal reveal-d1"><h2>从新西兰邮寄到国内</h2><p class="lead" style="margin-top:22px;">经过实测，主要占用最多时间的有三个环节：</p><div class="shipping-points"><article class="shipping-point"><span>01</span><h3>新西兰工作效率</h3></article><article class="shipping-point"><span>02</span><h3>北京海关</h3></article><article class="shipping-point"><span>03</span><h3>福建海关</h3></article></div></div>
+      </div>
+    </section>
+
+    <section class="section section--blue">
+      <div class="container content-split">
+        <div class="sticky-copy reveal"><span class="label">CHAPTER 05 · WHY US</span><h2>合规、合法<br>真实国际物流</h2><p class="lead">正规途径，国际物流、走海关！海关可过，代表一切！</p><div class="note" data-note="NZ POST" style="margin-top:34px;"><p><strong>www.nzpost.co.nz</strong></p></div></div>
+        <div class="gallery reveal reveal-d1" data-gallery><div class="gallery-stage" title="点击切换下一张"><img class="gallery-item is-active" src="assets/source-images/image-20260826230034000.png" alt="NZ Post 国际物流截图 1"><img class="gallery-item" src="assets/source-images/image-20260826230220000.png" alt="NZ Post 国际物流截图 2"><img class="gallery-item" src="assets/source-images/image-20260826230233000.png" alt="NZ Post 国际物流截图 3"></div><div class="gallery-controls"><span class="gallery-caption">NZ Post · <span data-gallery-count></span></span><div class="gallery-nav"><button class="gallery-btn" data-gallery-prev aria-label="上一张">←</button><button class="gallery-btn" data-gallery-next aria-label="下一张">→</button></div><div class="gallery-dots"></div></div></div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container content-split content-split--reverse">
+        <div class="gallery gallery--tall reveal" data-gallery><div class="gallery-stage" title="点击切换下一张"><img class="gallery-item is-active" src="assets/source-images/image-20260826230403000.PNG" alt="EMS 查询截图 1"><img class="gallery-item" src="assets/source-images/image-20260826230408000.PNG" alt="EMS 查询截图 2"><img class="gallery-item" src="assets/source-images/image-20260826230415000.PNG" alt="EMS 查询截图 3"><img class="gallery-item" src="assets/source-images/image-20260826230421000.PNG" alt="EMS 查询截图 4"><img class="gallery-item" src="assets/source-images/6f8ca9b13389f3dc2d6cfcbdac53e05f.jpg" alt="EMS 查询截图 5"></div><div class="gallery-controls"><span class="gallery-caption">邮政 EMS · <span data-gallery-count></span></span><div class="gallery-nav"><button class="gallery-btn" data-gallery-prev aria-label="上一张">←</button><button class="gallery-btn" data-gallery-next aria-label="下一张">→</button></div><div class="gallery-dots"></div></div></div>
+        <div class="sticky-copy reveal reveal-d1"><span class="label">POSTAL EMS</span><h2>邮政 EMS<br>也可查询</h2><p class="lead">从图片中，也能知道真实需要多久物流。点击可以逐张查看全部进度截图。</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <span class="label reveal">CHAPTER 06 · 07 · 08</span><h2 class="reveal">长期养号、选择新西兰与实测结论</h2>
+        <div class="why-grid reveal reveal-d1"><article class="why-col"><h3>为什么需要长期养一个手机号？</h3><p>未来国外 AI 产品只会越来越多，封锁会如何发展不确定。对没条件出国的人而言，拥有海外手机号仍然必要。不少新产品都要验证手机号，这不是使用🪜可以解决、办理的。</p></article><article class="why-col"><h3>为什么是新西兰？</h3><ul class="plain-list"><li>我朋友刚刚好在新西兰。</li><li>新西兰支持匿名办理手机卡。</li><li>国内合规（能过海关就是最好的证明）。</li><li>新西兰是老美的狗腿子。</li></ul></article></div>
+        <div class="test-panel reveal"><div class="number">2<small>CODEX ACCOUNTS</small></div><div><h3>实测：一张卡支持激活两个 Codex 账号</h3><p style="margin-top:14px;">中间间隔 1 周，实际你们可以自行测试。建议最好用在自己的账号，不要借此共享。此结论未经过批量测试，实际不支持也不要死磕。</p><p class="small muted" style="margin-top:14px;">2. 待增加；</p></div></div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="faq">
+      <div class="container">
+        <span class="label reveal">CHAPTER 09 · SIM CARD FAQ</span><h2 class="reveal">手机卡百问<br>不定期更新</h2>
+        <div class="faq-list reveal reveal-d1">
+          <article class="faq faq--wide"><div class="content-split content-split--balanced"><div><h3>9.1 每年养号如何养？</h3><p>每年充值 5 美元即可，目前政策无需消费。</p><div class="warning-repeat"><span>收到之后，请尽快充值！</span><span>收到之后，请尽快充值！</span><span>收到之后，请尽快充值！</span></div><div class="link-list"><a href="https://one.nz/faq/when-does-prepay-credit-expire?utm_source=chatgpt.com" target="_blank" rel="noreferrer">one.nz / faq / when-does-prepay-credit-expire</a></div></div><img src="assets/source-images/ssassasasasasasa.png" alt="One.nz 养号充值政策截图" style="width:100%;height:360px;object-fit:contain;background:var(--cream-dark);border-radius:14px;"></div></article>
+          <article class="faq"><h3>9.2 短信一条多少钱？</h3><p>参考：漫游大概 4 元人民币一条，按实际情况即可。<strong>收短信不要钱！</strong></p></article>
+          <article class="faq"><h3>9.3 卡是什么类型？</h3><p>就是正常国内的手机卡，可以直接插卡。不是虚拟 eSIM 卡；如果需要，可以特殊申请办理，价格看实际情况。</p></article>
+          <article class="faq"><h3>9.4 如何交易？</h3><p>直接微信、支付宝，皆可！</p></article>
+          <article class="faq"><h3>9.5 这个卡会不会被封卡呀？经常在国内用</h3><p>目前不会，目前政策支持长期海外使用，不过实际看情况，都属于不可抗力。</p></article>
+          <article class="faq"><h3>9.6 这个卡在国外已经激活了，邮箱什么的，回来什么都能改吗？</h3><p>我们只负责购买卡、激活卡，其它都交给你们自己操作。没有绑定邮箱等复杂流程，就像在国内办手机卡一样。</p></article>
+          <article class="faq"><h3>9.7 这个卡也不敢说能用多长时间是吧？会不会在国内取消是吧？</h3><p>新西兰不会封，主要看国内。国内政府要来封卡，谁都管不了；只要别做违法的事情，一般也不会被封。如果新西兰政策改变，也没办法～</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="after-sales">
+      <div class="container warranty-grid">
+        <div class="warranty reveal"><strong>6</strong><span>个月质保</span></div>
+        <div class="reveal reveal-d1"><span class="label">CHAPTER 10 · AFTER-SALES</span><h2>售后问题</h2><ul class="plain-list" style="margin-top:28px;"><li>质保半年，这玩意都是看政策走的。</li><li>半年内出现问题，经过验证、运营商查询后，会联系当地运营商进行注销或补办一张卡。</li><li>补办后不再包邮寄；如果需要邮寄，实际邮费多少就付多少，我们不再赚钱。</li><li><strong>每位顾客，仅限售后一次！</strong></li></ul></div>
+      </div>
+    </section>
+
+    <section class="section section--alt blank-chapter" aria-labelledby="topup-title">
+      <h2 id="topup-title">充值教程</h2>
+    </section>
+
+    <section class="section section--dark" id="contact">
+      <div class="container contact-grid">
+        <div class="qr reveal"><img src="assets/source-images/gzh.jpg" alt="AI悦创公众号二维码"><h3>公众号：AI悦创</h3></div>
+        <div class="contact-copy reveal reveal-d1">
+          <span class="label">AI悦创 · 编程一对一</span><h2>一对一辅导、答疑、作业与项目实践</h2>
+          <ul class="plain-list"><li>Python 语言、C++、java、算法 / 数据结构、少儿编程、pygame 游戏开发、Web、Linux。</li><li>面向国内外学员，国外占 80%。全部都是一对一教学：一对一辅导 + 一对一答疑 + 布置作业 + 项目实践。</li><li>另有线下线上摄影课程、Photoshop、Premiere 一对一教学，QQ、微信在线，随时响应。</li><li>C++ 信息奥赛题解长期更新，长期招收一对一中小学信息奥赛集训。莆田、厦门地区有机会线下上门，其他地区线上。</li></ul>
+          <div class="contact-methods"><div class="contact-method"><span>方法一 · QQ</span><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=1432803776&amp;site=qq&amp;menu=yes" target="_blank" rel="noreferrer">1432803776</a></div><div class="contact-method"><span>方法二 · 微信</span><strong>Jiabcdefh</strong></div></div>
+          <img class="zsxq" src="assets/source-images/zsxq.jpg" alt="AI悦创知识星球信息">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container footer-inner"><span>© 2026 Brclio design</span><span class="footer-title">新西兰实体 SIM · Claude / Codex</span></div></footer>
+
+  <script>
+    (() => {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .1 });
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+      document.querySelectorAll('[data-gallery]').forEach(gallery => {
+        const items = [...gallery.querySelectorAll('.gallery-item')];
+        const stage = gallery.querySelector('.gallery-stage');
+        const dotsWrap = gallery.querySelector('.gallery-dots');
+        const count = gallery.querySelector('[data-gallery-count]');
+        let current = 0;
+
+        const dots = items.map((_, index) => {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.className = 'gallery-dot' + (index === 0 ? ' is-active' : '');
+          dot.setAttribute('aria-label', '切换到第 ' + (index + 1) + ' 张');
+          dot.addEventListener('click', event => {
+            event.stopPropagation();
+            show(index);
+          });
+          dotsWrap.appendChild(dot);
+          return dot;
+        });
+
+        const show = index => {
+          current = (index + items.length) % items.length;
+          items.forEach((item, itemIndex) => item.classList.toggle('is-active', itemIndex === current));
+          dots.forEach((dot, dotIndex) => dot.classList.toggle('is-active', dotIndex === current));
+          if (count) count.textContent = (current + 1) + ' / ' + items.length;
+        };
+
+        gallery.querySelector('[data-gallery-prev]').addEventListener('click', event => { event.stopPropagation(); show(current - 1); });
+        gallery.querySelector('[data-gallery-next]').addEventListener('click', event => { event.stopPropagation(); show(current + 1); });
+        stage.addEventListener('click', () => show(current + 1));
+        show(0);
+      });
+    })();
+  </script>
+  <!-- Design system attribution: esthersjw/esther-design-system, CC BY-NC-SA 4.0 -->
+</body>
+</html>
