@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="新西兰实体 SIM 卡资料入口，可在完整购买指南与 27 页演示文稿之间快速切换。">
+  <meta name="theme-color" content="#fefcf6">
+  <title>新西兰实体 SIM 卡｜资料入口</title>
+  <link rel="icon" href="assets/brand/brclio-logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&amp;family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=Noto+Sans+SC:wght@400;500;600;700&amp;family=Noto+Serif+SC:wght@700;900&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --_esther-ds: "esthersjw-v1";
+      --blue: #2b7fd8;
+      --blue-deep: #1f64ad;
+      --yellow: #f4d758;
+      --red: #e84a5f;
+      --cream: #fefcf6;
+      --cream-deep: #faf6eb;
+      --paper: #fffdf8;
+      --ink: #1a1a2e;
+      --ink-light: #4a4a5a;
+      --ink-faint: #686878;
+      --border: rgba(26, 26, 46, 0.09);
+      --shadow-soft: 0 3px 8px rgba(26, 26, 46, 0.08);
+      --header-height: 68px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background: var(--cream);
+    }
+
+    body {
+      min-width: 320px;
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow: hidden;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    a {
+      font: inherit;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    iframe:focus-visible {
+      outline: 3px solid rgba(43, 127, 216, 0.32);
+      outline-offset: 3px;
+    }
+
+    ::selection {
+      color: var(--ink);
+      background: var(--yellow);
+    }
+
+    h1,
+    h2,
+    h3 {
+      text-wrap: balance;
+    }
+
+    p {
+      text-wrap: pretty;
+    }
+
+    .app-header {
+      position: relative;
+      z-index: 20;
+      height: var(--header-height);
+      display: grid;
+      grid-template-columns: minmax(210px, 320px) 1fr auto;
+      align-items: center;
+      gap: clamp(18px, 3vw, 44px);
+      padding: 0 clamp(16px, 2.4vw, 34px);
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      min-width: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      overflow: hidden;
+      border-radius: 12px 15px 11px 14px;
+      box-shadow: 0 3px 12px rgba(43, 127, 216, 0.15);
+      transform: rotate(-1.5deg);
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .brand-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.12;
+    }
+
+    .brand-copy strong {
+      font-family: "Fraunces", "Noto Serif SC", serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-copy small {
+      margin-top: 4px;
+      overflow: hidden;
+      color: var(--ink-faint);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .header-title {
+      min-width: 0;
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .header-title h1 {
+      overflow: hidden;
+      font-family: "Noto Serif SC", serif;
+      font-size: clamp(1rem, 1.6vw, 1.18rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .header-title span {
+      flex: 0 0 auto;
+      color: var(--blue-deep);
+      font-family: "Fraunces", serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .open-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 40px;
+      padding: 9px 15px;
+      border-radius: 11px;
+      color: var(--cream);
+      background: var(--blue);
+      box-shadow: 0 7px 18px rgba(43, 127, 216, 0.18);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+    }
+
+    .open-link:hover {
+      background: var(--blue-deep);
+      box-shadow: 0 10px 22px rgba(43, 127, 216, 0.24);
+      transform: translateY(-2px);
+    }
+
+    .open-link svg {
+      width: 17px;
+      height: 17px;
+      fill: none;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8;
+    }
+
+    .app-shell {
+      height: calc(100vh - var(--header-height));
+      height: calc(100dvh - var(--header-height));
+      display: grid;
+      grid-template-columns: minmax(270px, 320px) minmax(0, 1fr);
+      overflow: hidden;
+    }
+
+    .doc-sidebar {
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      padding: clamp(22px, 3vh, 34px) clamp(18px, 2.2vw, 28px) 20px;
+      overflow-y: auto;
+      background: var(--cream-deep);
+      border-right: 1px solid var(--border);
+    }
+
+    .sidebar-intro {
+      padding: 2px 4px clamp(20px, 3vh, 30px);
+    }
+
+    .hand-note {
+      display: inline-block;
+      color: var(--red);
+      font-family: "Caveat", cursive;
+      font-size: clamp(1rem, 1.7vw, 1.2rem);
+      font-weight: 700;
+      transform: rotate(-2deg);
+    }
+
+    .sidebar-intro h2 {
+      margin-top: 7px;
+      font-family: "Noto Serif SC", serif;
+      font-size: clamp(1.36rem, 2.1vw, 1.74rem);
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: -0.04em;
+    }
+
+    .sidebar-intro p {
+      margin-top: 10px;
+      color: var(--ink-light);
+      font-size: 0.82rem;
+      line-height: 1.78;
+    }
+
+    .doc-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .doc-tab {
+      width: 100%;
+      min-height: 132px;
+      display: grid;
+      grid-template-columns: 42px minmax(0, 1fr) 22px;
+      align-items: start;
+      gap: 12px;
+      padding: 18px 15px 17px;
+      border: 1px solid transparent;
+      border-radius: 14px 17px 13px 16px;
+      color: var(--ink);
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+      transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .doc-tab:hover {
+      background: rgba(244, 215, 88, 0.2);
+      transform: translateX(3px);
+    }
+
+    .doc-tab.is-active {
+      background: var(--paper);
+      border-color: rgba(43, 127, 216, 0.11);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .tab-index {
+      width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50% 44% 48% 45%;
+      color: var(--blue-deep);
+      background: rgba(43, 127, 216, 0.1);
+      font-family: "Fraunces", serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
+    }
+
+    .doc-tab.is-active .tab-index {
+      color: var(--cream);
+      background: var(--blue);
+      transform: rotate(-4deg);
+    }
+
+    .tab-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tab-badge {
+      width: max-content;
+      max-width: 100%;
+      margin-bottom: 7px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      color: var(--blue-deep);
+      background: rgba(43, 127, 216, 0.09);
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .doc-tab[data-doc="slides"] .tab-badge {
+      color: #876d00;
+      background: rgba(244, 215, 88, 0.28);
+    }
+
+    .tab-copy strong {
+      font-family: "Noto Serif SC", serif;
+      font-size: 0.98rem;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .tab-copy small {
+      margin-top: 6px;
+      color: var(--ink-light);
+      font-size: 0.72rem;
+      line-height: 1.62;
+    }
+
+    .tab-arrow {
+      width: 20px;
+      height: 20px;
+      margin-top: 38px;
+      fill: none;
+      stroke: var(--ink-faint);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.8;
+      transition: stroke 180ms ease, transform 180ms ease;
+    }
+
+    .doc-tab:hover .tab-arrow,
+    .doc-tab.is-active .tab-arrow {
+      stroke: var(--blue);
+      transform: translateX(2px);
+    }
+
+    .sidebar-tip {
+      position: relative;
+      margin: clamp(20px, 3vh, 30px) 4px 0;
+      padding: 18px 17px 15px;
+      border: 1.5px dashed rgba(43, 127, 216, 0.24);
+      border-radius: 12px;
+      color: var(--ink-light);
+      background: rgba(255, 253, 248, 0.62);
+      font-size: 0.73rem;
+      line-height: 1.7;
+    }
+
+    .sidebar-tip strong {
+      position: absolute;
+      top: -12px;
+      left: 13px;
+      padding: 0 7px;
+      color: var(--blue-deep);
+      background: var(--cream-deep);
+      font-family: "Caveat", cursive;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .sidebar-credit {
+      margin-top: auto;
+      padding: clamp(22px, 4vh, 40px) 4px 0;
+      color: var(--ink-faint);
+      font-size: 0.61rem;
+      line-height: 1.65;
+    }
+
+    .sidebar-credit a {
+      color: inherit;
+      text-decoration-color: var(--yellow);
+      text-decoration-thickness: 3px;
+      text-underline-offset: 3px;
+    }
+
+    .sidebar-credit a:hover {
+      color: var(--ink);
+      background: var(--yellow);
+      text-decoration: none;
+    }
+
+    .viewer {
+      min-width: 0;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: 54px minmax(0, 1fr);
+      padding: 14px 14px 14px 0;
+      background: var(--cream);
+    }
+
+    .viewer-toolbar {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 0 16px 0 20px;
+    }
+
+    .viewer-heading {
+      min-width: 0;
+      display: flex;
+      align-items: baseline;
+      gap: 11px;
+    }
+
+    .viewer-kicker {
+      flex: 0 0 auto;
+      color: var(--blue-deep);
+      font-family: "Fraunces", serif;
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .viewer-heading strong {
+      overflow: hidden;
+      font-family: "Noto Serif SC", serif;
+      font-size: 0.92rem;
+      font-weight: 900;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .viewer-status {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--ink-faint);
+      font-size: 0.68rem;
+    }
+
+    .status-mark {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 0 4px rgba(43, 127, 216, 0.1);
+    }
+
+    .viewer-status.is-loading .status-mark {
+      background: var(--yellow);
+      box-shadow: 0 0 0 4px rgba(244, 215, 88, 0.2);
+    }
+
+    .frame-wrap {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 17px 15px 18px 14px;
+      background: var(--paper);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .document-frame {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 0;
+      background: var(--cream);
+    }
+
+    .loading-card {
+      position: absolute;
+      inset: 0;
+      z-index: 5;
+      display: grid;
+      place-items: center;
+      background: var(--paper);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 160ms ease;
+    }
+
+    .frame-wrap.is-loading .loading-card {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .loading-inner {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      padding: 20px;
+      color: var(--ink-light);
+    }
+
+    .loading-number {
+      font-family: "Fraunces", serif;
+      font-size: clamp(2.7rem, 7vw, 5.2rem);
+      font-weight: 700;
+      line-height: 0.9;
+      color: rgba(43, 127, 216, 0.15);
+    }
+
+    .loading-copy strong {
+      display: block;
+      font-family: "Noto Serif SC", serif;
+      font-size: 1rem;
+      font-weight: 900;
+    }
+
+    .loading-copy span {
+      display: block;
+      margin-top: 4px;
+      color: var(--ink-faint);
+      font-size: 0.72rem;
+    }
+
+    .route-fallback {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      :root {
+        --header-height: 64px;
+      }
+
+      .app-header {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 12px;
+      }
+
+      .header-title {
+        display: none;
+      }
+
+      .open-link span {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .open-link {
+        width: 42px;
+        height: 42px;
+        padding: 0;
+        border-radius: 50%;
+      }
+
+      .app-shell {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto minmax(0, 1fr);
+      }
+
+      .doc-sidebar {
+        display: block;
+        padding: 10px 12px 11px;
+        overflow: hidden;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .sidebar-intro,
+      .sidebar-tip,
+      .sidebar-credit {
+        display: none;
+      }
+
+      .doc-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .doc-tab {
+        min-height: 68px;
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 9px;
+        padding: 10px 12px;
+        border-radius: 12px;
+      }
+
+      .doc-tab:hover {
+        transform: none;
+      }
+
+      .tab-index {
+        width: 34px;
+        height: 34px;
+        margin-top: 1px;
+        font-size: 0.7rem;
+      }
+
+      .tab-badge,
+      .tab-copy small,
+      .tab-arrow {
+        display: none;
+      }
+
+      .tab-copy strong {
+        align-self: center;
+        font-size: clamp(0.78rem, 2.6vw, 0.9rem);
+      }
+
+      .viewer {
+        grid-template-rows: 44px minmax(0, 1fr);
+        padding: 6px 8px 8px;
+      }
+
+      .viewer-toolbar {
+        padding: 0 8px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .app-header {
+        padding: 0 12px;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        flex-basis: 38px;
+      }
+
+      .brand-copy strong {
+        font-size: 1rem;
+      }
+
+      .brand-copy small {
+        font-size: 0.62rem;
+      }
+
+      .doc-sidebar {
+        padding: 8px;
+      }
+
+      .doc-tabs {
+        gap: 6px;
+      }
+
+      .doc-tab {
+        min-height: 58px;
+        grid-template-columns: 30px minmax(0, 1fr);
+        gap: 7px;
+        padding: 8px;
+      }
+
+      .tab-index {
+        width: 30px;
+        height: 30px;
+      }
+
+      .viewer-kicker {
+        display: none;
+      }
+
+      .viewer-heading strong {
+        font-size: 0.8rem;
+      }
+
+      .viewer-status {
+        font-size: 0.62rem;
+      }
+
+      .frame-wrap {
+        border-radius: 12px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="./index.html" aria-label="Brclio 新西兰 SIM 卡资料入口">
+      <span class="brand-mark"><img src="assets/brand/brclio-logo.png" alt=""></span>
+      <span class="brand-copy">
+        <strong>Brclio</strong>
+        <small>AI · 编程 · 创作</small>
+      </span>
+    </a>
+
+    <div class="header-title">
+      <span>New Zealand · SIM</span>
+      <h1>资料切换台</h1>
+    </div>
+
+    <a class="open-link" id="openActive" href="./new-zealand-sim-card-sales.html" target="_blank" rel="noreferrer">
+      <span>在新标签打开</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M10 14 19 5M19 13v6H5V5h6"></path></svg>
+    </a>
+  </header>
+
+  <div class="app-shell">
+    <aside class="doc-sidebar" aria-label="阅读方式">
+      <div class="sidebar-intro">
+        <span class="hand-note">Choose your view ✦</span>
+        <h2>两种阅读方式</h2>
+        <p>完整查看购买信息，或用 27 页演示文稿快速抓住重点。</p>
+      </div>
+
+      <div class="doc-tabs" role="tablist" aria-label="切换资料版本" aria-orientation="vertical">
+        <button class="doc-tab is-active" id="tab-guide" type="button" role="tab" aria-selected="true" aria-controls="documentPanel" tabindex="0" data-doc="guide">
+          <span class="tab-index">01</span>
+          <span class="tab-copy">
+            <span class="tab-badge">长页阅读</span>
+            <strong>完整购买指南</strong>
+            <small>费用、流程、物流、养号、百问与售后。</small>
+          </span>
+          <svg class="tab-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+        </button>
+
+        <button class="doc-tab" id="tab-slides" type="button" role="tab" aria-selected="false" aria-controls="documentPanel" tabindex="-1" data-doc="slides">
+          <span class="tab-index">02</span>
+          <span class="tab-copy">
+            <span class="tab-badge">27 页幻灯片</span>
+            <strong>演示文稿版</strong>
+            <small>分章节集中浏览，适合演示与快速了解。</small>
+          </span>
+          <svg class="tab-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+        </button>
+      </div>
+
+      <div class="sidebar-tip">
+        <strong>Quick tip</strong>
+        直接点击上方选项即可切换；右上角按钮可将当前页面单独打开。
+      </div>
+
+      <div class="sidebar-credit">
+        页面设计基于 <a href="https://github.com/esthersjw/esther-design-system" target="_blank" rel="noreferrer">ESTHER不二 · esther-design-system</a><br>
+        CC BY-NC-SA 4.0 · © 2026 Brclio
+      </div>
+    </aside>
+
+    <main class="viewer" id="documentPanel" role="tabpanel" aria-labelledby="tab-guide">
+      <div class="viewer-toolbar">
+        <div class="viewer-heading">
+          <span class="viewer-kicker" id="viewerKicker">Long-form guide</span>
+          <strong id="viewerTitle">完整购买指南</strong>
+        </div>
+        <div class="viewer-status is-loading" id="viewerStatus" role="status" aria-live="polite">
+          <span class="status-mark" aria-hidden="true"></span>
+          <span id="statusText">正在载入</span>
+        </div>
+      </div>
+
+      <div class="frame-wrap is-loading" id="frameWrap">
+        <div class="loading-card" aria-hidden="true">
+          <div class="loading-inner">
+            <span class="loading-number" id="loadingNumber">01</span>
+            <span class="loading-copy">
+              <strong id="loadingTitle">完整购买指南</strong>
+              <span>正在打开资料，请稍候。</span>
+            </span>
+          </div>
+        </div>
+        <iframe
+          class="document-frame"
+          id="documentFrame"
+          src="./new-zealand-sim-card-sales.html"
+          title="完整购买指南"
+          loading="eager"
+        ></iframe>
+        <noscript>
+          <div class="route-fallback">
+            <a href="./new-zealand-sim-card-sales.html">打开完整购买指南</a>
+            <a href="./new-zealand-sim-card-tutorial-ppt.html">打开 27 页演示文稿</a>
+          </div>
+        </noscript>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (() => {
+      const documents = {
+        guide: {
+          src: './new-zealand-sim-card-sales.html',
+          title: '完整购买指南',
+          kicker: 'Long-form guide',
+          number: '01'
+        },
+        slides: {
+          src: './new-zealand-sim-card-tutorial-ppt.html',
+          title: '演示文稿版',
+          kicker: '27-page presentation',
+          number: '02'
+        }
+      };
+
+      const tabs = [...document.querySelectorAll('[data-doc]')];
+      const panel = document.getElementById('documentPanel');
+      const frame = document.getElementById('documentFrame');
+      const frameWrap = document.getElementById('frameWrap');
+      const openActive = document.getElementById('openActive');
+      const viewerTitle = document.getElementById('viewerTitle');
+      const viewerKicker = document.getElementById('viewerKicker');
+      const viewerStatus = document.getElementById('viewerStatus');
+      const statusText = document.getElementById('statusText');
+      const loadingNumber = document.getElementById('loadingNumber');
+      const loadingTitle = document.getElementById('loadingTitle');
+      let activeKey = 'guide';
+
+      function setLoading(isLoading) {
+        frameWrap.classList.toggle('is-loading', isLoading);
+        viewerStatus.classList.toggle('is-loading', isLoading);
+        statusText.textContent = isLoading ? '正在载入' : '已就绪';
+      }
+
+      function selectDocument(key, options = {}) {
+        const next = documents[key] || documents.guide;
+        const nextKey = documents[key] ? key : 'guide';
+        const shouldReload = activeKey !== nextKey || frame.getAttribute('src') !== next.src;
+
+        activeKey = nextKey;
+        tabs.forEach((tab) => {
+          const selected = tab.dataset.doc === nextKey;
+          tab.classList.toggle('is-active', selected);
+          tab.setAttribute('aria-selected', String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+        });
+
+        const activeTab = document.querySelector(`[data-doc="${nextKey}"]`);
+        panel.setAttribute('aria-labelledby', activeTab.id);
+        viewerTitle.textContent = next.title;
+        viewerKicker.textContent = next.kicker;
+        loadingNumber.textContent = next.number;
+        loadingTitle.textContent = next.title;
+        openActive.href = next.src;
+        openActive.setAttribute('aria-label', `在新标签打开${next.title}`);
+        frame.title = next.title;
+
+        if (shouldReload) {
+          setLoading(true);
+          frame.src = next.src;
+        }
+
+        const nextHash = `#${nextKey}`;
+        if (window.location.hash !== nextHash) {
+          const method = options.pushHistory ? 'pushState' : 'replaceState';
+          window.history[method](null, '', nextHash);
+        }
+
+        if (options.focusTab) {
+          activeTab.focus();
+        }
+      }
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+          selectDocument(tab.dataset.doc, { pushHistory: true });
+        });
+
+        tab.addEventListener('keydown', (event) => {
+          if (!['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+
+          let nextIndex = index;
+          if (event.key === 'Home') nextIndex = 0;
+          if (event.key === 'End') nextIndex = tabs.length - 1;
+          if (event.key === 'ArrowDown' || event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+          if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+
+          selectDocument(tabs[nextIndex].dataset.doc, { pushHistory: true, focusTab: true });
+        });
+      });
+
+      frame.addEventListener('load', () => setLoading(false));
+
+      window.addEventListener('hashchange', () => {
+        const key = window.location.hash.slice(1);
+        if (documents[key] && key !== activeKey) selectDocument(key);
+      });
+
+      const initialKey = window.location.hash.slice(1);
+      selectDocument(documents[initialKey] ? initialKey : 'guide');
+    })();
+  </script>
+
+  <!-- © ESTHER不二 esthersjw/esther-design-system · CC BY-NC-SA 4.0 -->
+  <section style="position:absolute;left:-9999px;font-size:0;line-height:0;opacity:0;height:0;overflow:hidden;">esthersjw-design-system</section>
+</body>
+</html>
