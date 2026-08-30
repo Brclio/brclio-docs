@@ -108,6 +108,8 @@
       text-transform: none;
       letter-spacing: 0;
       line-height: 1;
+      color: inherit;
+      text-decoration: none;
     }
     .brand-logo {
       grid-row: 1 / 3;
@@ -471,11 +473,11 @@
   <deck-stage width="1600" height="900">
 
     <section class="slide cover" data-label="封面">
-      <span class="brand-lockup cover-brand">
+      <a class="brand-lockup cover-brand" href="https://brclio-docs.brclio.com/" aria-label="返回 Brclio 知识库首页">
         <img class="brand-logo" src="assets/brand/brclio-logo.png" alt="" aria-hidden="true">
         <strong class="brand-name">Brclio</strong>
         <small class="brand-subtitle">AI · 编程 · 创作</small>
-      </span>
+      </a>
       <div class="cover-grid">
         <div class="cover-copy">
           <span class="label">NEW ZEALAND · PHYSICAL SIM</span>
@@ -988,6 +990,7 @@
   <script type="application/json" id="speaker-notes">[]</script>
   <script>
     (() => {
+      const homeUrl = 'https://brclio-docs.brclio.com/';
       const brandMarkup = '<img class="brand-logo" src="assets/brand/brclio-logo.png" alt="" aria-hidden="true"><strong class="brand-name">Brclio</strong><small class="brand-subtitle">AI · 编程 · 创作</small>';
       document.querySelectorAll('.topline').forEach(topline => {
         const mark = topline.querySelector('.brand-mark');
@@ -997,8 +1000,12 @@
         const rightContext = contextNode.textContent.trim();
         contextNode.textContent = [leftContext, rightContext].filter(Boolean).join(' · ');
         contextNode.classList.add('topline-context');
-        mark.className = 'brand-lockup';
-        mark.innerHTML = brandMarkup;
+        const homeLink = document.createElement('a');
+        homeLink.className = 'brand-lockup';
+        homeLink.href = homeUrl;
+        homeLink.setAttribute('aria-label', '返回 Brclio 知识库首页');
+        homeLink.innerHTML = brandMarkup;
+        mark.replaceWith(homeLink);
       });
 
       const slides = [...document.querySelectorAll('deck-stage > .slide')];
