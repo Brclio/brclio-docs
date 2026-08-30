@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://brclio-docs.brclio.com/sitemap.xml
