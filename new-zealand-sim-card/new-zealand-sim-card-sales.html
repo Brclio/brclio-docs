@@ -109,8 +109,43 @@
     .nav-icon svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
     .nav-links a:nth-child(2) .nav-icon, .nav-links a:nth-child(4) .nav-icon { background: rgba(244,215,88,.25); color: #806900; }
     .nav-links a:nth-child(3) .nav-icon, .nav-links a:nth-child(5) .nav-icon { background: rgba(232,74,95,.09); color: var(--red); }
-    .nav-links a:hover .nav-icon { transform: translateY(-2px); background: var(--yellow-soft); }
-    .nav-cta { padding: 8px 15px 8px 10px; border-radius: 999px; background: var(--blue); color: var(--cream) !important; }
+    .nav-links a:hover .nav-icon, .nav-tool:hover .nav-icon { transform: translateY(-2px); background: var(--yellow-soft); }
+    .nav-tool {
+      min-height: 44px;
+      padding: 5px 10px 5px 7px;
+      border: 1px solid rgba(43,127,216,.2);
+      border-radius: 12px;
+      background: rgba(43,127,216,.07);
+      color: var(--blue-deep);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      font-size: .76rem;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: border-color .2s ease, background .2s ease, transform .2s cubic-bezier(.16,1,.3,1);
+    }
+    .nav-tool:hover { border-color: var(--blue); background: var(--yellow-soft); transform: translateY(-1px); }
+    .nav-tool:focus-visible { outline: 3px solid rgba(43,127,216,.28); outline-offset: 2px; }
+    .nav-tool .nav-icon { width: 30px; height: 30px; background: var(--cream); }
+    .nav-tool--ai { border-color: rgba(196,160,0,.32); background: var(--yellow-soft); color: var(--ink); }
+    .nav-tool--ai .nav-icon { background: var(--yellow); color: var(--ink); }
+    .nav-tool--ai:hover { border-color: #ad8e00; background: var(--yellow); }
+    .nav-tool-key {
+      min-width: 36px;
+      padding: 2px 6px;
+      border: 1px solid rgba(43,127,216,.18);
+      border-radius: 6px;
+      background: var(--cream);
+      color: var(--ink-faint);
+      font-family: "Fira Code", monospace;
+      font-size: .56rem;
+      font-weight: 500;
+      line-height: 1.5;
+      text-align: center;
+    }
+    .nav-cta { min-height: 44px; padding: 8px 15px 8px 10px; border-radius: 999px; background: var(--blue); color: var(--cream) !important; }
     .nav-cta::after { display: none; }
     .nav-cta .nav-icon { background: rgba(254,252,246,.14); color: var(--cream); }
     .nav-cta:hover .nav-icon { background: rgba(254,252,246,.24); }
@@ -412,41 +447,7 @@
       font-size: 1.35rem;
       font-weight: 900;
     }
-    .page-search-launch {
-      width: 100%;
-      min-height: 50px;
-      margin-top: 20px;
-      padding: 0 11px 0 14px;
-      display: grid;
-      grid-template-columns: 20px minmax(0, 1fr) auto;
-      gap: 10px;
-      align-items: center;
-      border: 2px solid rgba(43, 127, 216, .2);
-      border-radius: 12px;
-      background: var(--cream);
-      color: var(--ink-light);
-      text-align: left;
-      cursor: pointer;
-      transition: border-color .2s ease, background .2s ease, transform .2s cubic-bezier(.16,1,.3,1);
-    }
-    .page-search-launch:hover { border-color: var(--blue); background: var(--yellow-soft); transform: translateY(-1px); }
-    .page-search-launch:focus-visible { outline: 3px solid rgba(43,127,216,.28); outline-offset: 3px; }
-    .page-search-launch svg { width: 18px; height: 18px; fill: none; stroke: var(--blue); stroke-width: 2; stroke-linecap: round; }
-    .page-search-launch-text { min-width: 0; font-size: .78rem; font-weight: 700; }
-    .page-search-launch-key {
-      min-width: 42px;
-      padding: 3px 7px;
-      border: 1px solid var(--line);
-      border-radius: 7px;
-      background: var(--cream-dark);
-      color: var(--ink-faint);
-      font-family: "Fira Code", monospace;
-      font-size: .62rem;
-      line-height: 1.4;
-      text-align: center;
-      white-space: nowrap;
-    }
-    body.page-search-open { overflow: hidden; }
+    body.page-search-open, body.page-ai-open { overflow: hidden; }
     .page-search-dialog {
       width: min(760px, calc(100vw - 32px));
       max-width: none;
@@ -708,7 +709,212 @@
       font-size: .61rem;
       box-shadow: 0 2px 0 rgba(26,26,46,.1);
     }
-    .page-toc { padding-top: 18px; border-top: 1px solid var(--line); }
+    .page-ai-dialog {
+      width: min(780px, calc(100vw - 32px));
+      max-width: none;
+      max-height: min(82vh, 800px, calc(100dvh - 112px));
+      margin: 88px auto auto;
+      padding: 0;
+      border: 0;
+      border-radius: 16px;
+      background: var(--cream);
+      color: var(--ink);
+      box-shadow: 0 8px 0 rgba(244,215,88,.76);
+      overflow: hidden;
+    }
+    .page-ai-dialog[open] {
+      display: flex;
+      flex-direction: column;
+      animation: searchPanelIn .24s cubic-bezier(.16,1,.3,1) both;
+    }
+    .page-ai-dialog::backdrop {
+      background: rgba(21,24,33,.64);
+      backdrop-filter: blur(6px);
+      animation: searchBackdropIn .2s ease-out both;
+    }
+    .page-ai-dialog-header {
+      min-height: 76px;
+      padding: 13px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      background: var(--cream-dark);
+      border-bottom: 1px solid var(--line);
+    }
+    .page-ai-identity { min-width: 0; display: flex; align-items: center; gap: 12px; }
+    .page-ai-mark {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 auto;
+      border-radius: 12px;
+      background: var(--yellow);
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+    }
+    .page-ai-mark svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+    .page-ai-kicker { display: block; color: var(--blue); font-family: "Fira Code", monospace; font-size: .6rem; font-weight: 500; letter-spacing: .13em; }
+    .page-ai-title { margin-top: 2px; font-family: "Noto Serif SC", serif; font-size: 1.12rem; font-weight: 900; line-height: 1.35; }
+    .page-ai-header-actions { display: flex; align-items: center; gap: 7px; }
+    .page-ai-reset, .page-ai-close {
+      min-height: 42px;
+      border: 0;
+      border-radius: 10px;
+      background: rgba(43,127,216,.08);
+      color: var(--blue-deep);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: background .2s ease, transform .2s cubic-bezier(.16,1,.3,1);
+    }
+    .page-ai-reset { padding: 0 11px; font-size: .7rem; font-weight: 700; }
+    .page-ai-close { width: 42px; padding: 0; border-radius: 50%; }
+    .page-ai-reset:hover, .page-ai-close:hover { background: var(--yellow-soft); transform: translateY(-1px); }
+    .page-ai-reset:focus-visible, .page-ai-close:focus-visible { outline: 3px solid rgba(43,127,216,.28); outline-offset: 2px; }
+    .page-ai-reset svg, .page-ai-close svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .page-ai-notice {
+      padding: 9px 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(244,215,88,.2);
+      color: #5f541e;
+      border-bottom: 1px solid rgba(196,160,0,.2);
+      font-size: .68rem;
+      line-height: 1.55;
+    }
+    .page-ai-notice svg { width: 16px; height: 16px; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+    .page-ai-body { min-height: 0; flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 20px 18px 22px; }
+    .page-ai-body::-webkit-scrollbar { width: 8px; }
+    .page-ai-body::-webkit-scrollbar-thumb { border-radius: 999px; background: rgba(43,127,216,.2); }
+    .page-ai-log { display: flex; flex-direction: column; gap: 14px; }
+    .page-ai-message { display: flex; align-items: flex-start; gap: 10px; }
+    .page-ai-message--user { flex-direction: row-reverse; }
+    .page-ai-avatar {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: var(--yellow);
+      color: var(--ink);
+      font-family: "Fira Code", monospace;
+      font-size: .62rem;
+      font-weight: 700;
+    }
+    .page-ai-message--user .page-ai-avatar { background: var(--blue-deep); color: var(--cream); }
+    .page-ai-bubble {
+      max-width: min(640px, calc(100% - 44px));
+      padding: 13px 15px;
+      border-radius: 14px;
+      border-bottom: 4px solid var(--yellow);
+      background: var(--cream-dark);
+      color: var(--ink-light);
+      font-size: .84rem;
+      line-height: 1.75;
+    }
+    .page-ai-bubble strong { color: var(--ink); font-family: "Noto Serif SC", serif; font-size: .9rem; }
+    .page-ai-message--user .page-ai-bubble { border-bottom-color: var(--blue); background: var(--blue-deep); color: var(--cream); }
+    .page-ai-answer-block + .page-ai-answer-block { margin-top: 13px; padding-top: 13px; border-top: 1px solid var(--line); }
+    .page-ai-answer-block p { margin-top: 5px; color: var(--ink-light); }
+    .page-ai-answer-action {
+      min-height: 38px;
+      margin-top: 10px;
+      padding: 7px 11px;
+      border: 0;
+      border-radius: 9px;
+      background: rgba(43,127,216,.1);
+      color: var(--blue-deep);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      font-size: .72rem;
+      font-weight: 700;
+    }
+    .page-ai-answer-action:hover { background: var(--yellow-soft); }
+    .page-ai-answer-action:focus-visible { outline: 3px solid rgba(43,127,216,.28); outline-offset: 2px; }
+    .page-ai-followups { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 7px; }
+    .page-ai-followup {
+      min-height: 36px;
+      padding: 6px 10px;
+      border: 1px solid rgba(43,127,216,.16);
+      border-radius: 999px;
+      background: var(--cream);
+      color: var(--blue-deep);
+      cursor: pointer;
+      font-size: .69rem;
+      font-weight: 700;
+    }
+    .page-ai-followup:hover { border-color: var(--blue); background: var(--yellow-soft); }
+    .page-ai-followup:focus-visible { outline: 3px solid rgba(43,127,216,.28); outline-offset: 2px; }
+    .page-ai-thinking { min-width: 70px; min-height: 46px; display: flex; align-items: center; gap: 5px; }
+    .page-ai-thinking i { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); animation: aiThinking .9s ease-in-out infinite alternate; }
+    .page-ai-thinking i:nth-child(2) { animation-delay: .14s; }
+    .page-ai-thinking i:nth-child(3) { animation-delay: .28s; }
+    @keyframes aiThinking { from { opacity: .3; transform: translateY(2px); } to { opacity: 1; transform: translateY(-2px); } }
+    .page-ai-starters { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+    .page-ai-starters[hidden] { display: none; }
+    .page-ai-starters-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 11px; color: var(--ink-faint); font-size: .68rem; font-weight: 700; }
+    .page-ai-starters-head span:last-child { color: var(--blue-deep); }
+    .page-ai-starter-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .page-ai-starter {
+      min-height: 40px;
+      padding: 7px 12px;
+      border: 1px solid rgba(43,127,216,.17);
+      border-radius: 10px;
+      background: var(--cream);
+      color: var(--ink-light);
+      cursor: pointer;
+      font-size: .74rem;
+      font-weight: 700;
+      text-align: left;
+    }
+    .page-ai-starter:hover { border-color: var(--blue); background: var(--yellow-soft); color: var(--ink); }
+    .page-ai-starter:focus-visible { outline: 3px solid rgba(43,127,216,.28); outline-offset: 2px; }
+    .page-ai-form { padding: 13px 18px 12px; border-top: 1px solid var(--line); background: var(--cream-dark); }
+    .page-ai-label { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .page-ai-field {
+      min-height: 54px;
+      padding: 5px 5px 5px 15px;
+      display: grid;
+      grid-template-columns: minmax(0,1fr) auto;
+      gap: 8px;
+      align-items: center;
+      border: 2px solid rgba(43,127,216,.27);
+      border-radius: 12px;
+      background: var(--cream);
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .page-ai-field:focus-within { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(43,127,216,.1); }
+    .page-ai-input { min-width: 0; width: 100%; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: .9rem; line-height: 1.5; }
+    .page-ai-input::placeholder { color: #666679; opacity: 1; }
+    .page-ai-send {
+      min-width: 80px;
+      min-height: 42px;
+      padding: 0 13px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--blue);
+      color: var(--cream);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      cursor: pointer;
+      font-size: .76rem;
+      font-weight: 700;
+    }
+    .page-ai-send:hover { background: var(--blue-deep); }
+    .page-ai-send:disabled { cursor: wait; opacity: .62; }
+    .page-ai-send:focus-visible { outline: 3px solid rgba(43,127,216,.28); outline-offset: 2px; }
+    .page-ai-send svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .page-ai-form-hint { margin-top: 7px; color: var(--ink-faint); font-size: .64rem; line-height: 1.5; }
+    .page-toc { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line); }
     .page-toc-label { display: block; margin-bottom: 9px; color: var(--ink-faint); font-size: .68rem; font-weight: 700; letter-spacing: .12em; }
     .page-toc-links { display: flex; flex-direction: column; gap: 3px; }
     .page-toc-link {
@@ -810,8 +1016,13 @@
     .reveal-d1 { transition-delay: .1s; }
     .reveal-d2 { transition-delay: .2s; }
 
+    @media (max-width: 1320px) {
+      .nav-tool-key { display: none; }
+    }
     @media (max-width: 1000px) {
       .nav-links a:not(.nav-cta) { display: none; }
+      .nav-inner { gap: 16px; }
+      .nav-links { gap: 8px; }
       .hero::after { width: 24vw; }
       .hero-grid, .content-split, .content-split--balanced, .content-split--reverse, .contact-grid, .warranty-grid, .intro-grid, .proof-intro, .region-choice-grid { grid-template-columns: 1fr; }
       .hero-visual { max-width: 760px; }
@@ -827,6 +1038,14 @@
     }
     @media (max-width: 680px) {
       .container { width: min(100% - 32px, 1300px); }
+      .nav-inner { gap: 10px; }
+      .logo { width: 42px; grid-template-columns: 42px; }
+      .logo-image { width: 42px; height: 42px; grid-row: auto; }
+      .logo-name, .logo-subtitle { display: none; }
+      .nav-links { gap: 6px; }
+      .nav-tool, .nav-cta { width: 44px; min-width: 44px; height: 44px; min-height: 44px; padding: 0; justify-content: center; border-radius: 12px; }
+      .nav-tool-label, .nav-tool-key, .nav-cta > span:last-child { display: none; }
+      .nav-tool .nav-icon, .nav-cta .nav-icon { width: 30px; height: 30px; }
       .hero { padding-top: 100px; }
       .hero::after { display: none; }
       .float-price { position: relative; left: 0; bottom: auto; margin-top: 18px; }
@@ -848,7 +1067,6 @@
       .footer-inner { flex-direction: column; align-items: flex-start; }
       .page-tools { left: 16px; bottom: 16px; width: calc(100vw - 32px); }
       .page-tools-panel { padding: 20px; }
-      .page-search-launch-key { display: none; }
       .page-search-dialog {
         inset: 0;
         width: 100%;
@@ -869,6 +1087,31 @@
       .page-search-result-index { width: 36px; height: 36px; }
       .page-search-result-snippet { font-size: .7rem; }
       .page-search-footer { display: none; }
+      .page-ai-dialog {
+        inset: 0;
+        width: 100%;
+        height: 100dvh;
+        max-height: none;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      .page-ai-dialog-header { min-height: 68px; padding: 10px 12px; }
+      .page-ai-mark { width: 40px; height: 40px; }
+      .page-ai-kicker { font-size: .56rem; }
+      .page-ai-title { font-size: 1rem; }
+      .page-ai-header-actions { gap: 5px; }
+      .page-ai-reset { min-width: 42px; width: 42px; padding: 0; border-radius: 50%; }
+      .page-ai-reset-label { display: none; }
+      .page-ai-notice { padding: 8px 14px; font-size: .64rem; }
+      .page-ai-body { padding: 16px 12px 18px; }
+      .page-ai-bubble { max-width: calc(100% - 42px); padding: 12px 13px; font-size: .8rem; }
+      .page-ai-starter-list { display: grid; grid-template-columns: 1fr 1fr; }
+      .page-ai-starter { min-width: 0; padding-inline: 10px; }
+      .page-ai-form { padding: 11px 12px max(11px, env(safe-area-inset-bottom)); }
+      .page-ai-field { padding-left: 12px; }
+      .page-ai-send { min-width: 46px; width: 46px; padding: 0; }
+      .page-ai-send span { display: none; }
       .number-guide-grid { grid-template-columns: 1fr; }
       .number-guide-card--package { grid-column: auto; }
       .number-guide-sources { flex-direction: column; }
@@ -903,24 +1146,28 @@
         <a href="#flow"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="2"></circle><circle cx="18" cy="18" r="2"></circle><path d="M8 6h5a3 3 0 0 1 3 3v6M13 12H8a3 3 0 0 0-3 3v1"></path></svg></span><span>流程</span></a>
         <a href="#shipping"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"></path><circle cx="7" cy="18" r="2"></circle><circle cx="18" cy="18" r="2"></circle></svg></span><span>物流</span></a>
         <a href="#faq"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M9.8 9a2.4 2.4 0 0 1 4.6 1c0 1.8-2.4 2.1-2.4 3.8M12 17.4h.01"></path></svg></span><span>百问</span></a>
-        <a class="nav-cta" href="#contact"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15a4 4 0 0 1-4 4H9l-5 3v-7a7 7 0 1 1 16 0Z"></path><path d="M8 10h8M8 14h5"></path></svg></span><span>联系购买</span></a>
+        <button class="nav-tool page-search-launch" type="button" aria-label="搜索本页内容" aria-haspopup="dialog" aria-controls="page-search-dialog" aria-expanded="false" data-page-search-launch>
+          <span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 4 4"></path></svg></span>
+          <span class="nav-tool-label">搜索</span>
+          <kbd class="nav-tool-key" data-page-search-shortcut aria-hidden="true">⌘ K</kbd>
+        </button>
+        <button class="nav-tool nav-tool--ai" type="button" aria-label="打开本页 AI 问答助手" aria-haspopup="dialog" aria-controls="page-ai-dialog" aria-expanded="false" data-page-ai-launch>
+          <span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17.5 3.5 21l4.2-1.6c1.2.6 2.6.9 4.1.9 4.7 0 8.2-3.1 8.2-7.2S16.5 6 11.8 6 3.5 9.1 3.5 13.1c0 1.7.5 3.2 1.5 4.4Z"></path><path d="M18 2v4M16 4h4"></path></svg></span>
+          <span class="nav-tool-label">AI 问答</span>
+        </button>
+        <a class="nav-cta" href="#contact" aria-label="联系购买"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15a4 4 0 0 1-4 4H9l-5 3v-7a7 7 0 1 1 16 0Z"></path><path d="M8 10h8M8 14h5"></path></svg></span><span>联系购买</span></a>
       </div>
     </div>
   </nav>
 
-  <aside class="page-tools" data-page-tools aria-label="本页快速定位与搜索">
+  <aside class="page-tools" data-page-tools aria-label="本页快速定位">
     <details class="page-tools-details" data-page-tools-details>
-      <summary><span>目录与搜索</span><span class="page-tools-summary-icon" aria-hidden="true">＋</span></summary>
+      <summary><span>页面目录</span><span class="page-tools-summary-icon" aria-hidden="true">＋</span></summary>
       <div class="page-tools-panel">
         <header>
           <span class="page-tools-kicker">ON THIS PAGE</span>
           <div class="page-tools-title">快速定位</div>
         </header>
-        <button class="page-search-launch" type="button" aria-haspopup="dialog" aria-controls="page-search-dialog" data-page-search-launch>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16 16 4 4"></path></svg>
-          <span class="page-search-launch-text">搜索本页内容</span>
-          <span class="page-search-launch-key" data-page-search-shortcut aria-hidden="true">⌘ K</span>
-        </button>
         <nav class="page-toc" aria-label="本页目录">
           <span class="page-toc-label">章节目录</span>
           <div class="page-toc-links">
@@ -987,6 +1234,52 @@
         <span><kbd>Enter</kbd>定位</span>
         <span><kbd>Esc</kbd>关闭</span>
       </footer>
+    </form>
+  </dialog>
+
+  <dialog class="page-ai-dialog" id="page-ai-dialog" aria-labelledby="page-ai-dialog-title" aria-describedby="page-ai-dialog-note" data-page-ai-dialog>
+    <header class="page-ai-dialog-header">
+      <div class="page-ai-identity">
+        <span class="page-ai-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5 13.5 8l4.5 1.5-4.5 1.5-1.5 4.5-1.5-4.5L6 9.5 10.5 8 12 3.5Z"></path><path d="m6.5 14 .8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z"></path></svg></span>
+        <div>
+          <span class="page-ai-kicker">PAGE ASSISTANT · LOCAL</span>
+          <div class="page-ai-title" id="page-ai-dialog-title">新西兰 SIM 卡问答</div>
+        </div>
+      </div>
+      <div class="page-ai-header-actions">
+        <button class="page-ai-reset" type="button" aria-label="清空 AI 问答记录" data-page-ai-reset><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.3-5.7L4 8.6"></path><path d="M4 4v4.6h4.6"></path></svg><span class="page-ai-reset-label">重新开始</span></button>
+        <button class="page-ai-close" type="button" aria-label="关闭 AI 问答" data-page-ai-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg></button>
+      </div>
+    </header>
+    <p class="page-ai-notice" id="page-ai-dialog-note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 10v6M12 7h.01"></path></svg>这是基于本页预设内容的本地关键词匹配助手，不联网，也不会生成页面以外的信息。</p>
+    <div class="page-ai-body" data-page-ai-body>
+      <div class="page-ai-log" role="log" aria-live="polite" aria-relevant="additions text" data-page-ai-log>
+        <div class="page-ai-message page-ai-message--assistant" data-page-ai-welcome>
+          <span class="page-ai-avatar" aria-hidden="true">AI</span>
+          <div class="page-ai-bubble"><strong>你好，我可以帮你快速找答案。</strong><p>可以问价格、选卡、购买流程、物流、Codex 激活、手机号查看、充值养号、短信或售后。</p></div>
+        </div>
+      </div>
+      <section class="page-ai-starters" aria-label="常见问题">
+        <div class="page-ai-starters-head"><span>大家经常这样问</span><span>点击直接提问</span></div>
+        <div class="page-ai-starter-list">
+          <button class="page-ai-starter" type="button" data-ai-question="One.nz 和 Spark 怎么选？">One.nz 和 Spark 怎么选？</button>
+          <button class="page-ai-starter" type="button" data-ai-question="普通号和优质号码分别多少钱？">普通号和优质号码多少钱？</button>
+          <button class="page-ai-starter" type="button" data-ai-question="下单后多久能到国内？">下单后多久能到国内？</button>
+          <button class="page-ai-starter" type="button" data-ai-question="如何查看购买的手机号？">如何查看购买的手机号？</button>
+          <button class="page-ai-starter" type="button" data-ai-question="每年怎么充值养号？">每年怎么充值养号？</button>
+          <button class="page-ai-starter" type="button" data-ai-question="一张卡能激活几个 Codex 账号？">能激活几个 Codex 账号？</button>
+          <button class="page-ai-starter" type="button" data-ai-question="接收短信验证码收费吗？">收短信验证码收费吗？</button>
+          <button class="page-ai-starter" type="button" data-ai-question="半年内出问题怎么售后？">半年内出问题怎么售后？</button>
+        </div>
+      </section>
+    </div>
+    <form class="page-ai-form" data-page-ai-form>
+      <label class="page-ai-label" for="page-ai-input">输入关于本页内容的问题</label>
+      <div class="page-ai-field">
+        <input class="page-ai-input" id="page-ai-input" type="search" maxlength="160" placeholder="例如：One.nz 多少钱？多久能收到？" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="send" data-page-ai-input>
+        <button class="page-ai-send" type="submit" data-page-ai-send><span>发送</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 14-7-4 14-3-6-7-1Z"></path><path d="m12 13 7-8"></path></svg></button>
+      </div>
+      <p class="page-ai-form-hint">答复仅来自当前页面；退款、库存、套餐等未说明问题会提示联系确认。</p>
     </form>
   </dialog>
 
@@ -1387,8 +1680,8 @@
         });
       });
 
-      const launch = tools.querySelector('[data-page-search-launch]');
-      const shortcut = tools.querySelector('[data-page-search-shortcut]');
+      const launch = document.querySelector('[data-page-search-launch]');
+      const shortcut = document.querySelector('[data-page-search-shortcut]');
       const dialog = document.querySelector('[data-page-search-dialog]');
       if (!launch || !dialog) return;
 
@@ -1469,8 +1762,11 @@
       };
 
       const openSearch = () => {
+        const aiDialog = document.querySelector('[data-page-ai-dialog]');
+        if (aiDialog && aiDialog.open) aiDialog.close();
         if (!dialog.open) dialog.showModal();
         document.body.classList.add('page-search-open');
+        launch.setAttribute('aria-expanded', 'true');
         window.requestAnimationFrame(() => {
           input.focus();
           input.select();
@@ -1588,9 +1884,11 @@
       });
       dialog.addEventListener('close', () => {
         document.body.classList.remove('page-search-open');
+        launch.setAttribute('aria-expanded', 'false');
         input.setAttribute('aria-expanded', 'false');
       });
       document.addEventListener('keydown', event => {
+        if (event.isComposing) return;
         if (event.key === 'Escape' && dialog.open) {
           event.preventDefault();
           closeSearch();
@@ -1627,6 +1925,342 @@
           runSearch();
           input.focus();
         });
+      });
+    })();
+  </script>
+  <script>
+    (() => {
+      const launch = document.querySelector('[data-page-ai-launch]');
+      const dialog = document.querySelector('[data-page-ai-dialog]');
+      if (!launch || !dialog) return;
+
+      const close = dialog.querySelector('[data-page-ai-close]');
+      const reset = dialog.querySelector('[data-page-ai-reset]');
+      const form = dialog.querySelector('[data-page-ai-form]');
+      const input = dialog.querySelector('[data-page-ai-input]');
+      const send = dialog.querySelector('[data-page-ai-send]');
+      const body = dialog.querySelector('[data-page-ai-body]');
+      const log = dialog.querySelector('[data-page-ai-log]');
+      const starters = dialog.querySelector('.page-ai-starters');
+      const searchDialog = document.querySelector('[data-page-search-dialog]');
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      const intents = [
+        { id: 'hello', category: 'overview', title: '你好', keywords: ['你好', '您好', '在吗'], exactKeywords: ['hello', 'hi'], answer: '你好，我可以根据本页内容回答价格、选卡、购买流程、物流、号码查看、充值养号、短信和售后问题。', anchor: '#top' },
+        { id: 'capability', category: 'overview', title: '我能回答什么', keywords: ['你能做什么', '能问什么', '可以问什么', '会回答什么', '这个助手怎么用', '问答助手怎么用'], exactKeywords: ['怎么用'], answer: '你可以问 One.nz 与 Spark 的价格和区别、购买流程、国际物流、Codex 激活、手机号查看、充值养号、短信费用、地区选择及售后。', anchor: '#top' },
+        { id: 'is_real_ai', category: 'overview', title: '关于这个助手', keywords: ['你是真ai吗', '是真ai吗', '真ai', '假ai', '机器人吗', '怎么回答的', '联网吗'], answer: '这是页面内置的快速问答助手，通过关键词和意图匹配本页已有内容；它不会联网，也不会生成页面以外的新答案。', anchor: '#top' },
+        { id: 'product_overview', category: 'overview', title: '这是什么卡', keywords: ['这是什么', '什么卡', '产品介绍', '新西兰卡', '新西兰手机号', '有什么用', '用途', '这张卡怎么用', '手机卡怎么用'], answer: '这是新西兰实体 SIM 卡，运营商可选 One.nz 或 Spark，可直接插入手机。页面定位是用于 Claude / Codex 账号激活与长期养号。', anchor: '#top' },
+        { id: 'ai_support', category: 'account', title: '支持的 AI 服务', keywords: ['支持什么ai', '支持claude', '支持codex', '支持chatgpt', '能验证吗', '能注册ai吗'], answer: '页面说明这张新西兰实体卡支持 Claude / Codex 账号激活。寄出前会先协助验证 Codex并确认手机卡正常；准备阶段需先注册 ChatGPT 并安装 Codex。', anchor: '#flow' },
+        { id: 'physical_or_esim', category: 'overview', title: '实体卡还是 eSIM', keywords: ['实体卡', 'esim', '虚拟卡', '能直接插吗', '直接插卡', '卡类型', '不是esim'], answer: '默认是可以直接插入手机的实体 SIM，不是虚拟 eSIM。如需 eSIM，可以特殊申请，价格按实际情况确定。', anchor: '#faq' },
+        { id: 'why_physical', category: 'risk', title: '为什么选择实体卡', keywords: ['为什么实体卡', '为什么不用虚拟卡', 'gg卡', '虚拟卡封号', '线上卡', '线上虚拟卡'], answer: '页面提到线上、虚拟 GG 卡后来出现大规模封号，因此这次不再围绕虚拟卡折腾，转向新西兰实体手机卡。', anchor: '#why' },
+        { id: 'why_new_zealand', category: 'region', title: '为什么选择新西兰', keywords: ['为什么新西兰', '为什么选nz', '新西兰优势', '链路可靠吗', '新西兰链路'], answer: '最现实的原因是当地有朋友，可协助购卡、激活、联系运营商、国际邮寄和售后；同时新西兰在 ChatGPT 与 Claude 的官方支持地区名单中。', anchor: '#region-choice' },
+        { id: 'why_not_hong_kong', category: 'region', title: '为什么不选香港', keywords: ['为什么不选香港', '香港卡', '港卡', '香港实名', '香港手机号'], answer: '香港本地 SIM 激活前需要实名登记，而且页面指出香港目前不在 ChatGPT 与 Claude 的官方支持地区名单中，通常还需要额外网络方案并承担平台与账号风险。', anchor: '#region-choice' },
+        { id: 'why_not_other_regions', category: 'region', title: '为什么不选其他地区', keywords: ['为什么不选其他国家', '别的国家', '美国卡', '英国卡', '其他地区', '全球比价'], answer: '部分地区开卡需要实名、证件或现场核验；若没有可靠当地人协助，采购、激活和售后难以形成稳定链路。本页没有逐一比较所有国家。', anchor: '#region-choice' },
+        { id: 'real_name_requirement', category: 'region', title: '实名与证件', keywords: ['要实名吗', '匿名', '身份证', '护照', '需要证件吗', '实名开卡'], answer: '页面将这条新西兰链路描述为“匿名开卡”，并由当地朋友负责购卡与激活；但没有列出买家所需证件的具体规则，购买前可以再联系确认。', anchor: '#reason-4' },
+        { id: 'openai_rebind', category: 'account', title: 'OpenAI 手机号换绑', keywords: ['换绑', '改手机号', '更换绑定号码', '手机号能改吗', 'openai绑定', '绑定手机号'], answer: '页面说明 OpenAI 不允许修改账号已经绑定的手机号，这也是建议稳定持有一个海外手机号的原因之一。', anchor: '#reason-1' },
+        { id: 'account_ban_risk', category: 'risk', title: 'AI 账号风险', keywords: ['ai账号会封吗', '账号会封号吗', '账号会不会封号', 'openai封号', 'openai会封号吗', 'codex会封号吗', 'gg封号', '账号风险', '虚拟卡风险'], answer: '页面展示的邮件、搜索和群聊截图说明，线上或虚拟卡方案仍可能带来账号风险，因此改为实体卡链路；本页没有承诺任何平台账号绝对不会被封。', anchor: '#reason-2' },
+        { id: 'all_prices', category: 'price', family: 'price-core', title: '价格一览', keywords: ['多少钱', '价格', '报价', '价目', '总价'], exactKeywords: ['费用'], answer: 'One.nz 普通号码 125 元、优质号码 145 元；Spark 普通号码 185 元、优质号码 205 元。优质号码是在基础价上加 20 元。', anchor: '#price' },
+        { id: 'one_price', category: 'price', family: 'price-core', title: 'One.nz 价格', keywords: ['one多少钱', 'onenz多少钱', 'one卡多少钱', 'onenz卡多少钱', 'one价格', 'onenz价格', '125元', 'one付款'], answer: 'One.nz 总价 125 元：先付 120 元，卡到国内并完成 Codex 激活确认后，再在微信小店下单 5 元物流单。', anchor: '#price' },
+        { id: 'spark_price', category: 'price', family: 'price-core', title: 'Spark 价格', keywords: ['spark多少钱', 'spark卡多少钱', 'spark价格', '185元', 'spark付款', '最大牌卡多少钱'], answer: 'Spark 总价 185 元：先付 180 元，卡到国内并完成 Codex 激活确认后，再在微信小店下单 5 元物流单。', anchor: '#price' },
+        { id: 'premium_number', category: 'price', family: 'price-core', title: '优质号码', keywords: ['靓号多少钱', '优质号码多少钱', '靓号', '优质号码', '好号码', '选号', '145元', '205元'], answer: 'One.nz 普通号码 125 元、优质号码 145 元；Spark 普通号码 185 元、优质号码 205 元。优质号码适合想长期养号的用户，均比基础价高 20 元。', anchor: '#price' },
+        { id: 'carrier_compare', category: 'price', family: 'price-core', title: 'One.nz 与 Spark 怎么选', keywords: ['one和spark区别', 'onenz和spark区别', 'one和spark有什么区别', 'onenz和spark有什么区别', 'one和spark怎么选', 'onenz和spark怎么选', 'one还是spark', 'onenz还是spark', 'spark还是one', 'spark还是onenz', 'one和spark哪个好', 'onenz和spark哪个好', 'onevsspark', 'onenzandspark', '运营商怎么选', '两种卡怎么选', 'spark好还是one好', '两种卡区别', '运营商区别'], exactKeywords: ['one', 'onenz', 'spark'], answer: '页面将 Spark 标为推荐：国内插卡秒入网、稳定 5G，价格 185 元；One.nz 为 125 元，接入国内信号稍慢，会在 4G/5G 间切换，信号稍弱但不影响使用。请结合实际需求选择。', anchor: '#price' },
+        { id: 'domestic_signal', category: 'price', title: '国内信号体验', keywords: ['国内有信号吗', '大陆信号', '信号好吗', '信号怎么样', '支持5g吗', '4g还是5g', '入网慢', '漫游网络', '国内使用信号', '国内长期使用信号', 'spark信号', 'spark的信号', 'one信号', 'one的信号'], answer: 'One.nz 在国内接入信号稍慢，4G/5G 会切换，信号稍弱但页面称不影响使用；Spark 插卡后入网更快，页面描述为稳定 5G。', anchor: '#price' },
+        { id: 'extra_fees', category: 'price', title: '额外费用', keywords: ['额外费用', '隐藏收费', '还有费用吗', '还有别的费用', '运费', '运费多少钱', '邮费多少钱', '物流费用', '国际物流费用', '包邮吗', '5元物流'], answer: '基础购买页标注 125 元或 185 元总价无其他额外费用，其中 5 元微信小店物流单已包含在总价拆分中。但售后补办后的再次邮寄不包邮，eSIM 特殊申请也按实际报价。', anchor: '#price' },
+        { id: 'payment', category: 'purchase', title: '付款方式', keywords: ['怎么付款', '付款方式', '支持什么付款方式', '支付方式', '微信支付', '支付宝', '先付多少', '定金', '转账'], answer: '支持微信或支付宝直接转账。One.nz 先付 120 元，Spark 先付 180 元；确认卡可用后，再通过微信小店下单 5 元物流单。', anchor: '#price' },
+        { id: 'purchase_flow', category: 'purchase', title: '购买流程', keywords: ['怎么买', '购买流程', '交易流程', '下单流程', '先做什么', '购买步骤'], answer: '流程共五步：微信或支付宝付款 → 等手机卡到卖家手里 → 联系完成 Codex 激活并验证卡正常 → 微信小店下单 5 元物流单 → 寄出快递，收到后自行使用。', anchor: '#flow' },
+        { id: 'account_preparation', category: 'account', title: '购买前准备', keywords: ['购买前准备', '需要准备什么', '谷歌账号', 'gmail', '注册chatgpt', '安装codex', '怎么注册codex'], answer: '建议先准备谷歌账号，再用谷歌账号注册 ChatGPT 并安装 Codex；当界面提示手机验证时，就可以进入正式激活流程。', anchor: '#flow' },
+        { id: 'network_preparation', category: 'account', title: '网络环境准备', keywords: ['需要梯子吗', '梯子', '代理', 'vpn', '网络环境', '没有梯子'], answer: '页面明确提示需要提前准备相应网络环境。页面还提到购买《编程启蒙：思维与代码》并好评，可获得一年相关网络福利。', anchor: '#flow' },
+        { id: 'activation_process', category: 'account', title: 'Codex 激活', keywords: ['怎么激活', '谁激活', '激活codex', '寄出前验证', '保证可用', '验证手机卡'], answer: '卡从新西兰到达卖家手里后，会联系你进行 Codex 激活；寄出前先验证 Codex，确保验证通过且手机卡正常，再寄给你自行使用。', anchor: '#flow' },
+        { id: 'seller_scope', category: 'account', title: '卖家负责的范围', keywords: ['帮我注册账号吗', '邮箱', '密码', '账号资料', '能改邮箱吗', '谁操作账号', '负责注册吗'], answer: '页面说明卖家只负责购卡和激活卡，没有绑定邮箱等复杂流程；其他账号设置与后续操作由用户自己完成。', anchor: '#faq' },
+        { id: 'delivery_time', category: 'shipping', title: '物流时效', keywords: ['多久到', '多久能到', '多久能到国内', '多久送到', '几天到', '几周', '物流时效', '物流多久', '什么时候到', '多久能收到', '多久到国内', 'shipping多久', 'deliverytime'], answer: '从新西兰邮寄到国内，页面给出的实测时效是约 1～3 周。海关与当地处理效率会影响进度，因此无法从本页确定某个订单的精确到货日期。', anchor: '#shipping' },
+        { id: 'shipping_delay', category: 'shipping', title: '物流为什么慢', keywords: ['为什么慢', '还没到', '催物流', '物流延迟', '海关', '卡到哪里了', '快递很慢'], answer: '主要耗时环节是新西兰当地处理、北京海关和福建海关。页面提示耐心等待，卖家会按顺序联系购买者。', anchor: '#shipping' },
+        { id: 'shipping_tracking', category: 'shipping', title: '查询物流', keywords: ['怎么查物流', '物流查询', '快递单号', 'nzpost', 'ems', '查进度', '物流能查吗'], answer: '页面展示了 NZ Post 国际物流与邮政 EMS 的实际进度截图，说明这条邮寄链路可以查询；本页没有说明具体查询入口或单号获取方式。', anchor: '#shipping' },
+        { id: 'shipping_compliance', category: 'shipping', title: '物流链路说明', keywords: ['正规吗', '合法吗', '合规吗', '真实物流', '是不是诈骗', '走海关吗'], answer: '页面说明手机卡通过正规国际物流寄送并走海关，同时展示了 NZ Post 和邮政 EMS 的查询记录作为链路说明。', anchor: '#shipping' },
+        { id: 'travel_use', category: 'overview', title: '旅行使用', keywords: ['旅游能用吗', '出国能用吗', '新西兰旅游', '旅行使用'], answer: '页面明确提到出国旅游的人也可以购买，但没有提供旅游流量、通话套餐等具体资费。', anchor: '#flow' },
+        { id: 'find_number_general', category: 'number', title: '查看手机号', keywords: ['手机号怎么看', '号码在哪里', '号码在哪', '怎么看号码', '怎么查号码', '电话号码是什么', '本机号码', '查看电话号码', '买的号码', '购买的手机号', '如何查看手机号', '如何查看购买的手机号'], answer: '最稳妥的方法是看包装背面的“PHONE NUMBER”。插卡后，也可以在 iPhone 的蜂窝网络设置或 Android 的关于手机 / SIM 卡状态中查看。', anchor: '#find-number' },
+        { id: 'package_number', category: 'number', title: '包装上的号码', keywords: ['包装上的号码', '包装看号码', 'phone number', 'sim number', 'sim卡号', 'sim卡号码', 'iccid', 'puk', 'pukcode', 'simnumber是手机号吗'], answer: '包装上红框标出的“PHONE NUMBER”才是手机号。“SIM NUMBER”是 ICCID，即 SIM 卡识别号；“PUK CODE”也不是手机号。', anchor: '#find-number' },
+        { id: 'iphone_number', category: 'number', title: 'iPhone 查看号码', keywords: ['苹果手机怎么看', 'iphone号码', 'ios号码', '蜂窝网络', '苹果sim', 'iphone怎么看手机号', 'iphone怎么查看', '苹果怎么查看'], answer: 'iPhone 查看路径：设置 → 蜂窝网络 → SIM 卡，然后查看已启用线路；双卡用户要选择对应的 SIM。', anchor: '#find-number' },
+        { id: 'android_number', category: 'number', title: 'Android 查看号码', keywords: ['安卓怎么看', 'android号码', '关于手机', 'sim卡状态', 'sim1', 'sim2', '安卓怎么看手机号', 'android怎么查看', '安卓怎么查看'], answer: '多数 Android 手机可在“设置 → 关于手机 → SIM 卡状态”查看电话号码；部分品牌会显示在“状态信息”中，双卡手机需选择 SIM 1 或 SIM 2。', anchor: '#find-number' },
+        { id: 'number_unknown', category: 'number', title: '号码显示未知', keywords: ['显示未知', '号码空白', 'sim号码空白', '看不到手机号', '不显示电话号码', '手机号不显示', '不显示手机号', '号码不显示', 'iphone号码显示未知', '安卓号码显示未知', '未知号码'], answer: '显示“未知”或空白不一定代表卡不能用。优先以包装上的 PHONE NUMBER 为准，也可用该卡拨打或短信另一部手机，或联系运营商确认。', anchor: '#find-number' },
+        { id: 'annual_topup', category: 'care', title: '每年充值养号', keywords: ['怎么养号', '充值养号', '养号怎么充值', '每年怎么充值养号', '充值多少钱', '养号多少钱', '一年多少钱', '每年多少钱', '每年要充多少钱', '每年充值多少钱', '保号', '每年充多少', '5美元', '多久充值', '每年充值', '长期养号'], answer: '页面写明每年充值 5 美元即可，目前政策无需消费；收到手机卡后请尽快充值。', anchor: '#faq' },
+        { id: 'spark_topup', category: 'care', title: 'Spark 养号规则', keywords: ['spark怎么养号', 'spark怎么充值', 'spark每年充值多少', 'spark保号', 'spark也充5美元吗', 'spark充值规则'], answer: '页面 FAQ 写的是每年充值 5 美元，但关联的是 One.nz 政策链接；本页没有单独说明 Spark 的养号规则，购买前建议联系确认。', anchor: '#faq' },
+        { id: 'receive_sms', category: 'care', title: '接收短信', keywords: ['收短信', '接收短信', '收验证码', '能收验证码吗', '验证码能收到吗', '接收验证码', '验证码收费吗', '验证码多少钱', '收验证码免费吗', '收信息', '收验证码要钱吗'], answer: '页面明确写明接收短信免费。', anchor: '#faq' },
+        { id: 'send_sms', category: 'care', title: '短信收发费用', keywords: ['发短信', '发送短信', '短信多少钱', '短信收费吗', '发短信收费吗', '漫游短信', '一条短信', '发验证码'], answer: '页面给出的参考价格是漫游发送短信约 4 元人民币一条，最终按实际情况为准；接收短信免费。', anchor: '#faq' },
+        { id: 'sim_block_risk', category: 'risk', title: '手机卡停用风险', keywords: ['手机卡会封吗', '手机卡会封号吗', '手机卡会不会封号', '卡会封号吗', '卡会不会被封', '会不会封卡', '在国内会封吗', '国内长期使用会封吗', '封卡', '停卡', '国内长期用', '国内长期使用', '在国内一直用', '长期海外使用', '手机卡会取消吗', '号码会被取消吗'], answer: '页面称目前政策支持长期海外使用，目前不会因长期在国内使用而封卡；但实际仍受国内和新西兰政策等不可抗力影响，无法作永久保证。', anchor: '#faq' },
+        { id: 'service_lifetime', category: 'care', title: '可以用多久', keywords: ['能用多久', '永久吗', '有效期', '会过期吗', '长期使用', '永久有效'], answer: '本页没有承诺永久有效。按页面当前说明，每年充值 5 美元进行养号，但运营商及相关政策未来仍可能变化。', anchor: '#faq' },
+        { id: 'long_term_value', category: 'care', title: '长期持有的价值', keywords: ['为什么长期养号', '有必要吗', '海外手机号价值', '为什么保留号码'], answer: '海外 AI 产品与验证规则可能变化，不少新产品需要手机验证，单靠网络代理无法解决。对暂时无法出国的人，稳定持有一个海外手机号仍有价值。', anchor: '#long-term' },
+        { id: 'codex_account_count', category: 'account', title: '可激活的 Codex 账号数', keywords: ['一张卡几个账号', '两个codex', '能激活几个', '几个codex账号', '多账号', '共享账号'], answer: '页面实测一张卡间隔一周激活了两个 Codex 账号，但没有做批量测试。建议只用于自己的账号，不要共享；若实际不支持，也不建议反复尝试。', anchor: '#long-term' },
+        { id: 'after_sales', category: 'support', title: '售后与质保', keywords: ['售后', '质保', '质保多久', '保修', '坏了', '出问题', '补卡', '换卡', '半年内'], answer: '质保期为 6 个月。半年内若出现问题，会先验证并查询运营商，再联系当地运营商注销或补办；每位顾客仅限一次售后。', anchor: '#after-sales' },
+        { id: 'replacement_shipping', category: 'support', title: '补卡与再次邮寄', keywords: ['补卡多少钱', '补办多少钱', '换卡多少钱', '补办邮费', '补卡邮费', '售后运费', '补卡包邮吗', '售后邮寄', '换卡运费', '补办包邮'], answer: '本页只说明补办后再次邮寄按实际邮费支付，没有说明补卡本身是否另收费；每位顾客仅限一次售后。', anchor: '#after-sales' },
+        { id: 'contact_purchase', category: 'contact', title: '联系与购买', keywords: ['怎么联系', '微信号', '客服', '购买联系方式', '二维码', '联系购买'], answer: '可以扫描页面二维码添加微信，微信号是 Jiabcdefh；购买付款支持微信或支付宝。', anchor: '#contact' },
+        { id: 'topup_steps_missing', category: 'care', title: '充值操作步骤', keywords: ['充值教程', '怎么充值', '充值步骤', '充不上', '充值入口'], answer: '页面目前只有“充值教程”标题和“每年充值 5 美元”的养号说明，没有给出完整操作步骤；可以先查看养号 FAQ，具体操作再联系确认。', anchor: '#topup-title' },
+        { id: 'plan_not_documented', category: 'contact', title: '套餐与通话资费', keywords: ['流量', '流量多少钱', '套餐', '套餐多少钱', '月租', '月租多少', '打电话', '通话', '通话怎么收费', '上网', '数据包', '流量包', '话费', '话费多少'], answer: '本页没有列出流量、月租、通话或数据套餐的具体资费，只说明了卡的售价、信号体验和短信参考价格。请购买前联系确认。', anchor: '#contact' },
+        { id: 'refund_not_documented', category: 'contact', title: '退款与退货', keywords: ['退款', '退货', '取消订单', '不想要', '能退吗'], answer: '本页没有说明退款、退货或取消订单规则，需要直接联系卖家确认。', anchor: '#contact' },
+        { id: 'invoice_not_documented', category: 'contact', title: '发票', keywords: ['发票', '开票', '能开发票吗'], answer: '本页没有说明发票或开票规则，需要直接联系卖家确认。', anchor: '#contact' },
+        { id: 'stock_not_documented', category: 'shipping', title: '库存与具体发货日', keywords: ['有现货吗', '有现货', '现货', '库存', '什么时候发货', '多久发货', '发货时间', '发货日期', '今天能发吗', '今天能不能发', '现在能发吗', '具体到货日', '马上发货'], answer: '本页没有公布实时库存或具体发货日期，只说明国际物流通常约 1～3 周，并会按顺序联系购买者。', anchor: '#shipping' }
+      ];
+
+      const followups = {
+        overview: ['One.nz 和 Spark 怎么选？', '这是不是实体 SIM 卡？'],
+        account: ['一张卡能激活几个 Codex 账号？', 'OpenAI 手机号可以换绑吗？'],
+        risk: ['手机卡在国内长期用会封卡吗？', '为什么选择新西兰实体卡？'],
+        region: ['为什么不选择香港卡？', '新西兰这条链路可靠吗？'],
+        price: ['普通号和优质号码分别多少钱？', '还有额外费用吗？'],
+        purchase: ['完整购买流程是什么？', '支持什么付款方式？'],
+        shipping: ['下单后多久能到国内？', '怎么查询国际物流？'],
+        number: ['包装上的 SIM NUMBER 是手机号吗？', '手机显示未知怎么办？'],
+        care: ['每年怎么充值养号？', '收短信验证码收费吗？'],
+        support: ['补卡后的邮费怎么算？', '每位顾客能售后几次？'],
+        contact: ['怎么联系购买？', '页面有没有说明套餐资费？']
+      };
+
+      const normalizeQuestion = value => value
+        .normalize('NFKC')
+        .toLocaleLowerCase()
+        .replace(/[\s.,，。?？!！:：;；、/\\'"“”‘’·()（）[\]{}<>《》_\-]/g, '');
+
+      const scoreIntent = (intent, normalizedQuestion) => {
+        const partialScore = intent.keywords.reduce((score, keyword) => {
+          const normalizedKeyword = normalizeQuestion(keyword);
+          if (!normalizedKeyword || !normalizedQuestion.includes(normalizedKeyword)) return score;
+          const lengthScore = normalizedKeyword.length * normalizedKeyword.length;
+          return score + lengthScore + (normalizedQuestion === normalizedKeyword ? 18 : 0);
+        }, 0);
+        const exactScore = (intent.exactKeywords || []).reduce((score, keyword) => {
+          const normalizedKeyword = normalizeQuestion(keyword);
+          return normalizedQuestion === normalizedKeyword ? score + normalizedKeyword.length * normalizedKeyword.length + 36 : score;
+        }, 0);
+        return partialScore + exactScore;
+      };
+
+      const matchQuestion = question => {
+        const normalizedQuestion = normalizeQuestion(question);
+        const ranked = intents
+          .map(intent => ({ intent, score: scoreIntent(intent, normalizedQuestion) }))
+          .filter(item => item.score >= 4)
+          .sort((a, b) => b.score - a.score);
+        if (!ranked.length) return [];
+        const matches = [ranked[0].intent];
+        const questionWithoutFinalPunctuation = question.replace(/[?？!！.。]+$/g, '');
+        const hasMultipleTopics = /[，,、/;；?？]|和|以及|同时|并且|分别|另外|还想/.test(questionWithoutFinalPunctuation);
+        if (hasMultipleTopics) {
+          ranked.slice(1).forEach(item => {
+            const repeatsFamily = item.intent.family && matches.some(match => match.family === item.intent.family);
+            if (matches.length >= 3 || item.score < 4 || repeatsFamily || matches.some(match => match.id === item.intent.id)) return;
+            matches.push(item.intent);
+          });
+        }
+        return matches;
+      };
+
+      const scrollBodyToEnd = () => {
+        window.requestAnimationFrame(() => {
+          body.scrollTo({ top: body.scrollHeight, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+        });
+      };
+
+      const makeAvatar = role => {
+        const avatar = document.createElement('span');
+        avatar.className = 'page-ai-avatar';
+        avatar.setAttribute('aria-hidden', 'true');
+        avatar.textContent = role === 'user' ? '你' : 'AI';
+        return avatar;
+      };
+
+      const appendUserMessage = question => {
+        const message = document.createElement('div');
+        message.className = 'page-ai-message page-ai-message--user';
+        message.dataset.aiDynamic = '';
+        const bubble = document.createElement('div');
+        bubble.className = 'page-ai-bubble';
+        bubble.textContent = question;
+        message.append(makeAvatar('user'), bubble);
+        log.append(message);
+      };
+
+      const appendPendingMessage = () => {
+        const message = document.createElement('div');
+        message.className = 'page-ai-message page-ai-message--assistant';
+        message.dataset.aiDynamic = '';
+        message.setAttribute('aria-label', '正在匹配本页内容');
+        const bubble = document.createElement('div');
+        bubble.className = 'page-ai-bubble page-ai-thinking';
+        for (let index = 0; index < 3; index += 1) bubble.append(document.createElement('i'));
+        message.append(makeAvatar('assistant'), bubble);
+        log.append(message);
+        return message;
+      };
+
+      const makeAnswerMessage = (matches, question) => {
+        const message = document.createElement('div');
+        message.className = 'page-ai-message page-ai-message--assistant';
+        message.dataset.aiDynamic = '';
+        const bubble = document.createElement('div');
+        bubble.className = 'page-ai-bubble';
+        const answerItems = matches.length ? matches : [{
+          id: 'fallback',
+          category: 'overview',
+          title: '本页暂无明确说明',
+          answer: '这个问题在本页没有明确说明。我可以继续回答价格、One.nz 与 Spark 对比、购买流程、物流、手机号查看、充值养号、短信和售后；其他问题请通过页面微信联系确认。',
+          anchor: '#contact'
+        }];
+
+        answerItems.forEach(intent => {
+          const block = document.createElement('div');
+          block.className = 'page-ai-answer-block';
+          const title = document.createElement('strong');
+          title.textContent = intent.title;
+          const copy = document.createElement('p');
+          copy.textContent = intent.answer;
+          const action = document.createElement('button');
+          action.type = 'button';
+          action.className = 'page-ai-answer-action';
+          action.dataset.aiTarget = intent.anchor;
+          action.textContent = '查看页面说明 →';
+          block.append(title, copy, action);
+          bubble.append(block);
+        });
+
+        const primaryCategory = answerItems[0].category || 'overview';
+        const relatedQuestions = (followups[primaryCategory] || followups.overview)
+          .filter(item => normalizeQuestion(item) !== normalizeQuestion(question))
+          .slice(0, 2);
+        if (relatedQuestions.length) {
+          const related = document.createElement('div');
+          related.className = 'page-ai-followups';
+          relatedQuestions.forEach(relatedQuestion => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'page-ai-followup';
+            button.dataset.aiQuestion = relatedQuestion;
+            button.textContent = relatedQuestion;
+            related.append(button);
+          });
+          bubble.append(related);
+        }
+        message.append(makeAvatar('assistant'), bubble);
+        return message;
+      };
+
+      const trimHistory = () => {
+        const dynamicMessages = [...log.querySelectorAll('[data-ai-dynamic]')];
+        while (dynamicMessages.length >= 12) {
+          for (let index = 0; index < 2; index += 1) {
+            const oldest = dynamicMessages.shift();
+            if (oldest) oldest.remove();
+          }
+        }
+      };
+
+      let busy = false;
+      let composing = false;
+      let pendingTimer = 0;
+      let pendingState = null;
+
+      const finishPending = () => {
+        if (!pendingState) return;
+        window.clearTimeout(pendingTimer);
+        const { node, matches, question } = pendingState;
+        if (node.isConnected) node.replaceWith(makeAnswerMessage(matches, question));
+        pendingState = null;
+        busy = false;
+        send.disabled = false;
+        form.removeAttribute('aria-busy');
+        if (dialog.open) {
+          input.focus();
+          scrollBodyToEnd();
+        }
+      };
+
+      const askQuestion = value => {
+        const question = value.trim().slice(0, 160);
+        if (!question || busy) {
+          input.focus();
+          return;
+        }
+        starters.hidden = true;
+        trimHistory();
+        appendUserMessage(question);
+        const pending = appendPendingMessage();
+        const matches = matchQuestion(question);
+        input.value = '';
+        busy = true;
+        send.disabled = true;
+        form.setAttribute('aria-busy', 'true');
+        pendingState = { node: pending, matches, question };
+        scrollBodyToEnd();
+        pendingTimer = window.setTimeout(finishPending, reducedMotion.matches ? 0 : 360);
+      };
+
+      const resetConversation = () => {
+        window.clearTimeout(pendingTimer);
+        pendingState = null;
+        busy = false;
+        send.disabled = false;
+        form.removeAttribute('aria-busy');
+        log.querySelectorAll('[data-ai-dynamic]').forEach(message => message.remove());
+        starters.hidden = false;
+        input.value = '';
+        body.scrollTo({ top: 0, behavior: 'auto' });
+        input.focus();
+      };
+
+      const closeAi = () => {
+        if (dialog.open) dialog.close();
+      };
+
+      const openAi = () => {
+        if (searchDialog && searchDialog.open) searchDialog.close();
+        if (!dialog.open) dialog.showModal();
+        document.body.classList.add('page-ai-open');
+        launch.setAttribute('aria-expanded', 'true');
+        window.requestAnimationFrame(() => input.focus());
+      };
+
+      const scrollToTarget = selector => {
+        const target = document.querySelector(selector);
+        if (!target) return;
+        closeAi();
+        window.requestAnimationFrame(() => {
+          if (target.id) history.replaceState(null, '', '#' + target.id);
+          const targetTop = window.scrollY + target.getBoundingClientRect().top - 96;
+          window.scrollTo({ top: Math.max(0, targetTop), behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+        });
+      };
+
+      launch.addEventListener('click', openAi);
+      close.addEventListener('click', closeAi);
+      reset.addEventListener('click', resetConversation);
+      dialog.addEventListener('click', event => {
+        if (event.target === dialog) closeAi();
+      });
+      dialog.addEventListener('close', () => {
+        finishPending();
+        document.body.classList.remove('page-ai-open');
+        launch.setAttribute('aria-expanded', 'false');
+      });
+      dialog.addEventListener('click', event => {
+        const questionButton = event.target.closest('[data-ai-question]');
+        if (questionButton && dialog.contains(questionButton)) {
+          askQuestion(questionButton.dataset.aiQuestion || questionButton.textContent || '');
+          return;
+        }
+        const targetButton = event.target.closest('[data-ai-target]');
+        if (targetButton && dialog.contains(targetButton)) scrollToTarget(targetButton.dataset.aiTarget);
+      });
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        if (!composing) askQuestion(input.value);
+      });
+      input.addEventListener('compositionstart', () => { composing = true; });
+      input.addEventListener('compositionend', () => { composing = false; });
+      input.addEventListener('input', () => input.removeAttribute('aria-invalid'));
+      document.addEventListener('keydown', event => {
+        if (event.isComposing) return;
+        if (event.key === 'Escape' && dialog.open) {
+          event.preventDefault();
+          closeAi();
+        }
       });
     })();
   </script>
