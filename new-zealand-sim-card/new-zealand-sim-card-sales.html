@@ -838,6 +838,15 @@
     }
     .page-ai-answer-action:hover { background: var(--yellow-soft); }
     .page-ai-answer-action:focus-visible { outline: 3px solid rgba(43,127,216,.28); outline-offset: 2px; }
+    .page-ai-answer-action--qr { padding: 7px 12px 7px 7px; text-decoration: none; }
+    .page-ai-answer-qr {
+      width: 58px;
+      height: 58px;
+      border: 2px solid var(--cream);
+      border-radius: 8px;
+      background: var(--cream);
+      object-fit: contain;
+    }
     .page-ai-followups { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 7px; }
     .page-ai-followup {
       min-height: 36px;
@@ -1251,7 +1260,7 @@
         <button class="page-ai-close" type="button" aria-label="关闭 AI 问答" data-page-ai-close><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg></button>
       </div>
     </header>
-    <p class="page-ai-notice" id="page-ai-dialog-note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 10v6M12 7h.01"></path></svg>这是基于本页预设内容的本地关键词匹配助手，不联网，也不会生成页面以外的信息。</p>
+    <p class="page-ai-notice" id="page-ai-dialog-note"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 10v6M12 7h.01"></path></svg>这是基于本页完整内容的本地知识问答助手，不联网，也不会编造页面以外的信息。</p>
     <div class="page-ai-body" data-page-ai-body>
       <div class="page-ai-log" role="log" aria-live="polite" aria-relevant="additions text" data-page-ai-log>
         <div class="page-ai-message page-ai-message--assistant" data-page-ai-welcome>
@@ -1262,8 +1271,10 @@
       <section class="page-ai-starters" aria-label="常见问题">
         <div class="page-ai-starters-head"><span>大家经常这样问</span><span>点击直接提问</span></div>
         <div class="page-ai-starter-list">
+          <button class="page-ai-starter" type="button" data-ai-question="有哪些卡可以选？">有哪些卡可以选？</button>
           <button class="page-ai-starter" type="button" data-ai-question="One.nz 和 Spark 怎么选？">One.nz 和 Spark 怎么选？</button>
           <button class="page-ai-starter" type="button" data-ai-question="普通号和优质号码分别多少钱？">普通号和优质号码多少钱？</button>
+          <button class="page-ai-starter" type="button" data-ai-question="完整购买流程是什么？">完整购买流程是什么？</button>
           <button class="page-ai-starter" type="button" data-ai-question="下单后多久能到国内？">下单后多久能到国内？</button>
           <button class="page-ai-starter" type="button" data-ai-question="如何查看购买的手机号？">如何查看购买的手机号？</button>
           <button class="page-ai-starter" type="button" data-ai-question="每年怎么充值养号？">每年怎么充值养号？</button>
@@ -1276,7 +1287,7 @@
     <form class="page-ai-form" data-page-ai-form>
       <label class="page-ai-label" for="page-ai-input">输入关于本页内容的问题</label>
       <div class="page-ai-field">
-        <input class="page-ai-input" id="page-ai-input" type="search" maxlength="160" placeholder="例如：One.nz 多少钱？多久能收到？" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="send" data-page-ai-input>
+        <input class="page-ai-input" id="page-ai-input" type="search" maxlength="160" placeholder="例如：有哪些卡？One.nz 多少钱？" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" enterkeyhint="send" data-page-ai-input>
         <button class="page-ai-send" type="submit" data-page-ai-send><span>发送</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 14-7-4 14-3-6-7-1Z"></path><path d="m12 13 7-8"></path></svg></button>
       </div>
       <p class="page-ai-form-hint">答复仅来自当前页面；退款、库存、套餐等未说明问题会提示联系确认。</p>
@@ -1992,13 +2003,245 @@
         { id: 'codex_account_count', category: 'account', title: '可激活的 Codex 账号数', keywords: ['一张卡几个账号', '两个codex', '能激活几个', '几个codex账号', '多账号', '共享账号'], answer: '页面实测一张卡间隔一周激活了两个 Codex 账号，但没有做批量测试。建议只用于自己的账号，不要共享；若实际不支持，也不建议反复尝试。', anchor: '#long-term' },
         { id: 'after_sales', category: 'support', title: '售后与质保', keywords: ['售后', '质保', '质保多久', '保修', '坏了', '出问题', '补卡', '换卡', '半年内'], answer: '质保期为 6 个月。半年内若出现问题，会先验证并查询运营商，再联系当地运营商注销或补办；每位顾客仅限一次售后。', anchor: '#after-sales' },
         { id: 'replacement_shipping', category: 'support', title: '补卡与再次邮寄', keywords: ['补卡多少钱', '补办多少钱', '换卡多少钱', '补办邮费', '补卡邮费', '售后运费', '补卡包邮吗', '售后邮寄', '换卡运费', '补办包邮'], answer: '本页只说明补办后再次邮寄按实际邮费支付，没有说明补卡本身是否另收费；每位顾客仅限一次售后。', anchor: '#after-sales' },
-        { id: 'contact_purchase', category: 'contact', title: '联系与购买', keywords: ['怎么联系', '微信号', '客服', '购买联系方式', '二维码', '联系购买'], answer: '可以扫描页面二维码添加微信，微信号是 Jiabcdefh；购买付款支持微信或支付宝。', anchor: '#contact' },
+        {
+          id: 'contact_purchase', category: 'contact', title: '联系与购买',
+          keywords: ['怎么联系', '微信号', '客服', '购买联系方式', '二维码', '联系购买'], exactKeywords: ['微信', '如何购买'],
+          answer: '微信号是 Jiabcdefh。添加微信或扫描二维码后说明想购买 One.nz / Spark；确认后按页面流程付款、完成激活验证并安排寄出，支持微信或支付宝付款。',
+          qrImage: 'assets/source-images/wechat-qr.jpg',
+          qrUrl: 'https://github.com/Brclio/brand-studio/blob/main/data/%E5%BE%AE%E4%BF%A1%E4%BA%8C%E7%BB%B4%E7%A0%81.JPG',
+          anchor: '#contact'
+        },
         { id: 'topup_steps_missing', category: 'care', title: '充值操作步骤', keywords: ['充值教程', '怎么充值', '充值步骤', '充不上', '充值入口'], answer: '页面目前只有“充值教程”标题和“每年充值 5 美元”的养号说明，没有给出完整操作步骤；可以先查看养号 FAQ，具体操作再联系确认。', anchor: '#topup-title' },
         { id: 'plan_not_documented', category: 'contact', title: '套餐与通话资费', keywords: ['流量', '流量多少钱', '套餐', '套餐多少钱', '月租', '月租多少', '打电话', '通话', '通话怎么收费', '上网', '数据包', '流量包', '话费', '话费多少'], answer: '本页没有列出流量、月租、通话或数据套餐的具体资费，只说明了卡的售价、信号体验和短信参考价格。请购买前联系确认。', anchor: '#contact' },
         { id: 'refund_not_documented', category: 'contact', title: '退款与退货', keywords: ['退款', '退货', '取消订单', '不想要', '能退吗'], answer: '本页没有说明退款、退货或取消订单规则，需要直接联系卖家确认。', anchor: '#contact' },
         { id: 'invoice_not_documented', category: 'contact', title: '发票', keywords: ['发票', '开票', '能开发票吗'], answer: '本页没有说明发票或开票规则，需要直接联系卖家确认。', anchor: '#contact' },
         { id: 'stock_not_documented', category: 'shipping', title: '库存与具体发货日', keywords: ['有现货吗', '有现货', '现货', '库存', '什么时候发货', '多久发货', '发货时间', '发货日期', '今天能发吗', '今天能不能发', '现在能发吗', '具体到货日', '马上发货'], answer: '本页没有公布实时库存或具体发货日期，只说明国际物流通常约 1～3 周，并会按顺序联系购买者。', anchor: '#shipping' }
       ];
+
+      intents.push(
+        {
+          id: 'basic_card_usage', category: 'overview', title: '收到卡后怎么用',
+          keywords: ['这卡怎么用', '卡怎么用', '拿到后怎么用', '收到后怎么用', '咋用'], exactKeywords: ['怎么用'],
+          answer: '这是可直接插入手机的实体 SIM。寄出前会先验证 Codex 和手机卡状态；收到后请尽快充值养号，手机号可从包装上的 PHONE NUMBER 或手机系统设置中查看。', anchor: '#flow'
+        },
+        {
+          id: 'one_overview', category: 'price', title: 'One.nz 卡概览',
+          keywords: ['介绍one', '介绍onenz', 'one是什么卡', 'onenz是什么卡'], exactKeywords: ['one', 'onenz'],
+          answer: 'One.nz 是页面提供的两种新西兰实体 SIM 之一：普通号 125 元、优质号 145 元；在国内接入信号稍慢，会在 4G / 5G 间切换，信号稍弱但页面称不影响使用。', anchor: '#price'
+        },
+        {
+          id: 'spark_overview', category: 'price', title: 'Spark 卡概览',
+          keywords: ['介绍spark', 'spark是什么卡'], exactKeywords: ['spark'],
+          answer: 'Spark 是页面提供的两种新西兰实体 SIM 之一，也是页面标注的推荐卡：普通号 185 元、优质号 205 元；在国内插卡入网较快，页面描述为稳定 5G。', anchor: '#price'
+        },
+        {
+          id: 'number_selection_not_documented', category: 'contact', title: '优质号码与选号',
+          keywords: ['能选号吗', '可以选号吗', '号码能选吗', '有号码池吗', '挑号码', '选尾号', '选021', '选号段'],
+          answer: '页面只说明优质号码也叫靓号，并列出了加 20 元后的价格；没有说明可选号码范围、号段或选号方式，需要购买前联系确认。', anchor: '#price'
+        },
+        {
+          id: 'dual_sim_number', category: 'number', title: '双卡手机查看号码',
+          keywords: ['双卡怎么看', '双卡怎么选', '两个sim怎么看', 'sim1还是sim2', '两个号码怎么看', '双卡手机怎么确认', '新西兰那张卡怎么看'],
+          answer: '双卡用户需要在 iPhone 的已启用线路，或 Android 的 SIM 1 / SIM 2 中选择对应的 SIM 后查看号码；菜单名称会因品牌和系统版本不同而变化。', anchor: '#find-number'
+        },
+        {
+          id: 'card_problem_support', category: 'support', title: '卡出现异常怎么办',
+          keywords: ['没信号怎么办', '一直没信号', '卡不能用了', '卡失效了', '被停了怎么办', '停卡怎么办', '收不到信号', '突然不能用', 'simnotworking', 'nosignal'],
+          answer: '质保期为 6 个月。半年内出现问题，会先验证并查询运营商，再联系当地运营商注销或补办；每位顾客仅限一次售后。刚插卡暂时没信号时，One.nz 接入可能较慢，Spark 通常更快。', anchor: '#after-sales'
+        },
+        {
+          id: 'business_origin', category: 'overview', title: '为什么开始卖卡',
+          keywords: ['为什么卖卡', '怎么想到卖卡', '为什么做这个业务', '这业务怎么来的', '为啥开始卖', '卖卡原因'],
+          answer: '最初考虑过代保管、代收验证码和收维护费，但最后认为直接把实体卡卖给用户、由用户自己持有和养号更方便。', anchor: '#reason-4'
+        },
+        {
+          id: 'local_support', category: 'region', title: '新西兰当地协助',
+          keywords: ['谁在新西兰', '朋友在新西兰吗', '谁帮忙办卡', '谁采购', '当地有人吗', '谁联系运营商', '谁负责新西兰售后'],
+          answer: '卖家的朋友定居新西兰，可协助采购、激活、与运营商沟通、国际邮寄和售后，这也是选择新西兰链路的重要原因。', anchor: '#reason-3'
+        },
+        {
+          id: 'self_setup_difficulty', category: 'overview', title: '为什么不自己办',
+          keywords: ['为什么不自己办', '自己办不行吗', '自己能办吗', '自己折腾多少钱', '自己弄划算吗', '为什么直接买'],
+          answer: '页面认为普通用户自行办卡仍有难度，前后折腾约需一百来块；One.nz 直接购买为 125 元，主打省心。', anchor: '#reason-5'
+        },
+        {
+          id: 'self_managed_card', category: 'purchase', title: '手机卡由谁保管',
+          keywords: ['帮我保管卡吗', '卡放你那里吗', '代收验证码吗', '帮我养号吗', '代养吗', '代保管', '用户自己养吗', '不邮寄可以吗'],
+          answer: '页面提到最初考虑过代保管和代收验证码，但最终方案是直接卖卡并寄给用户，由用户自行持有和养号。', anchor: '#reason-4'
+        },
+        {
+          id: 'account_risk_evidence', category: 'risk', title: '页面展示的风险证据',
+          keywords: ['有封号证据吗', '封号截图', '群聊截图', '粉丝群截图', '官方邮件', '谷歌查询', '风险截图', '真实案例', '多少张封号截图'],
+          answer: '页面展示了群友收到的官方邮件、谷歌查询结果，以及 11 张粉丝群实际截图，用于说明线上或虚拟卡方案仍存在账号风险。', anchor: '#reason-2'
+        },
+        {
+          id: 'openai_sources', category: 'account', title: 'OpenAI 换绑依据',
+          keywords: ['换绑依据', '不能改手机号的依据', 'openai官方说明', 'phoneonlysignup', '手机号不能改的官方链接'],
+          answer: '页面在“OpenAI 不允许换绑”章节列出了两条 OpenAI 帮助链接：修改账号关联手机号的说明，以及 phone-only signups 说明。', anchor: '#reason-1'
+        },
+        {
+          id: 'region_sources', category: 'region', title: '地区选择的官方依据',
+          keywords: ['香港实名依据', '支持地区依据', '哪些地区支持chatgpt', 'claude支持国家', '新西兰官方支持吗', '地区官方链接'],
+          answer: '页面列出了香港通讯办的 SIM 实名登记说明、OpenAI 支持地区列表和 Anthropic 支持地区列表，用于说明香港与新西兰的差异。', anchor: '#region-choice'
+        },
+        {
+          id: 'topup_policy_source', category: 'care', title: '养号政策来源',
+          keywords: ['5美元政策', '充值政策来源', '余额过期官方说明', '养号官方链接', 'one充值依据'],
+          answer: '页面的每年充值 5 美元说明关联了 One.nz 的预付余额有效期政策链接；本页没有给出 Spark 的独立政策来源。', anchor: '#faq'
+        },
+        {
+          id: 'other_ai_scope', category: 'account', title: '可用于哪些 AI 服务',
+          keywords: ['只能codex吗', '只能用codex吗', '还能验证什么', '其他ai能用吗', '能注册哪些平台'],
+          answer: '页面明确提到支持 Claude / Codex，并说明新西兰属于 ChatGPT 与 Claude 的官方支持地区；没有列出其他具体平台，实际仍需看各平台当时的验证规则。', anchor: '#top'
+        },
+        {
+          id: 'tutoring_service', category: 'contact', title: '一对一课程',
+          keywords: ['编程课', '一对一辅导', '一对一教学', '学python', '学c++', 'java课程', '算法课', '少儿编程', 'pygame', 'web课程', 'linux课程', '信息奥赛', '摄影课', 'photoshop', 'premiere', '线上课', '线下课'],
+          answer: '页面还提供编程一对一辅导、答疑、作业与项目实践，覆盖 Python、C++、Java、算法、少儿编程、Pygame、Web 和 Linux；也提供摄影、Photoshop、Premiere 课程及信息奥赛集训。', anchor: '#contact'
+        },
+        {
+          id: 'qq_contact', category: 'contact', title: 'QQ 联系方式',
+          keywords: ['qq多少', 'qq号', '怎么用qq联系'], exactKeywords: ['qq'],
+          answer: '页面提供的 QQ 号码是 1432803776；微信号是 Jiabcdefh。', anchor: '#contact'
+        },
+        {
+          id: 'number_format_not_documented', category: 'number', title: '号码格式与号段',
+          keywords: ['国家码', '区号', '021是什么', '号段', '号码几位', '什么开头', '+64', '新西兰号码格式'],
+          answer: '页面没有说明国家码、号段或完整号码格式，只说明从包装背面的 PHONE NUMBER 查看购买的手机号。', anchor: '#find-number'
+        },
+        {
+          id: 'sim_size_not_documented', category: 'contact', title: 'SIM 卡尺寸',
+          keywords: ['nanosim', 'microsim', '大卡小卡', '卡槽尺寸', '剪卡吗', '什么尺寸'],
+          answer: '页面只说明这是可直接插入手机的实体 SIM，没有列出 Nano SIM、Micro SIM 等具体卡片尺寸。', anchor: '#faq'
+        },
+        {
+          id: 'device_compatibility_not_documented', category: 'contact', title: '手机兼容性',
+          keywords: ['我的手机能用吗', '支持哪些机型', '华为能插吗', '小米能用吗', '美版iphone', '锁网机', '支持什么手机', '手机兼容'],
+          answer: '页面提供了 iPhone 和 Android 的号码查看方法，但没有列出具体机型或锁网状态的兼容清单，购买前需要确认。', anchor: '#find-number'
+        },
+        {
+          id: 'shipping_area_not_documented', category: 'shipping', title: '配送范围',
+          keywords: ['全国都能寄吗', '偏远地区', '港澳台', '海外地址', '寄到台湾', '寄到欧洲', '能寄到国外吗', '能寄到某省吗'],
+          answer: '页面只说明从新西兰寄到国内，没有列出港澳台、海外地址、偏远地区或具体省市的配送范围，需要联系确认。', anchor: '#shipping'
+        },
+        {
+          id: 'shipping_exception_not_documented', category: 'shipping', title: '物流异常与税费',
+          keywords: ['丢件', '快递破损', '海关扣留', '关税', '税费', '物流赔偿', '保价', '包裹丢了'],
+          answer: '页面没有说明丢损、关税、海关扣留、保价或物流赔付规则，需要联系确认。', anchor: '#shipping'
+        },
+        {
+          id: 'warranty_details_not_documented', category: 'support', title: '质保细节',
+          keywords: ['半年从哪天算', '半年后怎么办', '补办保留原号吗', '补卡多久', '补卡本身收费吗', '超过半年免费换吗'],
+          answer: '页面只明确了 6 个月质保、每位顾客一次售后，以及补办后再次邮寄按实际邮费支付；质保起算、期外处理、原号保留和补卡时效等细节没有说明。', anchor: '#after-sales'
+        },
+        {
+          id: 'discount_bulk_not_documented', category: 'contact', title: '优惠与批量购买',
+          keywords: ['有优惠吗', '能便宜吗', '团购', '批量买', '买多张', '代理价', '砍价', '折扣'],
+          answer: '页面没有说明折扣、批量购买、团购或代理价格，需要联系确认。', anchor: '#contact'
+        },
+        {
+          id: 'payment_other_not_documented', category: 'purchase', title: '其他支付方式',
+          keywords: ['信用卡', '银行卡', 'paypal', '人民币吗', '能刷卡吗', '其他支付方式'],
+          answer: '页面只列出微信和支付宝直接转账，没有说明信用卡、银行卡、PayPal 或其他支付方式。', anchor: '#price'
+        },
+        {
+          id: 'specific_verification_not_documented', category: 'account', title: '其他平台验证码',
+          keywords: ['银行验证码', 'whatsapp', 'telegram', '语音验证码', '其他网站验证码', '注册某网站', '能验证所有平台吗'],
+          answer: '页面明确的是 Claude / Codex 相关用途和短信收发费用，没有承诺银行、WhatsApp、Telegram 或其他具体平台一定支持。', anchor: '#faq'
+        },
+        {
+          id: 'sms_failure_not_documented', category: 'care', title: '收不到验证码',
+          keywords: ['收不到验证码', '验证码延迟', '短信不到', '收不到短信', '验证码不来', '怎么排查短信'],
+          answer: '页面只说明接收短信免费，没有提供收不到短信或验证码延迟的排查步骤，需要联系运营商或卖家确认。', anchor: '#faq'
+        },
+        {
+          id: 'delivery_start_not_documented', category: 'shipping', title: '物流时效从何时计算',
+          keywords: ['1到3周从哪天算', '1至3周从哪天算', '付款后开始算吗', '物流起算', '到卖家还是到我', '时效从什么时候算'],
+          answer: '页面给出从新西兰到国内约 1～3 周，但没有定义从付款、购卡、寄出，还是其他节点开始计算。', anchor: '#shipping'
+        },
+        {
+          id: 'knowledge_planet_not_documented', category: 'contact', title: '知识星球',
+          keywords: ['知识星球是什么', '怎么加入知识星球', '星球多少钱', '知识星球价格', '加入星球'],
+          answer: '页面只展示了“AI悦创知识星球信息”图片，没有正文说明加入方式或价格。', anchor: '#contact'
+        },
+        {
+          id: 'gallery_navigation', category: 'overview', title: '查看页面截图',
+          keywords: ['图片怎么切换', '怎么看下一张', '截图怎么翻', '左右切换图片', '还有截图吗', '怎么翻图'],
+          answer: '页面中的截图画廊可以点击主图切换下一张，也可以使用左右箭头和圆点查看。', anchor: '#reason-2'
+        },
+        {
+          id: 'logistics_evidence', category: 'shipping', title: '物流截图与证明',
+          keywords: ['有物流证明吗', '有物流截图吗', '多少张物流截图', 'nzpost几张', 'ems几张'],
+          answer: '页面展示了 3 张 NZ Post 国际物流进度截图和 5 张邮政 EMS 进度截图，用于说明物流链路与查询过程。', anchor: '#shipping'
+        },
+        {
+          id: 'service_features_not_documented', category: 'contact', title: '挂失与附加功能',
+          keywords: ['携号转网', '卡丢了怎么挂失', '怎么挂失', '开热点', '热点共享', '支持热点吗'],
+          answer: '页面没有说明携号转网、挂失或热点共享等功能，需要联系运营商或卖家确认。', anchor: '#contact'
+        }
+      );
+
+      const intentVariants = {
+        product_overview: ['有哪些卡', '有哪几种卡', '有哪几种', '几种卡', '都卖什么卡', '卖什么卡', '卖啥卡', '都有什么卡', '有什么卡可选', '什么运营商', '有哪些运营商', '可选什么卡', '哪两个牌子', 'whatcards', 'availablecards', 'whichcarrier', '卖的是电话卡还是账号'],
+        ai_support: ['能搞claude吗', '能搞codex吗', '这卡能干嘛', '能拿来验证ai吗'],
+        physical_or_esim: ['实卡还是esim', '能直接插不', '是实卡吗', 'physicalsim'],
+        why_physical: ['为什么不搞线上卡', '为什么不用gg卡', '为啥改实体卡'],
+        why_new_zealand: ['为什么偏偏选新西兰', '为啥选新西兰', '为什么选纽西兰', 'nz可靠吗'],
+        why_not_hong_kong: ['香港电话卡不行吗', '为什么香港不行', '港卡不香吗'],
+        why_not_other_regions: ['美国英国卡不考虑吗', '为什么不选美国卡', '为什么不选英国卡'],
+        real_name_requirement: ['买卡要实名吗', '用身份证吗', '要护照吗', '买家实名吗'],
+        openai_rebind: ['以后能换号码吗', 'openai号码以后能改吗', '手机号以后可以换吗'],
+        account_ban_risk: ['百分百不封号吗', '保证账号安全吗', '注册codex会封吗'],
+        all_prices: ['一张多少钱', '手机卡多少钱', '卖多少钱', '价钱', '售价', '普通号多少钱', '基础号多少钱', '最低多少钱', '两种卡多少钱', '分别多少钱', '两种卡各多少钱', '各卖多少钱', '几多钱'],
+        one_price: ['one多钱', 'onenz多钱', 'one啥价', 'one普通号', 'one基础号'],
+        spark_price: ['spark多钱', 'spark啥价', 'spark普通号', 'spark基础号', 'spark先付180', '先180再付5'],
+        premium_number: ['普通号和优质号', '普通号跟靓号', '靓号什么意思', '优质号什么意思', '加20是什么', '靓号加20'],
+        carrier_compare: ['哪个更好', '选哪个', '哪种好', 'one跟spark咋选', 'oneorsparkwhichisbetter'],
+        domestic_signal: ['哪家入网快', '哪家5g稳', '刚插卡没信号', '插卡多久有信号', '入网要多久', 'one在大陆信号', 'spark在大陆信号'],
+        extra_fees: ['5块是什么', '5元是什么', '5元干嘛', '为什么还要5元', '微信小店5元', '5元物流单', '物流单是什么', '小店下单干嘛', '国际运费包不包', '隐藏收费', '已经算在总价吗'],
+        payment: ['先付多少钱', '先打多少钱', '买one先付多少', 'one先付多少', '尾款', '货到付款', '可以到付吗', '能不能到付', '全款吗', '分几次付', '120是什么', '180是什么', '先钱还是先货', '能微信付吗', '能支付宝付吗'],
+        purchase_flow: ['咋买', '怎么弄', '咋弄', '怎么办理', '如何办理', '完整过程', '从咨询到收卡', '怎么买到'],
+        account_preparation: ['下单前准备什么', '准备哪些账号', '谷歌账号注册不了', 'google账号风控', 'gmail注册不了', '手机注册谷歌', '网页版注册谷歌', '怎么准备账号'],
+        network_preparation: ['没有梯子能激活吗', '没代理能用吗', '要不要vpn'],
+        activation_process: ['谁帮我激活', '寄出前测不测', '寄出前测试吗'],
+        seller_scope: ['帮注册邮箱密码吗', '会帮注册chatgpt吗', '账号谁操作'],
+        delivery_time: ['到货要多久', '快递多久', '几周能到', '多久寄到', '多久送来', '发到国内多久', '从新西兰多久', '最快多久', '最慢多久', '快递要几周', '啥时候到', 'howlong', 'shippingtime', 'whenwillitarrive'],
+        shipping_delay: ['清关', '卡海关', '海关卡住', '被海关扣', '北京海关', '福建海关', '怎么还没到', '一直没到', '物流不动了', '哪个环节耽搁'],
+        shipping_tracking: ['什么快递', '哪家快递', '发什么快递', '用什么物流', '怎么查件', '查快递', '运单', '物流单号', 'tracking', 'trackorder', '去哪查进度'],
+        shipping_compliance: ['能过海关吗', '能清关吗', '正规渠道吗', '真的是国际物流吗', '走国际物流吗'],
+        travel_use: ['旅游也能买吗', '出国旅游用', '旅行可以买这卡吗'],
+        find_number_general: ['号码咋看', '在哪儿看', '去哪看', '手机号码在哪', '买到的号在哪', '本机号怎么查', '我的号码在哪', '新西兰号码怎么看', 'findmynumber', 'whereismynumber', 'wheresmyphonenumber', 'howtochecknumber', '手鸡号怎么看'],
+        package_number: ['红框是什么', '图一红框', '图一的号码', '图片标记是什么', '包装背面怎么看', 'phonenumber在哪', 'sim卡号是不是手机号', '卡板上哪一串', '卡片上的号码', '包装照片', 'puk是本机号吗'],
+        iphone_number: ['苹果机', 'iphone手机', 'iphone在哪看号码', 'iphonephonenumber', 'findnumberoniphone', '苹果双卡', 'ipone怎么查本机号'],
+        android_number: ['安卓机', 'android手机', '安卓在哪看号码', 'androidphonenumber', '华为怎么看号码', '小米怎么看号码', '三星怎么看号码', 'oppo怎么看号码', 'vivo怎么看号码', 'anroidsim2号码'],
+        number_unknown: ['号码显示不出来', '手机号是空的', '没有本机号码', 'unknownnumber', 'numberunknown', 'iphone显示空白', 'android显示空白', '插卡看不到号码', '包装丢了手机也未知'],
+        annual_topup: ['收到卡要干嘛', '拿到后做什么', '收到后多久充', '什么时候充', '一次充多少', '一年充几次', '每年都要充吗', '5美金', '5刀', '一年充几刀', '充值后要消费吗', '余额要用掉吗', '需要打电话消费吗', '不消费行吗', 'topup', 'recharge', 'renew', 'keepnumberactive'],
+        spark_topup: ['sparktopup', 'sparkrecharge', 'spark一年充多少', 'spark也要每年充吗', 'spark每年5美元吗'],
+        receive_sms: ['扣钱不', '能不能收openai验证码', '接码免费吗'],
+        send_sms: ['往外发短信', '4元是收还是发', '发一条多钱'],
+        sim_block_risk: ['卡会失效吗', '号码会没吗', '在国内一直插着', '长期漫游', '国内用会怎样', '会被停机吗', '运营商会停吗', 'cardblocked', 'simblocked'],
+        service_lifetime: ['号码永久吗', '能一直用吗', '几年有效'],
+        long_term_value: ['为什么有必要养海外号', '养海外号有什么用'],
+        codex_account_count: ['能绑几个', '能弄几个号', '能开几个账号', '两个账号', '三个账号', '两个以上', '几个人用', '可以多人用吗', '间隔多久', '隔多久再激活', 'codex几个account', 'howmanycodexaccounts'],
+        after_sales: ['管多久', '保多久', '保几个月', '有没有售后', '售后几次', '只能售后一次吗', '半年质保', 'warranty', 'guarantee', 'aftersales', '质宝多久'],
+        replacement_shipping: ['补卡谁出邮费', '换卡谁付邮费', '重新寄要钱吗', '补办后怎么寄', 'replacementshipping'],
+        contact_purchase: ['微信多少', '找谁', '联系谁', '在哪买', '找谁买', '怎么买联系'],
+        topup_steps_missing: ['在哪充值', '用什么充值', '充值网址', '充值网站', '怎么充钱', '用什么卡支付', '自动充值', '充不了', '冲不上', 'topuphowto'],
+        plan_not_documented: ['旅游流量套餐', '月租流量通话', 'data plan', 'monthly fee'],
+        refund_not_documented: ['退款多少钱', '超过多久能退'],
+        invoice_not_documented: ['增值税发票', '公司发票'],
+        stock_not_documented: ['今天能发不', '明天能收到吗', '保证到货日吗']
+      };
+
+      Object.entries(intentVariants).forEach(([id, variants]) => {
+        const intent = intents.find(item => item.id === id);
+        if (intent) intent.keywords.push(...variants);
+      });
+
+      const capabilityIntent = intents.find(intent => intent.id === 'capability');
+      if (capabilityIntent) capabilityIntent.exactKeywords = [];
+      const carrierCompareIntent = intents.find(intent => intent.id === 'carrier_compare');
+      if (carrierCompareIntent) carrierCompareIntent.exactKeywords = ['哪个好', '选哪个', '怎么选', '推荐哪个', '哪种好'];
 
       const followups = {
         overview: ['One.nz 和 Spark 怎么选？', '这是不是实体 SIM 卡？'],
@@ -2014,43 +2257,384 @@
         contact: ['怎么联系购买？', '页面有没有说明套餐资费？']
       };
 
-      const normalizeQuestion = value => value
-        .normalize('NFKC')
-        .toLocaleLowerCase()
-        .replace(/[\s.,，。?？!！:：;；、/\\'"“”‘’·()（）[\]{}<>《》_\-]/g, '');
+      const aliasRules = [
+        [/\b(?:sparc|spak|sparrk|spakr)\b/g, 'spark'],
+        [/\b(?:gamil|gmai)\b/g, 'gmail'],
+        [/\b(?:chatgtp|chatgptt)\b/g, 'chatgpt'],
+        [/\b(?:codxe|cdoex|codx)\b/g, 'codex'],
+        [/\b(?:cluade|claud)\b/g, 'claude'],
+        [/\b(?:ipone|iphon)\b/g, 'iphone'],
+        [/\b(?:anroid|andriod|androld)\b/g, 'android'],
+        [/纽西兰/g, '新西兰'],
+        [/物留/g, '物流'],
+        [/养耗/g, '养号'],
+        [/质宝/g, '质保'],
+        [/封咔/g, '封卡'],
+        [/手鸡号/g, '手机号'],
+        [/冲值|冲话费/g, '充值'],
+        [/短息/g, '短信']
+      ];
 
-      const scoreIntent = (intent, normalizedQuestion) => {
-        const partialScore = intent.keywords.reduce((score, keyword) => {
-          const normalizedKeyword = normalizeQuestion(keyword);
-          if (!normalizedKeyword || !normalizedQuestion.includes(normalizedKeyword)) return score;
-          const lengthScore = normalizedKeyword.length * normalizedKeyword.length;
-          return score + lengthScore + (normalizedQuestion === normalizedKeyword ? 18 : 0);
-        }, 0);
-        const exactScore = (intent.exactKeywords || []).reduce((score, keyword) => {
-          const normalizedKeyword = normalizeQuestion(keyword);
-          return normalizedQuestion === normalizedKeyword ? score + normalizedKeyword.length * normalizedKeyword.length + 36 : score;
-        }, 0);
-        return partialScore + exactScore;
+      const englishRules = [
+        [/\b(?:find|check|view)\s+(?:my\s+)?(?:phone\s+)?number\b/g, '怎么查手机号'],
+        [/\bwhere\s+is\s+(?:my\s+)?(?:phone\s+)?number\b/g, '手机号在哪里'],
+        [/\bwhat\s+(?:cards?|sims?)\s+(?:are\s+)?(?:available|offered)\b/g, '有哪些卡'],
+        [/\bavailable\s+(?:cards?|sims?)\b/g, '有哪些卡'],
+        [/\bwhich\s+carrier\b/g, '有哪些运营商'],
+        [/\bhow\s+much\b/g, '多少钱'],
+        [/\bshipping\s+time\b|\bdelivery\s+time\b/g, '物流时效'],
+        [/\btrack\s+(?:my\s+)?order\b/g, '查询物流'],
+        [/\bphone\s+number\b|\bmy\s+number\b/g, '手机号'],
+        [/\btop\s*up\b|\brecharge\b/g, '充值'],
+        [/\bafter[\s-]?sales\b/g, '售后'],
+        [/\bwarranty\b|\bguarantee\b/g, '质保'],
+        [/\bphysical\s+sim\b/g, '实体sim'],
+        [/\bmonthly\s+fee\b/g, '月租'],
+        [/\bdata\s+plan\b/g, '流量套餐']
+      ];
+
+      const normalizeQuestionData = value => {
+        let canonical = String(value || '')
+          .normalize('NFKC')
+          .toLocaleLowerCase()
+          .replace(/[\u200b-\u200d\ufeff]/g, ' ')
+          .replace(/\bone\s*(?:[.·_\-]\s*)?nz\b/g, 'onenz')
+          .replace(/\bonez\b|\bonezn\b|\bone\s+z\b/g, 'onenz');
+        aliasRules.forEach(([pattern, replacement]) => { canonical = canonical.replace(pattern, replacement); });
+        englishRules.forEach(([pattern, replacement]) => { canonical = canonical.replace(pattern, replacement); });
+        const spaced = canonical
+          .replace(/&/g, ' 和 ')
+          .replace(/[^\p{L}\p{N}+]+/gu, ' ')
+          .trim()
+          .replace(/\s+/g, ' ');
+        return { canonical, spaced, compact: spaced.replace(/\s+/g, '') };
+      };
+
+      const normalizeQuestion = value => normalizeQuestionData(value).compact;
+      const containsAny = (value, words) => words.some(word => value.includes(word));
+
+      const intentMeta = {
+        product_overview: { topic: 'catalog', answerGroup: 'catalog' },
+        basic_card_usage: { topic: 'usage' },
+        one_overview: { topic: 'one-overview', entity: 'one' },
+        spark_overview: { topic: 'spark-overview', entity: 'spark' },
+        all_prices: { topic: 'card-price', answerGroup: 'card-price' },
+        one_price: { topic: 'card-price', answerGroup: 'card-price', entity: 'one' },
+        spark_price: { topic: 'card-price', answerGroup: 'card-price', entity: 'spark' },
+        premium_number: { topic: 'card-price', answerGroup: 'card-price' },
+        carrier_compare: { topic: 'compare' },
+        domestic_signal: { topic: 'signal' },
+        extra_fees: { topic: 'extra-fees' },
+        payment: { topic: 'payment' },
+        purchase_flow: { topic: 'purchase' },
+        delivery_time: { topic: 'delivery' },
+        shipping_delay: { topic: 'shipping-delay' },
+        shipping_tracking: { topic: 'tracking' },
+        stock_not_documented: { topic: 'ship-date' },
+        find_number_general: { topic: 'find-number' },
+        package_number: { topic: 'package-number' },
+        iphone_number: { topic: 'iphone-number', entity: 'iphone' },
+        android_number: { topic: 'android-number', entity: 'android' },
+        dual_sim_number: { topic: 'dual-sim-number' },
+        number_unknown: { topic: 'number-unknown' },
+        annual_topup: { topic: 'topup', answerGroup: 'topup' },
+        spark_topup: { topic: 'spark-topup', answerGroup: 'topup', entity: 'spark' },
+        receive_sms: { topic: 'receive-sms' },
+        send_sms: { topic: 'send-sms' },
+        sms_failure_not_documented: { topic: 'sms-failure' },
+        sim_block_risk: { topic: 'sim-block' },
+        account_ban_risk: { topic: 'account-ban' },
+        service_lifetime: { topic: 'lifetime' },
+        codex_account_count: { topic: 'account-count' },
+        after_sales: { topic: 'after-sales' },
+        replacement_shipping: { topic: 'replacement' },
+        contact_purchase: { topic: 'contact' },
+        plan_not_documented: { topic: 'plan' },
+        refund_not_documented: { topic: 'refund' },
+        invoice_not_documented: { topic: 'invoice' }
+      };
+
+      const metaFor = intent => ({
+        topic: intent.id,
+        answerGroup: intent.id,
+        entity: '',
+        ...(intentMeta[intent.id] || {})
+      });
+
+      intents.forEach((intent, order) => {
+        intent.matchOrder = order;
+        intent.normalizedKeywords = [...new Set(intent.keywords.map(normalizeQuestion).filter(Boolean))]
+          .filter(keyword => !(intent.id === 'package_number' && keyword === '手机号'));
+        intent.normalizedExactKeywords = [...new Set((intent.exactKeywords || []).map(normalizeQuestion).filter(Boolean))];
+      });
+
+      const extractQuestionFacts = data => {
+        const { canonical, compact } = data;
+        const entities = new Set();
+        const topics = new Set();
+        const hasAsciiEntity = entity => new RegExp(`(?:^|[^a-z0-9])${entity}(?=$|[^a-z0-9])`, 'i').test(canonical);
+        if (hasAsciiEntity('one') || compact.includes('onenz') || /^(?:one)(?:topup|recharge)/.test(compact)) entities.add('one');
+        if (hasAsciiEntity('spark') || /^(?:spark)(?:topup|recharge)/.test(compact)) entities.add('spark');
+        if (compact.includes('iphone') || compact.includes('苹果')) entities.add('iphone');
+        if (compact.includes('android') || compact.includes('安卓')) entities.add('android');
+        if (compact.includes('codex')) entities.add('codex');
+        if (compact.includes('claude')) entities.add('claude');
+        if (compact.includes('chatgpt') || compact.includes('openai')) entities.add('openai');
+
+        const topicRules = [
+          ['catalog', /有哪些卡|哪几种卡|哪两种卡|两种什么卡|几种卡|什么卡可选|卖什么卡|卖啥卡|哪些运营商|什么运营商|图里.{0,6}卡|图片.{0,6}卡|卖.{0,5}电话卡|电话卡.{0,6}(?:还是|账号)/],
+          ['capability', /能问.{0,4}(?:什么|啥)|可以问|会回答|能回答|问你.{0,4}(?:什么|啥)/],
+          ['ai-support', /(?:这卡|手机卡).{0,8}(?:干嘛|用途|claude|codex)|(?:搞|支持|验证|激活).{0,8}(?:claude|codex)/],
+          ['card-price', /多少钱|多钱|几多钱|价格|价钱|报价|售价|总价|花.{0,3}多少|哪个.{0,4}便宜|谁.{0,4}便宜|贵多少/],
+          ['compare', /怎么选|咋选|哪个好|哪种好|推荐哪个|还是.*好|区别|对比|compare|哪个.{0,4}便宜|谁.{0,4}便宜|贵多少/],
+          ['signal', /信号|入网|4g|5g/],
+          ['extra-fees', /额外费|隐藏收费|运费|邮费|包邮|5元物流|5块|物流单|另收|(?:物流|快递|邮寄|国际快递).{0,6}(?:多少钱|多少|费用|收费)/],
+          ['payment', /付款|支付|转账|先付|先打|尾款|到付|全款|支付宝|微信支付/],
+          ['purchase', /怎么买|咋买|购买流程|下单流程|交易流程|完整交易|交易.{0,5}怎么走|怎么办理/],
+          ['account-preparation', /买之前.{0,5}准备|购买前.{0,5}准备|准备.{0,4}(?:什么|啥)|谷歌账号|gmail/],
+          ['activation', /谁激活|怎么激活|激活codex|寄出前.{0,4}(?:验证|测试)/],
+          ['delivery', /多久.*到|多快到|几天到|几周|物流时效|什么时候到|啥时候到|shippingtime|物流多久/],
+          ['shipping-delay', /为什么.{0,3}慢|还没到|一直没到|物流不动|海关卡|清关/],
+          ['tracking', /查(?:询)?.{0,4}(?:物流|快递)|(?:物流|快递).{0,4}(?:怎么查|查询|查)|查件|快递单号|物流单号|运单|tracking/],
+          ['shipping-compliance', /正规|合规|真实物流|走海关|走国际物流|是不是诈骗/],
+          ['ship-date', /现货|库存|什么时候发货|多久发货|发货日期|今天.*发|马上发|什么时候.{0,4}(?:寄出|发出)|能寄出|何时发/],
+          ['find-number', /(?:手机号|电话号码|本机号|号码).{0,8}(?:怎么看|怎么查|在哪|哪里|哪看|查看|是什么)|(?:怎么看|怎么查|在哪|哪里|哪看|从哪看|查看|查号).{0,8}(?:手机号|电话号码|本机号|号码|号)/],
+          ['package-number', /(?:包装|卡片|卡板|红框|图一).{0,10}(?:号码|手机号|simnumber|iccid|puk|哪串|哪一串|看哪)|simnumber|iccid|puk/],
+          ['iphone-number', /(?:iphone|苹果).{0,6}(?:号码|本机号)|(?:号码|本机号).{0,6}(?:iphone|苹果)/],
+          ['android-number', /(?:android|安卓|华为|小米|三星|oppo|vivo).{0,6}(?:号码|本机号)|(?:号码|本机号).{0,6}(?:android|安卓|华为|小米|三星|oppo|vivo)/],
+          ['number-unknown', /(?:手机号|号码|本机号|手机).{0,7}(?:未知|空白|空的|不显示|看不到|查不到)|(?:未知|空白|空的|不显示|看不到|查不到).{0,7}(?:手机号|号码|本机号)/],
+          ['topup', /充值|保号|每年|一年|5美元|5美金|5刀|topup|renew|怎么养号|养号.{0,5}(?:多少|充值|怎么)/],
+          ['topup-steps', /充值.{0,8}(?:操作|步骤|教程|页面|入口|网址|网站|在哪|哪里|怎么充|充不了)|(?:在哪|哪里|怎么).{0,5}充值/],
+          ['receive-sms', /收短信|接收短信|收验证码|接收验证码|验证码.{0,7}(?:收到|进来|扣费|收费|要不要钱|免费)|(?:收到|接收).{0,5}(?:短信|验证码)/],
+          ['send-sms', /发短信|发送短信|短信.{0,7}(?:出去|发出|发送|多少钱|收费)|往外.{0,4}短信|(?:发送|发).{0,4}(?:一条|出去).{0,5}(?:多少钱|收费)|发验证码/],
+          ['sms-failure', /收不到短信|收不到验证码|短信不到|验证码不来|验证码延迟/],
+          ['sim-block', /封卡|停卡|(?:手机卡|sim卡|卡|号码).{0,10}(?:封|停机|停用|取消)|长期.{0,8}(?:国内|海外|插着|插国内).{0,8}(?:封|停机|停用)|长期插国内|simblocked|cardblocked|长期漫游/],
+          ['account-ban', /(?:openai|codex|chatgpt|claude|账号|账户|平台账号).{0,12}(?:封|安全|风险)|(?:封|安全).{0,8}(?:账号|账户)/],
+          ['lifetime', /能用多久|永久|有效期|(?:号码|手机号|这个号|本机号|卡).{0,8}(?:失效|过期|能用多久|永久|有效期)|几年有效/],
+          ['long-term-value', /(?:为什么|为啥).{0,8}(?:长期养号|海外号)|长期.{0,6}(?:价值|有必要)|养海外号.{0,5}(?:用|必要|价值)/],
+          ['account-count', /几个.*账号|多少个.*账号|多账号|两个codex|能绑几个|多人用|间隔多久|一张卡.{0,8}(?:开|激活).{0,6}(?:codex|账号)|几个codex号/],
+          ['after-sales', /售后|质保|保修|半年内|(?:卡|sim).{0,5}(?:坏了|出问题)/],
+          ['replacement', /补卡|补办|换卡|再次邮寄/],
+          ['contact', /怎么联系|咋联系|微信号|qq号|客服|二维码|找谁/],
+          ['travel', /(?:出国|旅行|旅游).{0,8}(?:买|用|旅游|旅行)|新西兰(?:旅游|旅行)|旅游能用|旅行使用/],
+          ['plan', /流量|套餐|月租|通话|打电话|话费|上网/],
+          ['refund', /退款|退货|取消订单|能退/],
+          ['invoice', /发票|开票/],
+          ['seller-scope', /卖家.{0,8}(?:负责|注册|操作)|帮我.{0,6}(?:注册|改邮箱|设密码)|谁操作账号/],
+          ['why-new-zealand', /为什么.{0,4}(?:新西兰|nz)|为啥.{0,4}(?:新西兰|nz)|选新西兰/],
+          ['why-not-hong-kong', /不选香港|香港.{0,12}(?:不行|实名|支持|不选)|港卡.{0,8}(?:不行|实名)|为啥不选.{0,4}香港/],
+          ['why-not-other-regions', /其他国家|别的国家|其他地区|美国卡|英国卡/],
+          ['openai-rebind', /换绑|改手机号|更换绑定号码|手机号.{0,5}(?:能改|可以改)/],
+          ['other-ai-scope', /其他ai|哪些ai|什么ai|还能.{0,6}ai|只能.{0,4}(?:codex|claude)|其他平台/],
+          ['number-selection', /(?:选|选择|挑).{0,5}(?:号码|尾号|号段)|(?:号码|尾号|号段).{0,5}(?:能选|可选|可以选)/],
+          ['device-compatibility', /(?:iphone|android|苹果|安卓|华为|小米|三星|oppo|vivo).{0,5}(?:能不能用|能用|可以用|兼容|支持|能插)|(?:我的手机|这个手机|这部手机|手机|机型).{0,2}(?:能不能用|能用|可以用|兼容)|(?:兼容|支持).{0,5}(?:机型|手机)/],
+          ['sim-size', /nanosim|microsim|大卡|小卡|卡槽尺寸|剪卡|什么尺寸/],
+          ['shipping-area', /全国.*寄|偏远地区|港澳台|海外地址|寄到台湾|寄到欧洲|寄到国外|寄到.{0,5}(?:省|市|地区)/],
+          ['shipping-exception', /丢件|破损|海关扣留|关税|税费|物流赔偿|保价|包裹丢/],
+          ['warranty-details', /半年从哪天算|半年后|保留原号|补卡多久|补卡本身|超过半年/],
+          ['discount', /有优惠|能便宜.{0,2}(?:吗|点)|团购|批量|买多张|代理价|砍价|折扣|打折/],
+          ['payment-other', /信用卡|银行卡|paypal|刷卡|其他支付/],
+          ['specific-verification', /银行验证码|whatsapp|telegram|语音验证码|其他网站验证码|所有平台/],
+          ['delivery-start', /1(?:到|至|~|～)3周从|付款后开始算|物流起算|时效从什么时候算|到卖家还是到我/],
+          ['knowledge-planet', /知识星球|加入星球|星球多少钱/],
+          ['service-features', /携号转网|挂失|开热点|热点共享|支持热点/]
+        ];
+        topicRules.forEach(([topic, pattern]) => { if (pattern.test(compact)) topics.add(topic); });
+        if (topics.has('find-number') && entities.has('iphone')) topics.add('iphone-number');
+        if (topics.has('find-number') && entities.has('android')) topics.add('android-number');
+
+        const excludedTopics = new Set();
+        const exclusionLead = '(?:不问|别说|不用回答|不要介绍|不想知道|无需介绍|跳过)';
+        const exclusionRules = [
+          ['card-price', '(?:价格|价钱|多少钱|费用)'],
+          ['compare', '(?:对比|区别|怎么选|哪个好)'],
+          ['delivery', '(?:物流|多久到|到货)'],
+          ['find-number', '(?:手机号|电话号码|查看号码)'],
+          ['topup', '(?:充值|养号)'],
+          ['after-sales', '(?:售后|质保)']
+        ];
+        exclusionRules.forEach(([topic, target]) => {
+          if (new RegExp(`${exclusionLead}[^，,。.!！?？;；]{0,12}${target}`, 'u').test(canonical)) excludedTopics.add(topic);
+        });
+
+        const hasPageCardNoun = containsAny(compact, ['手机卡', 'sim卡', '电话卡', '新西兰卡', '新西兰手机号', '两种卡', '普通号', '基础号', '优质号', '优质号码', '靓号'])
+          || entities.has('one') || entities.has('spark');
+        let nonCardPriceContext = containsAny(compact, [
+          '充值', '养号', '保号', '每年', '一年', '短信', '验证码', '月租', '套餐', '流量',
+          '退款', '退货', '补卡', '补办', '换卡', '运费', '邮费', '发票', '课程', '星球',
+          '优惠', '团购', '关税', '税费', '赔偿', '保价', '物流', '快递', '邮寄', '国际快递',
+          '5元', '5块', '物流单', '另收', '额外', '先打', '先付', '定金', '尾款'
+        ]);
+        if (topics.has('card-price') && !hasPageCardNoun && (entities.has('iphone') || entities.has('android') || containsAny(compact, ['苹果手机', '安卓手机', '香港卡', '港卡', '美国卡', '英国卡']))) nonCardPriceContext = true;
+        const directPriceMatch = compact.match(/(?:onenz|spark|手机卡|sim卡|电话卡|新西兰卡|新西兰手机号|两种卡|普通号|基础号|优质号|优质号码|靓号)(.{0,6})(?:多少钱|多钱|价格|价钱|报价|售价)/)
+          || compact.match(/(?:多少钱|价格|价钱)(.{0,6})(?:onenz|spark|手机卡|sim卡|电话卡|新西兰卡|新西兰手机号|两种卡|普通号|优质号|靓号)/)
+          || canonical.match(/(?:^|[^a-z0-9])one(?=$|[^a-z0-9])([^，,。.!！?？;；]{0,8})(?:多少钱|多钱|价格|价钱|报价|售价)/i)
+          || canonical.match(/(?:多少钱|价格|价钱)([^，,。.!！?？;；]{0,8})(?:^|[^a-z0-9])one(?=$|[^a-z0-9])/i);
+        const explicitCardPrice = Boolean(directPriceMatch)
+          && !containsAny(directPriceMatch[1] || '', ['充值', '养号', '保号', '每年', '一年', '短信', '套餐', '月租', '退款', '补卡', '换卡', '物流', '快递', '邮寄', '先打', '先付']);
+        return { entities, topics, excludedTopics, nonCardPriceContext, explicitCardPrice };
+      };
+
+      const semanticIntentTopics = {
+        product_overview: 'catalog',
+        capability: 'capability',
+        ai_support: 'ai-support',
+        seller_scope: 'seller-scope',
+        why_new_zealand: 'why-new-zealand',
+        why_not_hong_kong: 'why-not-hong-kong',
+        why_not_other_regions: 'why-not-other-regions',
+        openai_rebind: 'openai-rebind',
+        other_ai_scope: 'other-ai-scope',
+        carrier_compare: 'compare',
+        domestic_signal: 'signal',
+        extra_fees: 'extra-fees',
+        payment: 'payment',
+        purchase_flow: 'purchase',
+        account_preparation: 'account-preparation',
+        activation_process: 'activation',
+        delivery_time: 'delivery',
+        shipping_delay: 'shipping-delay',
+        shipping_tracking: 'tracking',
+        shipping_compliance: 'shipping-compliance',
+        stock_not_documented: 'ship-date',
+        find_number_general: 'find-number',
+        package_number: 'package-number',
+        iphone_number: 'iphone-number',
+        android_number: 'android-number',
+        number_unknown: 'number-unknown',
+        annual_topup: 'topup',
+        topup_steps_missing: 'topup-steps',
+        receive_sms: 'receive-sms',
+        send_sms: 'send-sms',
+        sms_failure_not_documented: 'sms-failure',
+        sim_block_risk: 'sim-block',
+        account_ban_risk: 'account-ban',
+        service_lifetime: 'lifetime',
+        long_term_value: 'long-term-value',
+        codex_account_count: 'account-count',
+        after_sales: 'after-sales',
+        replacement_shipping: 'replacement',
+        contact_purchase: 'contact',
+        travel_use: 'travel',
+        plan_not_documented: 'plan',
+        refund_not_documented: 'refund',
+        invoice_not_documented: 'invoice',
+        number_selection_not_documented: 'number-selection',
+        device_compatibility_not_documented: 'device-compatibility',
+        sim_size_not_documented: 'sim-size',
+        shipping_area_not_documented: 'shipping-area',
+        shipping_exception_not_documented: 'shipping-exception',
+        warranty_details_not_documented: 'warranty-details',
+        discount_bulk_not_documented: 'discount',
+        payment_other_not_documented: 'payment-other',
+        specific_verification_not_documented: 'specific-verification',
+        delivery_start_not_documented: 'delivery-start',
+        knowledge_planet_not_documented: 'knowledge-planet',
+        service_features_not_documented: 'service-features'
+      };
+
+      const scoreIntent = (intent, questionData, facts) => {
+        const { compact } = questionData;
+        let bestScore = 0;
+        let matchedLength = 0;
+        let matchedKeyword = '';
+        intent.normalizedKeywords.forEach(keyword => {
+          if (!compact.includes(keyword)) return;
+          const score = 10 + Math.min(keyword.length, 18) * 2 + (compact === keyword ? 42 : 0);
+          if (score > bestScore || (score === bestScore && keyword.length > matchedLength)) {
+            bestScore = score;
+            matchedLength = keyword.length;
+            matchedKeyword = keyword;
+          }
+        });
+        intent.normalizedExactKeywords.forEach(keyword => {
+          if (compact !== keyword) return;
+          const score = 64 + Math.min(keyword.length, 18) * 2;
+          if (score > bestScore) {
+            bestScore = score;
+            matchedLength = keyword.length;
+            matchedKeyword = keyword;
+          }
+        });
+        const meta = metaFor(intent);
+        const semanticTopic = semanticIntentTopics[intent.id];
+        if (!bestScore && semanticTopic && facts.topics.has(semanticTopic)) {
+          bestScore = 30;
+          matchedLength = 4;
+          matchedKeyword = `topic:${semanticTopic}`;
+        }
+        if (!bestScore && intent.id === 'one_price' && facts.topics.has('card-price') && facts.entities.has('one') && !facts.nonCardPriceContext) bestScore = 34;
+        if (!bestScore && intent.id === 'spark_price' && facts.topics.has('card-price') && facts.entities.has('spark') && !facts.nonCardPriceContext) bestScore = 34;
+        if (!bestScore && intent.id === 'all_prices' && facts.topics.has('card-price') && !facts.nonCardPriceContext) bestScore = 28;
+        if (!bestScore && intent.id === 'spark_topup' && facts.topics.has('topup') && facts.entities.has('spark')) bestScore = 38;
+        if (!bestScore && intent.id === 'one_overview' && facts.entities.has('one') && /^(?:one|onenz)(?:呢|怎么样|咋样|如何)?$/.test(compact)) bestScore = 46;
+        if (!bestScore && intent.id === 'spark_overview' && facts.entities.has('spark') && /^spark(?:呢|怎么样|咋样|如何)?$/.test(compact)) bestScore = 46;
+        if (!bestScore) return null;
+
+        if (facts.excludedTopics.has(meta.topic) || facts.excludedTopics.has(meta.answerGroup)) return null;
+        if (meta.entity === 'one' && facts.entities.has('spark') && !facts.entities.has('one')) return null;
+        if (meta.entity === 'spark' && facts.entities.has('one') && !facts.entities.has('spark')) return null;
+        if (meta.entity === 'iphone' && facts.entities.has('android') && !facts.entities.has('iphone')) return null;
+        if (meta.entity === 'android' && facts.entities.has('iphone') && !facts.entities.has('android')) return null;
+
+        const hasTopupContext = facts.topics.has('topup');
+        const hasReceiveContext = facts.topics.has('receive-sms') || facts.topics.has('sms-failure');
+        const hasSendContext = facts.topics.has('send-sms');
+        const hasCardRiskContext = facts.topics.has('sim-block');
+        const hasAccountRiskContext = facts.topics.has('account-ban');
+
+        if (meta.answerGroup === 'card-price' && facts.nonCardPriceContext && !facts.explicitCardPrice) return null;
+        if ((intent.id === 'one_price' || intent.id === 'spark_price') && hasTopupContext && !facts.explicitCardPrice) return null;
+        if (intent.id === 'send_sms' && hasReceiveContext && !hasSendContext) return null;
+        if (intent.id === 'receive_sms' && hasSendContext && !hasReceiveContext) return null;
+        if (intent.id === 'sim_block_risk' && hasAccountRiskContext && !hasCardRiskContext) return null;
+        if (intent.id === 'account_ban_risk' && hasCardRiskContext && !hasAccountRiskContext) return null;
+        if (intent.id === 'carrier_compare' && matchedKeyword === 'topic:compare' && !facts.entities.has('one') && !facts.entities.has('spark') && facts.topics.has('package-number')) return null;
+        if (intent.id === 'shipping_delay' && facts.topics.has('shipping-compliance') && !facts.topics.has('shipping-delay')) return null;
+        if (intent.id === 'why_not_hong_kong' && facts.topics.has('card-price') && !/(?:为什么|为啥|不选|不行|实名|支持地区)/.test(compact)) return null;
+        if (intent.id === 'annual_topup' && facts.topics.has('topup-steps') && !/(?:每年|一年|多少|5美元|5美金|5刀)/.test(compact)) return null;
+        if (intent.id === 'annual_topup' && facts.topics.has('long-term-value') && !/(?:充值|每年|一年|5美元|5美金|5刀)/.test(compact)) return null;
+        if (intent.id === 'after_sales' && facts.topics.has('number-unknown') && !/(?:怎么办|不能用|真的坏|确认坏|售后|质保)/.test(compact)) return null;
+        if (intent.id === 'extra_fees' && facts.topics.has('replacement') && !compact.includes('额外费用')) return null;
+        if (intent.id === 'find_number_general' && (facts.topics.has('package-number') || facts.topics.has('iphone-number') || facts.topics.has('android-number'))) return null;
+        if (intent.id === 'find_number_general' && facts.topics.has('number-unknown')) bestScore -= 24;
+
+        if (facts.topics.has(meta.topic)) bestScore += 13;
+        if (semanticTopic && facts.topics.has(semanticTopic)) bestScore += 13;
+        if (meta.entity && facts.entities.has(meta.entity)) bestScore += 10;
+        if (intent.id === 'product_overview' && facts.topics.has('catalog')) bestScore += 18;
+        if (intent.id === 'all_prices' && facts.entities.has('one') && facts.entities.has('spark')) bestScore += 34;
+        if (intent.id === 'carrier_compare' && facts.topics.has('compare')) bestScore += 16;
+        if (intent.id === 'spark_topup' && facts.entities.has('spark') && hasTopupContext) bestScore += 18;
+        return { intent, meta, semanticTopic, score: bestScore, matchedLength, matchedKeyword };
       };
 
       const matchQuestion = question => {
-        const normalizedQuestion = normalizeQuestion(question);
+        const questionData = normalizeQuestionData(question);
+        if (!questionData.compact) return [];
+        const facts = extractQuestionFacts(questionData);
         const ranked = intents
-          .map(intent => ({ intent, score: scoreIntent(intent, normalizedQuestion) }))
-          .filter(item => item.score >= 4)
-          .sort((a, b) => b.score - a.score);
+          .map(intent => scoreIntent(intent, questionData, facts))
+          .filter(Boolean)
+          .filter(item => item.score >= 14)
+          .sort((a, b) => b.score - a.score || b.matchedLength - a.matchedLength || a.intent.matchOrder - b.intent.matchOrder);
         if (!ranked.length) return [];
-        const matches = [ranked[0].intent];
-        const questionWithoutFinalPunctuation = question.replace(/[?？!！.。]+$/g, '');
-        const hasMultipleTopics = /[，,、/;；?？]|和|以及|同时|并且|分别|另外|还想/.test(questionWithoutFinalPunctuation);
-        if (hasMultipleTopics) {
-          ranked.slice(1).forEach(item => {
-            const repeatsFamily = item.intent.family && matches.some(match => match.family === item.intent.family);
-            if (matches.length >= 3 || item.score < 4 || repeatsFamily || matches.some(match => match.id === item.intent.id)) return;
-            matches.push(item.intent);
-          });
-        }
-        return matches;
+
+        const chosen = [ranked[0]];
+        const usedGroups = new Set([ranked[0].meta.answerGroup]);
+        const questionWithoutFinalPunctuation = String(question).replace(/[?？!！.。]+$/g, '');
+        const hasConnector = /[，,、/;；?？]|\b(?:and|also|plus)\b|和|以及|同时|并且|分别|另外|还想|再问|顺便/.test(questionWithoutFinalPunctuation);
+        const hasMultipleTopics = hasConnector || facts.topics.size >= 2;
+        if (!hasMultipleTopics) return [ranked[0].intent];
+
+        ranked.slice(1).forEach(item => {
+          const topicBacked = facts.topics.has(item.meta.topic) || Boolean(item.semanticTopic && facts.topics.has(item.semanticTopic));
+          const specificPhrase = !item.matchedKeyword.startsWith('topic:') && item.matchedLength >= 3;
+          if (chosen.length >= 3 || item.score < 14 || usedGroups.has(item.meta.answerGroup) || (!topicBacked && !specificPhrase)) return;
+          chosen.push(item);
+          usedGroups.add(item.meta.answerGroup);
+        });
+        return chosen.map(item => item.intent);
       };
 
       const scrollBodyToEnd = () => {
@@ -2117,7 +2701,24 @@
           action.className = 'page-ai-answer-action';
           action.dataset.aiTarget = intent.anchor;
           action.textContent = '查看页面说明 →';
-          block.append(title, copy, action);
+          block.append(title, copy);
+          if (intent.qrImage && intent.qrUrl) {
+            const qrLink = document.createElement('a');
+            qrLink.className = 'page-ai-answer-action page-ai-answer-action--qr';
+            qrLink.href = intent.qrUrl;
+            qrLink.target = '_blank';
+            qrLink.rel = 'noopener noreferrer';
+            qrLink.setAttribute('aria-label', '打开微信 Jiabcdefh 二维码');
+            const qrImage = document.createElement('img');
+            qrImage.className = 'page-ai-answer-qr';
+            qrImage.src = intent.qrImage;
+            qrImage.alt = '微信 Jiabcdefh 二维码';
+            const qrLabel = document.createElement('span');
+            qrLabel.textContent = '打开微信二维码 ↗';
+            qrLink.append(qrImage, qrLabel);
+            block.append(qrLink);
+          }
+          block.append(action);
           bubble.append(block);
         });
 
@@ -2156,6 +2757,36 @@
       let composing = false;
       let pendingTimer = 0;
       let pendingState = null;
+      let lastMatchedIntents = [];
+
+      const contextualizeQuestion = value => {
+        const data = normalizeQuestionData(value);
+        if (!lastMatchedIntents.length) return value;
+        const ids = new Set(lastMatchedIntents.map(intent => intent.id));
+        const entityMatch = data.compact.match(/^(one|onenz|spark)(?:呢|怎么样|咋样|如何)?$/);
+        if (entityMatch) {
+          const entity = entityMatch[1] === 'spark' ? 'Spark' : 'One.nz';
+          if (['all_prices', 'one_price', 'spark_price', 'premium_number', 'payment'].some(id => ids.has(id))) return `${entity} 多少钱`;
+          if (['annual_topup', 'spark_topup', 'topup_policy_source'].some(id => ids.has(id))) return `${entity} 每年怎么充值养号`;
+          if (['carrier_compare', 'domestic_signal'].some(id => ids.has(id))) return `${entity} 在国内信号怎么样`;
+        }
+        const deviceMatch = data.compact.match(/^(iphone|android|苹果|安卓)(?:呢|怎么样|咋样|如何)?$/);
+        if (deviceMatch && ['find_number_general', 'package_number', 'iphone_number', 'android_number', 'dual_sim_number', 'number_unknown'].some(id => ids.has(id))) {
+          const device = /^(?:iphone|苹果)/.test(deviceMatch[1]) ? 'iPhone' : 'Android';
+          return `${device} 怎么查看手机号`;
+        }
+        if (/^(?:多少钱呢|多少钱|多钱呢|多钱|价格呢|什么价|啥价)$/.test(data.compact)) {
+          if (ids.has('spark_overview')) return 'Spark 多少钱';
+          if (ids.has('one_overview')) return 'One.nz 多少钱';
+        }
+        if (/^(?:另一个|另外一个|另一张)(?:呢|怎么样|多少钱)?$/.test(data.compact)) {
+          if (ids.has('one_price')) return 'Spark 多少钱';
+          if (ids.has('spark_price')) return 'One.nz 多少钱';
+          if (ids.has('one_overview')) return 'Spark';
+          if (ids.has('spark_overview')) return 'One.nz';
+        }
+        return value;
+      };
 
       const finishPending = () => {
         if (!pendingState) return;
@@ -2182,7 +2813,8 @@
         trimHistory();
         appendUserMessage(question);
         const pending = appendPendingMessage();
-        const matches = matchQuestion(question);
+        const matches = matchQuestion(contextualizeQuestion(question));
+        if (matches.length) lastMatchedIntents = matches;
         input.value = '';
         busy = true;
         send.disabled = true;
@@ -2196,6 +2828,7 @@
         window.clearTimeout(pendingTimer);
         pendingState = null;
         busy = false;
+        lastMatchedIntents = [];
         send.disabled = false;
         form.removeAttribute('aria-busy');
         log.querySelectorAll('[data-ai-dynamic]').forEach(message => message.remove());
