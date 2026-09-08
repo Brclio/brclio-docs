@@ -1,0 +1,64 @@
+{
+  "captured": "2026-09-09",
+  "source": "https://dash.cloudflare.com/",
+  "method": "Actual dashboard screenshots cropped to instructional regions at capture time",
+  "accountChanges": "No purchase, DNS activation, destination submission, routing creation or email sending",
+  "screenshots": [
+    {
+      "file": "assets/screenshots/01-domain-search.jpg",
+      "width": 1400,
+      "height": 510,
+      "mimeType": "image/jpeg",
+      "bytes": 33397,
+      "sha256": "778cf468c59b1508ec2f641c8f05df49f2e59b958a4737bae77b1fa2b5f140f3"
+    },
+    {
+      "file": "assets/screenshots/02-domain-results.jpg",
+      "width": 1400,
+      "height": 660,
+      "mimeType": "image/jpeg",
+      "bytes": 59540,
+      "sha256": "28bfcefc98862c4466ed380c83c284747b3d2b2f3d072492f7e7d6366436c389"
+    },
+    {
+      "file": "assets/screenshots/03-order-review.jpg",
+      "width": 390,
+      "height": 365,
+      "mimeType": "image/jpeg",
+      "bytes": 16700,
+      "sha256": "0fbd2abbc2ff047e2e9c26e3f15823b5c3a4c5766dd7abeedfb83bd3158f38b2"
+    },
+    {
+      "file": "assets/screenshots/04-routing-entry.jpg",
+      "width": 1715,
+      "height": 835,
+      "mimeType": "image/jpeg",
+      "bytes": 57957,
+      "sha256": "4300f37db26a0a4c7ea8df74b956d30143a7bd90a4d338151de9126fa5f9a3da"
+    },
+    {
+      "file": "assets/screenshots/05-select-domain.jpg",
+      "width": 870,
+      "height": 345,
+      "mimeType": "image/jpeg",
+      "bytes": 15047,
+      "sha256": "9a02694cb453f8a211fec0ddcb7ad6ec33ccddf4a8b8ed1d825030486c5758a1"
+    },
+    {
+      "file": "assets/screenshots/06-dns-preview.jpg",
+      "width": 870,
+      "height": 735,
+      "mimeType": "image/jpeg",
+      "bytes": 40526,
+      "sha256": "f761a588a71c4c9c8947431628df4d5abd66e8264c8e1824916964c434ab3af4"
+    },
+    {
+      "file": "assets/screenshots/07-destination-address.jpg",
+      "width": 1400,
+      "height": 620,
+      "mimeType": "image/jpeg",
+      "bytes": 29944,
+      "sha256": "0370d1f9f1a9113d1d4ab152dd624f5f8129e3531be8c2faa366e2b511d9613b"
+    }
+  ]
+}
