@@ -1,0 +1,39 @@
+{
+  "capturedAt": "2026-09-09",
+  "method": "Chromium browser screenshot, 1360x1000 CSS pixels, native device scale factor 2; no image resampling or edited UI",
+  "accountActions": "No account sign-in, no payment information entered, no transaction submitted",
+  "screenshots": [
+    {
+      "file": "01-top-up-entry.png",
+      "source": "https://www.skinny.co.nz/",
+      "width": 2720,
+      "height": 2000,
+      "bytes": 444633,
+      "sha256": "238166ca94b638ad2195307296d572370cfddafc92946e00b14cf25b10373684"
+    },
+    {
+      "file": "02-sign-in.png",
+      "source": "https://www.skinny.co.nz/topup",
+      "width": 2720,
+      "height": 2000,
+      "bytes": 172372,
+      "sha256": "b528d5685f029b9d53f5c7b8fc414ec46020eaf7f72fce01f9896df2df58cbe7"
+    },
+    {
+      "file": "03-card-policy.png",
+      "source": "https://www.skinny.co.nz/help/mobile-help/general/payment-methods/debit-and-credit-cards",
+      "width": 2720,
+      "height": 2000,
+      "bytes": 307599,
+      "sha256": "2eabd0694f3d14332b8b0f55c43761b8b8e5af2d2b45aea544aff4b9e8a86de5"
+    },
+    {
+      "file": "04-auto-top-up.png",
+      "source": "https://www.skinny.co.nz/help/mobile-help/general/payment-methods/updating-your-auto-top-up",
+      "width": 2720,
+      "height": 2000,
+      "bytes": 251221,
+      "sha256": "1af2e7e3d2d7290367d4b7adf88c84749b2dc5cb4e21201ef6c014598c4375f4"
+    }
+  ]
+}
