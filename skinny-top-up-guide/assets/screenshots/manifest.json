@@ -1,11 +1,36 @@
 {
-  "capturedAt": "2026-09-09",
-  "method": "Chromium browser screenshot, 1360x1000 CSS pixels, native device scale factor 2; no image resampling or edited UI",
-  "accountActions": "No account sign-in, no payment information entered, no transaction submitted",
+  "verifiedAt": "2026-09-09",
+  "screenshotCount": 10,
+  "provenanceGroups": {
+    "public-browser": {
+      "count": 4,
+      "method": "Chromium browser screenshot, 1360x1000 CSS pixels, native device scale factor 2; no image resampling or edited UI",
+      "capturedAt": "2026-09-09",
+      "accountActions": "Public pages only; no signed-in account used for these four captures."
+    },
+    "user-attachment": {
+      "count": 5,
+      "method": "User-provided PNG attachments copied byte-for-byte; no resampling, re-encoding, redaction or edited UI.",
+      "providedAt": "2026-09-09",
+      "capturedAt": null,
+      "captureDateNote": "The original capture date, browser viewport and device scale factor were not independently verified.",
+      "accountActions": "User supplied screenshots of mobile registration, an authenticated Dashboard and one-off top-up settings. The agent did not perform registration or send an authentication code."
+    },
+    "authenticated-browser": {
+      "count": 1,
+      "method": "Native screenshot output from the user-authorized existing signed-in Google Chrome session; tool returned JPEG and the file retains JPEG format without conversion.",
+      "capturedAt": "2026-09-09",
+      "accountActions": "Selected the unsaved debit/credit card option and NZ$5 with Save this debit/credit card for later unchecked, then clicked CONFIRM to inspect the card payment form. No card details entered and PAY was not clicked. Returned to the top-up settings, where amount displayed $0 and save-card remained unchecked."
+    }
+  },
+  "verificationBoundary": "Observed the authenticated one-off top-up settings and card payment form. No bank authentication, payment submission, card saving, automatic top-up activation or credit-arrival verification was performed. User attachment capture dates and capture actions were not independently verified.",
   "screenshots": [
     {
       "file": "01-top-up-entry.png",
+      "provenance": "public-browser",
       "source": "https://www.skinny.co.nz/",
+      "capturedAt": "2026-09-09",
+      "format": "PNG",
       "width": 2720,
       "height": 2000,
       "bytes": 444633,
@@ -13,7 +38,10 @@
     },
     {
       "file": "02-sign-in.png",
+      "provenance": "public-browser",
       "source": "https://www.skinny.co.nz/topup",
+      "capturedAt": "2026-09-09",
+      "format": "PNG",
       "width": 2720,
       "height": 2000,
       "bytes": 172372,
@@ -21,7 +49,10 @@
     },
     {
       "file": "03-card-policy.png",
+      "provenance": "public-browser",
       "source": "https://www.skinny.co.nz/help/mobile-help/general/payment-methods/debit-and-credit-cards",
+      "capturedAt": "2026-09-09",
+      "format": "PNG",
       "width": 2720,
       "height": 2000,
       "bytes": 307599,
@@ -29,11 +60,96 @@
     },
     {
       "file": "04-auto-top-up.png",
+      "provenance": "public-browser",
       "source": "https://www.skinny.co.nz/help/mobile-help/general/payment-methods/updating-your-auto-top-up",
+      "capturedAt": "2026-09-09",
+      "format": "PNG",
       "width": 2720,
       "height": 2000,
       "bytes": 251221,
       "sha256": "1af2e7e3d2d7290367d4b7adf88c84749b2dc5cb4e21201ef6c014598c4375f4"
+    },
+    {
+      "file": "05-register-mobile.png",
+      "provenance": "user-attachment",
+      "source": "User-provided attachment",
+      "sourceFile": "codex-clipboard-642acc92-023c-4b64-8a61-beaf6af469c5.png",
+      "subject": "Register your mobile / Send authentication code",
+      "providedAt": "2026-09-09",
+      "capturedAt": null,
+      "format": "PNG",
+      "width": 3456,
+      "height": 1924,
+      "bytes": 206700,
+      "sha256": "2ac3682b817e1c31afbd22065378c2ecbcd3c2bf2d551a17721b825f2be4e6b6"
+    },
+    {
+      "file": "06-dashboard-account.png",
+      "provenance": "user-attachment",
+      "source": "User-provided attachment",
+      "sourceFile": "codex-clipboard-b1ccbb24-c88f-4037-bf5d-1196016cf6e0.png",
+      "subject": "Dashboard / account selector and plan cards",
+      "providedAt": "2026-09-09",
+      "capturedAt": null,
+      "format": "PNG",
+      "width": 3456,
+      "height": 1992,
+      "bytes": 366580,
+      "sha256": "df0f29d180a05efd33326368f2dc8c835afa392a36d44fdce51f4b9d3031f8bf"
+    },
+    {
+      "file": "07-dashboard-top-up.png",
+      "provenance": "user-attachment",
+      "source": "User-provided attachment",
+      "sourceFile": "codex-clipboard-00e0c671-111e-489b-a942-4dafa6218539.png",
+      "subject": "Dashboard / Remaining Credit and TOP UP",
+      "providedAt": "2026-09-09",
+      "capturedAt": null,
+      "format": "PNG",
+      "width": 3456,
+      "height": 1992,
+      "bytes": 338483,
+      "sha256": "5e817162370796e238fe104ea854d329b271546b7a2e7adaafe7bccda00562c6"
+    },
+    {
+      "file": "08-one-off-options.png",
+      "provenance": "user-attachment",
+      "source": "User-provided attachment",
+      "sourceFile": "codex-clipboard-3681f13a-8e01-487d-b055-9d13b8c2f047.png",
+      "subject": "One off Top-Up / payment methods and amount selector",
+      "providedAt": "2026-09-09",
+      "capturedAt": null,
+      "format": "PNG",
+      "width": 3456,
+      "height": 1992,
+      "bytes": 202590,
+      "sha256": "c6d0781c22f448c03aa9f6d15bc0f8bfbd2cf790e2bb15cb22b9689ad3876a4f"
+    },
+    {
+      "file": "09-amount-options.png",
+      "provenance": "user-attachment",
+      "source": "User-provided attachment",
+      "sourceFile": "codex-clipboard-f09c1ae4-44ac-4994-a245-6a960c0e07e1.png",
+      "subject": "One off Top-Up / expanded amount selector",
+      "providedAt": "2026-09-09",
+      "capturedAt": null,
+      "format": "PNG",
+      "width": 3456,
+      "height": 1992,
+      "bytes": 201825,
+      "sha256": "d528d263eec48138cb5b44c7f82b96c884d12aa74489ccd159c7123adcfd3ac8"
+    },
+    {
+      "file": "10-card-payment.jpg",
+      "provenance": "authenticated-browser",
+      "source": "https://www.skinny.co.nz/dashboard/manage-payments/OneOffTopupForm/",
+      "subject": "One-off top-up card payment form after CONFIRM; PAY not submitted",
+      "capturedAt": "2026-09-09",
+      "format": "JPEG",
+      "width": 1728,
+      "height": 940,
+      "bytes": 63437,
+      "sha256": "a6b065b75f692afe55d52d5c84a0bc24a10d6ebe240431dd46534c1335aa06d2"
     }
   ]
 }

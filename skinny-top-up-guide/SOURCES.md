@@ -1,6 +1,6 @@
 # Skinny NZ 手机话费充值核验
 
-核验日期：2026-09-09。仅阅读公开官网与帮助页；未进行账户登录、填写银行卡或提交付款。除注明搜索索引或主代理观察外，下列网页正文均通过 Chrome 的实际浏览器 accessibility tree 阅读确认。
+核验日期：2026-09-09。证据包括公开官网与帮助页、用户提供的 5 张登录后页面截图，以及用户授权使用的已登录 Google Chrome 会话。该会话中已核对一次性充值设置，并在选择 NZ$5、不保存银行卡后点击 `CONFIRM`，进入银行卡付款表单；未填写银行卡、点击 `PAY`、完成银行认证或验证到账。除注明搜索索引、用户截图或主代理观察外，下列公开网页正文均通过 Chrome 的实际浏览器 accessibility tree 阅读确认。
 
 ## 可以直接用于教程的事实
 
@@ -28,7 +28,16 @@
     - https://www.skinny.co.nz/skinny-terms/specific-technologies-terms/
     - https://www.skinny.co.nz/pricing/overseas-roaming/
 
-## 当前有证据的后台路径（仅官方文档，未实测登录后界面）
+## 登录后一次性充值路径（用户截图与浏览器观察）
+
+- **首次关联手机号是条件分支。** 用户截图 05 显示 `Register your mobile`、手机号输入框及 `SEND AUTHENTICATION CODE`。该图用于说明账号尚未关联手机号码时的入口，不表示每次充值都要绑定。验证码输入、发送及关联成功的过程未由本次浏览器验证。
+- **Dashboard 的实际入口。** 用户截图 06 显示账户选择区及目标号码；截图 07 展示下方 `Remaining Credit` 卡片中的 `TOP UP`。`GET A PLAN` 是套餐入口，`Set & Forget` 卡片的 `ACTIVATE` 是另一项设置，不应当作一次性充值入口。
+- **一次性充值设置。** 用户截图 08、09 显示 `One off Top-Up`、目标手机号、金额下拉框，以及 `With a debit/credit card`、`With a saved debit/credit card`、`With a Voucher` 三种付款方式标签。图片中金额默认为 `$0`；展开后可见 `$5`、`$6`、`$7`、`$8`，不能据此推断完整金额范围或把 `$0` 当作可完成充值的金额。`Save this debit/credit card for later` 是保存银行卡选项，不等于开启自动充值。
+- **`CONFIRM` 后进入付款表单，尚未支付。** 主代理在用户授权的已登录 Google Chrome 中选择未保存的借记卡/信用卡方式、金额 NZ$5，并保持保存卡选项未勾选；点击 `CONFIRM` 后实际进入 `/dashboard/manage-payments/OneOffTopupForm/`。新增截图 10 显示 `Card number`、`Cardholder name`、`Expiry (MM/YY)`、`CVV` 及 `PAY`。因此此路径的 `CONFIRM` 可描述为进入银行卡付款表单，不能描述为已扣款或充值成功。
+  - https://www.skinny.co.nz/dashboard/manage-payments/OneOffTopupForm/
+- **本次操作边界。** 未输入银行卡资料、点击 `PAY`、保存卡、开启 Auto Top-Up 或 Set & Forget；未完成银行认证、实际付款或到账核验。返回设置页后，金额恢复显示 `$0`，保存卡选项保持未勾选。已保存卡、充值券的后续支付表单未逐屏操作。
+
+## 其他后台路径（官方文档，未操作设置）
 
 - **Auto Top-Up 更新**：登录 Dashboard → 左侧 `Manage Payments` → `Top-up` 下切换 `Auto-Top-Ups` → 更新金额及开始日期 → `continue` → 完成下一页提示。
   - https://www.skinny.co.nz/help/mobile-help/general/payment-methods/updating-your-auto-top-up
@@ -36,7 +45,7 @@
   - https://www.skinny.co.nz/help/mobile-help/help-with-your-account/billing/managing-payments/
 - 二者区别：Auto Top-Up 按设定日期给余额充值；Set & Forget 用卡支付套餐续费。现行条款 3.19 明确建议已有 Set & Forget 时不要同时设置 Auto Top-Up。
   - https://www.skinny.co.nz/skinny-terms/specific-technologies-terms/
-- 当前公开资料未找到手机网页版一次性充值的逐屏完整操作说明。可以指引登录 `Manage Payments` 后选择一次性充值、核对号码/金额并按官方页面提示完成，但需明确后台按钮和流程没有逐屏实测，不制造假的官方后台截图。
+- Auto Top-Up 与 Set & Forget 的上述完整设置路径仍依据官方帮助；本次未开启或逐屏验证这些功能。一次性充值目前有从 Dashboard 到银行卡付款表单的截图证据，银行认证、支付结果及到账画面仍未验证。
 
 ## 实测和资料冲突
 
@@ -46,8 +55,24 @@
 - 2424 页面仍提 Windows / BlackBerry 和历史套餐名称；本教程可使用通用 BAL / INFO / TOPUP，但不照抄整张旧套餐命令表。
 - 未证实：最高充值金额、单日/单卡限额、特定跨境手续费、支付宝/微信支付、海外卡偶发成功案例、付款完成后的成功页样式、精确到账时间、国内网络可达性。教程不要把这些写成已验证事实。
 
-## 截图建议
+## 已收录截图与来源
 
-- 官方银行卡限制页可完整拍入 Visa/Mastercard 与 Cards we don't accept 部分。
-- 官方 Auto Top-Up 帮助页可拍下真实 5 步说明，明确标注为“官方帮助页”。
-- 当前公开来源均为实际页面，未处理或改造页面内容。
+共 10 张。逐图真实编码格式、像素尺寸、文件字节数与 SHA-256 见 [`assets/screenshots/manifest.json`](assets/screenshots/manifest.json)。2026-09-09 已从磁盘重新读取核对，5 张用户供图另已逐字节比对原始附件，全部一致。
+
+| 文件 | 内容 | 来源与原始尺寸 |
+| --- | --- | --- |
+| `01-top-up-entry.png` | 官网 Quick Top-Up 入口 | 原公开浏览器截图，PNG，2720 × 2000 |
+| `02-sign-in.png` | 登录页面 | 原公开浏览器截图，PNG，2720 × 2000 |
+| `03-card-policy.png` | 官方银行卡要求 | 原公开浏览器截图，PNG，2720 × 2000 |
+| `04-auto-top-up.png` | 官方 Auto Top-Up 帮助 | 原公开浏览器截图，PNG，2720 × 2000 |
+| `05-register-mobile.png` | 首次关联手机号码入口 | 用户提供原图，PNG，3456 × 1924 |
+| `06-dashboard-account.png` | Dashboard 上方账户与套餐区 | 用户提供原图，PNG，3456 × 1992 |
+| `07-dashboard-top-up.png` | Dashboard 下方 Remaining Credit / TOP UP | 用户提供原图，PNG，3456 × 1992 |
+| `08-one-off-options.png` | 一次性充值与三种付款方式 | 用户提供原图，PNG，3456 × 1992 |
+| `09-amount-options.png` | 展开的充值金额选项 | 用户提供原图，PNG，3456 × 1992 |
+| `10-card-payment.jpg` | CONFIRM 后的银行卡付款表单 | 已登录 Google Chrome 新增截图，JPEG，1728 × 940 |
+
+- 截图 01–04 于 2026-09-09 通过浏览器拍摄，原视口为 1360 × 1000 CSS px、设备缩放系数 2，保留原生 PNG；这 4 张仅涉及公开页面。
+- 截图 05–09 于 2026-09-09 由用户提供并原样复制，未重采样、重新编码、遮盖或修改 UI。仅核验了文件尺寸和内容来源，未独立核验原始拍摄日期、浏览器视口或设备缩放系数；其中包含真实账户信息。原附件文件名记录在 manifest 中。
+- 截图 10 于 2026-09-09 由主代理在用户授权的已登录 Chrome 会话中拍摄，截图工具返回 JPEG，按真实编码保存为 `.jpg`，未转换为 PNG；此图不是支付结果。
+- 官方 Auto Top-Up 图来自帮助页，用户 Dashboard 中的套餐/余额状态仅是截图时的账户状态；均不能表示教程完成了充值或开启了自动设置。所有截图保留实际页面内容，Skinny 界面与商标权利属于其权利人。
