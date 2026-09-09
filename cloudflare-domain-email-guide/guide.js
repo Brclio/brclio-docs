@@ -93,26 +93,142 @@ updateProgress(false);
 
 const dialog = document.querySelector('#image-dialog');
 const dialogImage = document.querySelector('#dialog-image');
+const imageCaption = document.querySelector('#image-caption');
+const closeImage = document.querySelector('#close-image');
+const imageTools = document.createElement('div');
+imageTools.className = 'image-tools';
+const imageModes = document.createElement('div');
+imageModes.className = 'image-mode-group';
+imageModes.setAttribute('role', 'group');
+imageModes.setAttribute('aria-label', '截图显示比例');
+const fitImage = document.createElement('button');
+fitImage.type = 'button';
+fitImage.className = 'image-mode-button';
+fitImage.textContent = '适应窗口';
+const actualImage = document.createElement('button');
+actualImage.type = 'button';
+actualImage.className = 'image-mode-button';
+actualImage.textContent = '100% 原始尺寸';
+imageModes.append(fitImage, actualImage);
+const imageFiles = document.createElement('div');
+imageFiles.className = 'image-file-actions';
+const openOriginal = document.createElement('a');
+openOriginal.className = 'image-original-link';
+openOriginal.textContent = '打开原图 ↗';
+openOriginal.target = '_blank';
+openOriginal.rel = 'noopener noreferrer';
+const downloadOriginal = document.createElement('a');
+downloadOriginal.className = 'image-download-link';
+downloadOriginal.textContent = '下载原图 ↓';
+imageFiles.append(openOriginal, downloadOriginal);
+imageTools.append(imageModes, imageFiles);
+const imageInfo = document.createElement('div');
+imageInfo.className = 'image-info';
+const imageDimensions = document.createElement('span');
+imageDimensions.id = 'image-dimensions';
+imageDimensions.setAttribute('role', 'status');
+const imageScale = document.createElement('span');
+imageScale.className = 'image-scale';
+const imageGuidance = document.createElement('span');
+imageGuidance.id = 'image-guidance';
+imageGuidance.textContent = '100% 模式可横向、纵向滚动查看小字。';
+imageInfo.append(imageDimensions, imageScale, imageGuidance);
+const imageViewport = document.createElement('div');
+imageViewport.className = 'image-viewport';
+imageViewport.tabIndex = 0;
+imageViewport.setAttribute('role', 'region');
+imageViewport.setAttribute('aria-label', '截图查看区域，可使用方向键滚动');
+imageViewport.setAttribute('aria-describedby', 'image-dimensions image-guidance');
+const imageStage = document.createElement('div');
+imageStage.className = 'image-stage';
+imageStage.append(dialogImage);
+imageViewport.append(imageStage);
+dialog.append(imageTools, imageInfo, imageViewport);
+
 let imageOpener;
+let imageMode = 'fit';
+let imageLoaded = false;
+let previousBodyOverflow = '';
+function renderViewerImage(resetScroll = false) {
+  const isActualSize = imageMode === 'actual';
+  dialog.dataset.imageMode = imageMode;
+  fitImage.setAttribute('aria-pressed', String(!isActualSize));
+  actualImage.setAttribute('aria-pressed', String(isActualSize));
+  if (!imageLoaded || !dialog.open) return;
+  const availableWidth = Math.max(1, imageViewport.clientWidth - 32);
+  const availableHeight = Math.max(1, imageViewport.clientHeight - 32);
+  const scale = isActualSize ? 1 : Math.min(1, availableWidth / dialogImage.naturalWidth, availableHeight / dialogImage.naturalHeight);
+  dialogImage.style.width = `${Math.max(1, Math.floor(dialogImage.naturalWidth * scale))}px`;
+  dialogImage.style.height = `${Math.max(1, Math.floor(dialogImage.naturalHeight * scale))}px`;
+  imageScale.textContent = isActualSize ? '100% · 原始尺寸' : `${Math.round(scale * 100)}% · 适应窗口`;
+  if (resetScroll) imageViewport.scrollTo({ left: 0, top: 0, behavior: 'instant' });
+}
+function imageIsReady() {
+  if (!dialogImage.naturalWidth || !dialogImage.naturalHeight) return;
+  imageLoaded = true;
+  dialogImage.hidden = false;
+  fitImage.disabled = false;
+  actualImage.disabled = false;
+  imageDimensions.textContent = `${dialogImage.naturalWidth} × ${dialogImage.naturalHeight} 像素`;
+  renderViewerImage(true);
+}
+dialogImage.addEventListener('load', imageIsReady);
+dialogImage.addEventListener('error', () => {
+  imageLoaded = false;
+  dialogImage.hidden = true;
+  fitImage.disabled = true;
+  actualImage.disabled = true;
+  imageDimensions.textContent = '图片加载失败，请尝试打开原图。';
+  imageScale.textContent = '';
+});
+fitImage.addEventListener('click', () => { imageMode = 'fit'; renderViewerImage(true); });
+actualImage.addEventListener('click', () => { imageMode = 'actual'; renderViewerImage(true); });
+if (typeof ResizeObserver === 'function') {
+  new ResizeObserver(() => renderViewerImage()).observe(imageViewport);
+} else {
+  window.addEventListener('resize', () => renderViewerImage());
+}
 document.querySelectorAll('.zoom-trigger').forEach(button => {
   button.addEventListener('click', () => {
     const image = button.querySelector('img');
-    if (typeof dialog.showModal !== 'function') { window.open(image.src, '_blank', 'noopener'); return; }
+    const source = image.dataset.fullSrc || image.currentSrc || image.src;
+    if (typeof dialog.showModal !== 'function') { window.open(source, '_blank', 'noopener'); return; }
     imageOpener = button;
-    dialogImage.src = image.src;
+    imageMode = 'fit';
+    imageLoaded = false;
+    dialogImage.hidden = true;
+    fitImage.disabled = true;
+    actualImage.disabled = true;
+    imageDimensions.textContent = '正在加载原图…';
+    imageScale.textContent = '';
     dialogImage.alt = image.alt;
-    document.querySelector('#image-caption').textContent = image.alt;
+    imageCaption.textContent = image.alt;
+    openOriginal.href = source;
+    downloadOriginal.href = source;
+    try {
+      downloadOriginal.download = decodeURIComponent(new URL(source, document.baseURI).pathname.split('/').pop()) || 'cloudflare-screenshot.png';
+    } catch {
+      downloadOriginal.download = 'cloudflare-screenshot.png';
+    }
+    previousBodyOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     dialog.showModal();
-    document.querySelector('#close-image').focus();
+    renderViewerImage(true);
+    dialogImage.src = source;
+    if (dialogImage.complete && dialogImage.naturalWidth) imageIsReady();
+    closeImage.focus();
   });
 });
-document.querySelector('#close-image').addEventListener('click', () => dialog.close());
+closeImage.addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', event => {
   if (event.target !== dialog) return;
   const rect = dialog.getBoundingClientRect();
   if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
 });
-dialog.addEventListener('close', () => imageOpener?.focus());
+dialog.addEventListener('close', () => {
+  document.body.style.overflow = previousBodyOverflow;
+  imageOpener?.focus({ preventScroll: true });
+});
 
 // Preserve reader-selected FAQ states across a print/save-PDF operation.
 let closedBeforePrint = [];

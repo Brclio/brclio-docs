@@ -85,28 +85,39 @@
         <div class="step" id="buy-search">
           <div class="step-heading"><span class="step-badge">1</span><div><h3>找到注册入口，搜索完整域名</h3><p class="path">帐户后台 → 域名 → 注册 → Buy domain</p></div></div>
           <p>进入 <a href="https://dash.cloudflare.com/" target="_blank" rel="noopener noreferrer">dash.cloudflare.com</a> 并选择正确帐户。点击 <strong>Buy domain</strong> 后，在“注册域名”页面输入名字，按 Enter 搜索；英文界面可能显示 <strong>Register domains / Search</strong>。</p>
-          <figure class="screenshot"><button class="zoom-trigger" type="button" aria-label="放大：注册域名搜索页面"><img src="assets/screenshots/01-domain-search.jpg" width="1400" height="510" alt="Cloudflare 中文注册域名页面，顶部有搜索域名输入框"><span class="zoom-hint">点击看大图 ↗</span></button><figcaption><span class="capture-tag">后台实拍</span>只输入域名，不需要 https:// 或网页路径。</figcaption></figure>
+          <figure class="screenshot"><button class="zoom-trigger" type="button" aria-label="放大：注册域名搜索页面"><img src="assets/screenshots/01-domain-search.png" width="2870" height="1040" alt="Cloudflare 中文注册域名页面，顶部有搜索域名输入框"><span class="zoom-hint">查看无损原图 ↗</span></button><figcaption><span class="capture-tag">后台实拍</span>只输入域名，不需要 https:// 或网页路径。</figcaption></figure>
           <p>优先挑容易拼、容易念的名字，核对后缀。当前 Registrar 不支持国际化域名（IDN）；若搜索不到，尝试另一名字或受支持的后缀。</p>
         </div>
         <div class="step">
           <div class="step-heading"><span class="step-badge">2</span><div><h3>同时看注册价格和续费价格</h3><p>确认拼写，再进入目标域名的购买流程。</p></div></div>
-          <figure class="screenshot"><button class="zoom-trigger" type="button" aria-label="放大：域名搜索结果及价格"><img src="assets/screenshots/02-domain-results.jpg" width="1400" height="660" alt="Cloudflare 域名搜索结果，列出候选域名及注册和每年续费价格"><span class="zoom-hint">点击看大图 ↗</span></button><figcaption><span class="capture-tag">后台实拍</span>brclio-mail-guide.com 仅用于搜索演示，未购买。截图价格为采集当日页面显示，不代表长期报价。</figcaption></figure>
+          <figure class="screenshot"><button class="zoom-trigger" type="button" aria-label="放大：域名搜索结果及价格"><img src="assets/screenshots/02-domain-results.png" width="2870" height="930" alt="Cloudflare 域名搜索结果，列出候选域名及注册和每年续费价格"><span class="zoom-hint">查看无损原图 ↗</span></button><figcaption><span class="capture-tag">后台实拍</span>hibrclio.com 用于展示搜索结果，与下方注册人信息截图一致；采集时未购买。截图价格为采集当日页面显示，不代表长期报价。</figcaption></figure>
           <p>相似结果的后缀可能不同：<strong>.com</strong> 和 <strong>.com.co</strong> 是不同域名。点击目标域名卡片进入核对页；部分界面也会显示“立即购买 / Purchase”，系统还会再次检查可注册状态。</p>
         </div>
-        <div class="step step-split">
+        <div class="step" id="registrant-information">
           <div class="step-body">
-            <div class="step-heading"><span class="step-badge">3</span><div><h3>核对订单，填写真实资料</h3><p>这一页，值得多看十秒。</p></div></div>
+            <div class="step-heading"><span class="step-badge">3</span><div><h3>核对订单，填写注册人信息</h3><p>先分清联系人资料、邮箱验证和证件核验。</p></div></div>
             <ul class="detail-list">
               <li><strong>名字：</strong>逐字核对完整域名和后缀。</li>
               <li><strong>年限：</strong>确认购买几年，查看到期日期与总价。</li>
               <li><strong>续费：</strong>后台新注册默认开启自动续订，留意续费价格。</li>
-              <li><strong>联系人：</strong>按要求填写真实资料；不要照搬示例。</li>
+              <li><strong>联系人：</strong>填自己的完整、准确资料；各字段的填写方式见下方。</li>
               <li><strong>付款：</strong>查看最终金额和协议，确认后完成付款。</li>
             </ul>
             <p>当前中文界面先显示“继续支付 … 的费用”；后续以实际付款页面为准。官方流程中的最终确认按钮名为 <strong>Complete purchase</strong>。</p>
             <div class="quote-note"><span class="quote-note-tag">下单前检查</span><p>域名注册和续费完成后不可退款，买错拼写也不例外。域名由 Cloudflare Registrar 管理期间，需要使用 Cloudflare 域名服务器。</p></div>
           </div>
-          <figure class="screenshot compact"><button class="zoom-trigger" type="button" aria-label="放大：注册详情及自动续订"><img src="assets/screenshots/03-order-review.jpg" width="390" height="365" alt="注册订单摘要，展示域名、注册期限、自动续订与继续支付按钮"><span class="zoom-hint">点击看大图 ↗</span></button><figcaption><span class="capture-tag">后台实拍</span>只截取订单摘要，联系人与付款资料未入图；未提交付款。</figcaption></figure>
+          <figure class="screenshot" id="registrant-screenshot"><button class="zoom-trigger" type="button" aria-label="放大：完整注册人信息与订单"><img src="assets/screenshots/03-registrant-information.png" width="3456" height="1924" alt="hibrclio.com 购买页完整截图，左侧是注册人姓名、邮箱、电话和地址字段，右侧是年限、自动续订、费用及继续支付按钮"><span class="zoom-hint">查看 3456 × 1924 原图 ↗</span></button><figcaption><span class="capture-tag">用户提供原图</span>完整保留注册人信息与订单区域，3456 × 1924 无损 PNG。图中内容用于识别字段，填写时使用自己的资料。</figcaption></figure>
+          <div class="quote-note"><span class="quote-note-tag">需要身份证实名核验吗？</span><p><strong>本教程展示的 .com 购买流程没有身份证上传或人脸核验步骤。</strong>填写注册联系人、验证邮箱，与上传证件实名核验是不同环节。Cloudflare 仍要求完整、准确的联系人资料；WHOIS 隐私保护会隐藏多数公开联系信息，但 Cloudflare 保留未隐藏的注册记录，因此不能把它称为“匿名注册”。</p><p class="source-inline">依据：<a href="https://developers.cloudflare.com/registrar/get-started/register-domain/" target="_blank" rel="noopener noreferrer">官方联系人要求</a> · <a href="https://developers.cloudflare.com/registrar/account-options/whois-redaction/" target="_blank" rel="noopener noreferrer">WHOIS 隐私说明</a>。具体要求仍以所选后缀和当时页面提示为准。</p></div>
+          <h4>注册人信息，一项一项怎么填</h4>
+          <dl class="field-guide">
+            <div><dt>名字 / 姓氏</dt><dd>填写注册人的名和姓。当前字段仅接受 ASCII 字符；中文姓名可用拼音，分别填入对应位置。</dd></div>
+            <div><dt>电子邮件</dt><dd>填写自己能正常收信的邮箱，用于注册联系和验证。刚买的域名还没配好邮件时，先用现有邮箱。</dd></div>
+            <div><dt>组织（可选）</dt><dd>按实际注册主体填写。个人注册且没有组织信息时可留空。</dd></div>
+            <div><dt>电话</dt><dd>选择与电话号码匹配的国家区号，再填写可联系到你的号码；不要照抄截图里的区号和号码。</dd></div>
+            <div><dt>国家 / 地区</dt><dd>按自己的联系地址选择。该选择会影响省 / 州、邮编等后续字段。</dd></div>
+            <div><dt>地址 / 地址 2</dt><dd>用英文或拼音填写实际联系地址。地址 2 用于补充楼层、房间等信息，没有补充可留空。</dd></div>
+            <div><dt>城市 / 省或州 / 邮编</dt><dd>分别填写与该地址对应的内容，核对国家、城市、省或州和邮编是否匹配。</dd></div>
+          </dl>
         </div>
         <div class="step">
           <div class="step-heading"><span class="step-badge">4</span><div><h3>买完后，确认“域名真的归你了”</h3><p>购买确认、联系人验证和续费检查，各有作用。</p></div></div>
@@ -121,15 +132,16 @@
         <div class="step">
           <div class="step-heading"><span class="step-badge">1</span><div><h3>进入“电子邮件路由”</h3><p class="path">计算 → 电子邮件服务 → 电子邮件路由</p></div></div>
           <p>英文对应 <strong>Compute → Email Service → Email Routing</strong>。选择“接入域名 / Onboard Domain”。若看到的是旧版导航，可在后台搜索 Email Routing；本教程截图使用当前中文界面。</p>
-          <figure class="screenshot"><button class="zoom-trigger" type="button" aria-label="放大：Email Routing 新版入口"><img src="assets/screenshots/04-routing-entry.jpg" width="1715" height="835" alt="Cloudflare 邮件路由入口，右侧显示接入域名按钮"><span class="zoom-hint">点击看大图 ↗</span></button><figcaption><span class="capture-tag">后台实拍</span>注意选“电子邮件路由”，旁边的“电子邮件发送 Beta”是另一项功能。</figcaption></figure>
+          <figure class="screenshot"><button class="zoom-trigger" type="button" aria-label="放大：Email Routing 新版入口"><img src="assets/screenshots/04-routing-entry.png" width="3456" height="1924" alt="Cloudflare 邮件路由入口，右侧显示接入域名按钮"><span class="zoom-hint">查看无损原图 ↗</span></button><figcaption><span class="capture-tag">后台实拍</span>注意选“电子邮件路由”，旁边的“电子邮件发送 Beta”是另一项功能。</figcaption></figure>
         </div>
         <div class="step">
           <div class="step-heading"><span class="step-badge">2</span><div><h3>选择域名，审阅 DNS 后激活</h3><p>把“这个域名的信送到哪里”告诉 DNS。</p></div></div>
-          <figure class="screenshot"><button class="zoom-trigger" type="button" aria-label="放大：选择需要接入的域名"><img src="assets/screenshots/05-select-domain.jpg" width="870" height="345" alt="邮件路由接入向导，区域下拉框选择域名，然后点击继续"><span class="zoom-hint">点击看大图 ↗</span></button><figcaption><span class="capture-tag">后台实拍</span>“区域 / Zone”就是你在 Cloudflare 中的域名。图中 brclio.com 用于展示现有域名的接入预览。</figcaption></figure>
+          <figure class="screenshot"><button class="zoom-trigger" type="button" aria-label="放大：选择需要接入的域名"><img src="assets/screenshots/05-select-domain.png" width="1800" height="730" alt="邮件路由接入向导，区域下拉框选择域名，然后点击继续"><span class="zoom-hint">查看无损原图 ↗</span></button><figcaption><span class="capture-tag">后台实拍</span>“区域 / Zone”就是你在 Cloudflare 中的域名。图中 brclio.com 用于展示现有域名的接入预览。</figcaption></figure>
           <p>选择自己的域名，点“继续”。页面会列出将添加的记录。确认后，当前中文界面点“激活”；官方英文入门文档也使用 <strong>Done</strong> 描述完成接入。</p>
-          <div class="step-split">
+          <div>
             <div class="step-body"><h4>这三类记录，各管一件事</h4><dl class="field-guide"><div><dt>MX</dt><dd>把发给你域名的邮件交给 Cloudflare 收信服务器。</dd></div><div><dt>TXT / SPF</dt><dd>声明哪些服务器可以代表域名发送或转发邮件。</dd></div><div><dt>TXT / DKIM</dt><dd>提供签名验证所需的公钥，帮助接收方验证转发邮件。</dd></div></dl><p>服务器、优先级、selector 与公钥都以你自己的后台为准。截图里的数值用于识别字段，不需要逐项照抄。激活后回到对应域名的 Settings，检查 MX、SPF、DKIM 状态；Locked 表示由服务管理，并非报错。</p></div>
-            <figure class="screenshot compact"><button class="zoom-trigger" type="button" aria-label="放大：待添加的 DNS 记录"><img src="assets/screenshots/06-dns-preview.jpg" width="870" height="735" alt="验证 DNS 记录界面展示 MX 服务器与 TXT DKIM 记录的预览"><span class="zoom-hint">点击看大图 ↗</span></button><figcaption><span class="capture-tag">后台实拍</span>待添加记录的局部预览，可向下滚动查看余下 TXT 记录；采集时未激活。</figcaption></figure>
+            <div class="step-split"><figure class="screenshot compact"><button class="zoom-trigger" type="button" aria-label="放大：待添加的 DNS 记录"><img src="assets/screenshots/06-dns-preview.png" width="1180" height="1440" alt="验证 DNS 记录界面展示 MX 服务器与 TXT DKIM 记录的预览"><span class="zoom-hint">查看无损原图 ↗</span></button><figcaption><span class="capture-tag">后台实拍</span>DNS 列表上半部分：三条 MX 和 DKIM 记录入口；采集时未激活。</figcaption></figure>
+            <figure class="screenshot compact"><button class="zoom-trigger" type="button" aria-label="放大：DKIM、SPF 与激活按钮"><img src="assets/screenshots/06b-dkim-spf.png" width="1180" height="1440" alt="DNS 列表向下滚动后完整显示 DKIM 公钥、SPF 记录以及底部激活按钮"><span class="zoom-hint">点击看原图 ↗</span></button><figcaption><span class="capture-tag">后台实拍</span>同一列表向下滚动：查看 DKIM、SPF 与底部“激活”按钮；采集时未点击激活。</figcaption></figure></div>
           </div>
           <div class="quote-note" id="dns-conflict"><span class="quote-note-tag">已经用着企业邮箱？</span><p><strong>先不要替换现有 MX。</strong>同一个收信域名不能简单同时交给原企业邮箱和 Routing。先决定由谁收信，再做迁移；也可以研究使用独立子域名。不要为了让向导变绿就删除业务记录。</p></div>
           <details class="accordion-item"><summary><h3>已有 SPF，该怎么处理？</h3><span aria-hidden="true">＋</span></summary><div class="accordion-body"><p>同一个名称只能有一条以 <code>v=spf1</code> 开头的 SPF 记录。已有其他发信服务时，应将需要保留的授权合并进同一条记录，而不是新加第二条。下方是 Routing 常见授权片段，完整值以后台和现有服务配置为准。</p><div class="code-line"><code>include:_spf.mx.cloudflare.net</code><button class="copy-button" type="button" data-copy="include:_spf.mx.cloudflare.net">复制片段</button></div><p>DKIM 公钥无需从教程复制。<a href="https://developers.cloudflare.com/email-service/configuration/domains/" target="_blank" rel="noopener noreferrer">查看官方域名配置说明 ↗</a></p></div></details>
@@ -137,7 +149,7 @@
         <div class="step">
           <div class="step-heading"><span class="step-badge">3</span><div><h3>添加现有邮箱，并完成验证</h3><p class="path">电子邮件路由 → 目标地址 / Destination Addresses</p></div></div>
           <p>填入你最终用来收信的邮箱，点击“添加地址”。然后去这个邮箱打开 Cloudflare 发来的验证邮件，点击 <strong>Verify email address</strong>，再返回后台检查“已验证 / Verified”。</p>
-          <figure class="screenshot"><button class="zoom-trigger" type="button" aria-label="放大：添加目标邮箱入口"><img src="assets/screenshots/07-destination-address.jpg" width="1400" height="620" alt="目标地址页面，通过邮件地址输入框添加接收转发邮件的现有邮箱"><span class="zoom-hint">点击看大图 ↗</span></button><figcaption><span class="capture-tag">后台实拍</span>填写的是你已有的收件邮箱，不是刚准备创建的 hello 地址。</figcaption></figure>
+          <figure class="screenshot"><button class="zoom-trigger" type="button" aria-label="放大：添加目标邮箱入口"><img src="assets/screenshots/07-destination-address.png" width="2530" height="1100" alt="目标地址页面，通过邮件地址输入框添加接收转发邮件的现有邮箱"><span class="zoom-hint">查看无损原图 ↗</span></button><figcaption><span class="capture-tag">后台实拍</span>填写的是你已有的收件邮箱，不是刚准备创建的 hello 地址。</figcaption></figure>
           <p>找不到验证邮件时，先查垃圾箱，并检查输入是否有拼写错误。未验证的目标地址不能正常启用转发规则。</p>
         </div>
         <div class="step">
@@ -188,7 +200,7 @@
           <details class="accordion-item"><summary><h3>日志里的状态，分别是什么意思？</h3><span aria-hidden="true">＋</span></summary><div class="accordion-body"><dl class="field-guide"><div><dt>Forwarded</dt><dd>已转发；没看到时再查目的邮箱的垃圾箱和筛选规则。</dd></div><div><dt>Dropped / Rejected</dt><dd>邮件被丢弃或拒收，展开日志查看规则、认证结果与原因。</dd></div><div><dt>Delivery failed</dt><dd>投递到目的服务器失败，按目标服务器返回的错误处理。</dd></div></dl><p><a href="https://developers.cloudflare.com/email-service/observability/logs/" target="_blank" rel="noopener noreferrer">查看完整日志说明 ↗</a></p></div></details>
           <details class="accordion-item"><summary><h3>可以转发给多人，或者收大附件吗？</h3><span aria-hidden="true">＋</span></summary><div class="accordion-body"><p>基础规则对应一个目标邮箱；更复杂的多人转发可使用 Worker。当前入站邮件上限为 <strong>25 MiB</strong>，计算的是整封邮件大小，附件编码后会变大，因此不能按“25 MB 附件”理解。详见<a href="https://developers.cloudflare.com/email-service/platform/limits/" target="_blank" rel="noopener noreferrer">官方限制</a>。</p></div></details>
           <details class="accordion-item"><summary><h3>域名买好后，必须先建一个网站吗？</h3><span aria-hidden="true">＋</span></summary><div class="accordion-body"><p>邮件教程的前提是域名使用 Cloudflare DNS，再设置 Routing。邮件与网站使用不同的 DNS 记录；可以先完成邮件配置，网站之后再做。</p></div></details>
-          <details class="accordion-item"><summary><h3>注册资料会公开吗？</h3><span aria-hidden="true">＋</span></summary><div class="accordion-body"><p>注册局允许时，Cloudflare 会隐藏多数个人联系资料，但省 / 州和国家等信息仍可能公开。隐私处理不是匿名注册，联系人信息仍须真实。详见<a href="https://developers.cloudflare.com/registrar/account-options/whois-redaction/" target="_blank" rel="noopener noreferrer">WHOIS 隐私说明</a>。</p></div></details>
+          <details class="accordion-item"><summary><h3>没有上传身份证，就等于匿名注册吗？</h3><span aria-hidden="true">＋</span></summary><div class="accordion-body"><p>不等于。本教程截图中的 .com 流程未出现上传身份证或人脸核验，但仍要填写注册联系人资料并完成要求的邮箱验证。注册局允许时，Cloudflare 会隐藏公开 WHOIS 中的大部分个人联系资料；省 / 州、国家等信息仍可能公开，Cloudflare 也仍保留完整记录。详见<a href="https://developers.cloudflare.com/registrar/account-options/whois-redaction/" target="_blank" rel="noopener noreferrer">WHOIS 隐私说明</a>。</p></div></details>
           <details class="accordion-item"><summary><h3>停止使用时，需要做什么？</h3><span aria-hidden="true">＋</span></summary><div class="accordion-body"><p>先把重要账号的联系邮箱改到仍可用的地址，再迁移或停用路由。若不续费域名，至少在到期前 30 天处理自动续费设置；域名失效后，依赖它的收信和找回密码流程也会受影响。</p></div></details>
         </div>
       </section>
@@ -196,8 +208,8 @@
       <section class="chapter" id="resources" aria-labelledby="resources-title">
         <div class="chapter-head"><span class="chapter-no" aria-hidden="true">↗</span><div><span class="eyebrow">KEEP THESE CLOSE</span><h2 id="resources-title">官方资料，和一点版本说明。</h2></div></div>
         <ul class="source-list"><li><a href="https://developers.cloudflare.com/registrar/get-started/register-domain/" target="_blank" rel="noopener noreferrer">注册新域名</a><span>购买流程、联系人字段与 nameservers 限制</span></li><li><a href="https://developers.cloudflare.com/email-service/get-started/route-emails/" target="_blank" rel="noopener noreferrer">配置 Email Routing</a><span>接入域名、目的邮箱验证和第一封测试信</span></li><li><a href="https://developers.cloudflare.com/email-service/configuration/domains/" target="_blank" rel="noopener noreferrer">域名和 DNS 配置</a><span>理解 MX、SPF、DKIM 与冲突记录</span></li><li><a href="https://developers.cloudflare.com/email-service/get-started/send-emails/" target="_blank" rel="noopener noreferrer">Email Sending 入门</a><span>发信域名、支持范围与配置前提</span></li></ul>
-        <p class="small">内容及截图采集于 2026 年 9 月 9 日。中文后台与官方英文文档有少量按钮命名差异，文中已同时标注。截图为实际界面局部，账户身份及联系人区域已排除；搜索示例域名与接入预览域名不是同一域名，操作时始终选择你自己的域名。</p>
-        <p class="small">素材采集到订单摘要、域名接入预览和目的邮箱入口为止；未为拍摄实际购买域名、激活 DNS、创建路由或发送邮件。邮箱验证、规则保存和测试成功的操作方法依据官方文档编写，未将示意表标作实测结果。</p>
+        <p class="small">内容及截图采集于 2026 年 9 月 9 日。中文后台与官方英文文档有少量按钮命名差异，文中已同时标注。截图采用原生 2 倍像素无损 PNG；注册人信息图为用户提供的 3456 × 1924 原文件，完整保留。点击截图可适应窗口查看、切换 100% 原始像素、打开或下载原图。购买示例 hibrclio.com、邮件接入预览 brclio.com 与说明用 example.com 各有用途，操作时选择自己的域名。</p>
+        <p class="small">素材覆盖注册人信息与订单、域名接入预览、DNS 列表上下部分和目的邮箱入口；未为拍摄实际购买域名、激活 DNS、创建路由或发送邮件。邮箱验证、规则保存和测试成功的操作方法依据官方文档编写，未将示意表标作实测结果。</p>
         <p class="small">教程制作：Brclio。界面截图属于 Cloudflare，本文为独立教程。设计改编自 <a href="https://github.com/Brclio/brclio-design-system" target="_blank" rel="noopener noreferrer">Brclio Design System</a> · CC BY-NC-SA 4.0。</p>
       </section>
     </article>
