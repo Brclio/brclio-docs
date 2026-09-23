@@ -44,6 +44,61 @@
     a { color: inherit; }
     button, a { font: inherit; }
 
+    /* A lightweight front-end gate; the static page source remains public. */
+    #protected-page[hidden], #access-gate[hidden], body.page-locked .back-to-top { display: none !important; }
+    .access-gate {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: clamp(28px, 6vw, 72px) 24px;
+    }
+    .access-gate-inner {
+      width: min(100%, 860px);
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      align-items: center;
+      gap: clamp(32px, 7vw, 88px);
+    }
+    .access-gate-brand { color: var(--blue-deep); font-weight: 700; font-size: .88rem; }
+    .access-gate h1 { margin: 18px 0; font-size: clamp(2rem, 4.8vw, 3rem); line-height: 1.35; letter-spacing: -.03em; }
+    .access-gate-form { margin-top: 28px; }
+    .access-gate-form label { display: block; margin-bottom: 8px; font-size: .9rem; font-weight: 600; }
+    .access-gate-input {
+      width: 100%;
+      min-height: 52px;
+      padding: 12px 16px;
+      border: 1px solid rgba(26,26,46,.3);
+      border-radius: 10px;
+      background: var(--cream-dark);
+      color: var(--ink);
+      font: inherit;
+    }
+    .access-gate-input:focus-visible, .access-gate-submit:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+    .access-gate-input[aria-invalid="true"] { border-color: var(--red); }
+    .access-gate-error { min-height: 28px; margin-top: 6px; color: #ad2739; font-size: .85rem; }
+    .access-gate-submit {
+      width: 100%;
+      min-height: 50px;
+      padding: 12px 24px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--blue-deep);
+      color: var(--cream);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .access-gate-submit:hover { background: var(--blue); }
+    .access-gate-contact { text-align: center; }
+    .access-gate-contact img { display: block; width: 100%; height: auto; }
+    .access-gate-contact figcaption { margin-top: 14px; color: var(--ink-light); font-size: .85rem; }
+    .access-gate-contact strong { display: block; color: var(--ink); }
+    .access-gate-noscript { margin-top: 12px; color: #ad2739; }
+    @media (max-width: 900px) {
+      .access-gate-inner { max-width: 420px; grid-template-columns: 1fr; gap: 28px; }
+      .access-gate-contact { width: min(100%, 250px); justify-self: center; }
+    }
+
     .container { width: min(1300px, calc(100% - 48px)); margin-inline: auto; }
     .section { padding: clamp(88px, 11vw, 154px) 0; position: relative; }
     .section--alt { background: var(--cream-dark); }
@@ -1141,7 +1196,28 @@
     }
   </style>
 </head>
-<body>
+<body class="page-locked">
+  <section class="access-gate" id="access-gate" role="main" aria-labelledby="access-gate-title">
+    <div class="access-gate-inner">
+      <div>
+        <p class="access-gate-brand">Brclio · 新西兰 SIM 卡</p>
+        <h1 id="access-gate-title">输入密码，<br>查看页面。</h1>
+        <p>扫码添加微信，获取访问密码。</p>
+        <form class="access-gate-form" id="access-gate-form">
+          <label for="access-password">访问密码</label>
+          <input class="access-gate-input" id="access-password" type="password" autocomplete="current-password" placeholder="请输入访问密码" aria-describedby="access-gate-error" required>
+          <p class="access-gate-error" id="access-gate-error" role="alert"></p>
+          <button class="access-gate-submit" type="submit">进入页面</button>
+        </form>
+        <noscript><p class="access-gate-noscript">请启用 JavaScript 后输入密码，或扫码添加微信联系我。</p></noscript>
+      </div>
+      <figure class="access-gate-contact">
+        <img src="assets/source-images/wechat-qr.jpg" width="888" height="1131" alt="AI悦创个人微信二维码，微信号 Jiabcdefh">
+        <figcaption><strong>微信扫码添加好友</strong>微信号 · Jiabcdefh</figcaption>
+      </figure>
+    </div>
+  </section>
+  <div id="protected-page" hidden inert>
   <nav class="nav" aria-label="主导航">
     <div class="container nav-inner">
       <a class="logo" href="https://brclio-docs.brclio.com/" aria-label="返回 Brclio 知识库首页">
@@ -1600,9 +1676,54 @@
   </main>
 
   <footer class="footer"><div class="container footer-inner"><span>© 2026 Brclio design</span><span class="footer-title">新西兰实体 SIM · Claude / Codex</span></div></footer>
+  </div>
 
   <script>
     (() => {
+      const gate = document.getElementById('access-gate');
+      const content = document.getElementById('protected-page');
+      const form = document.getElementById('access-gate-form');
+      const password = document.getElementById('access-password');
+      const error = document.getElementById('access-gate-error');
+
+      password.addEventListener('input', () => {
+        password.removeAttribute('aria-invalid');
+        error.textContent = '';
+      });
+
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        if (password.value !== 'abc123123') {
+          error.textContent = '密码不正确，请重新输入。';
+          password.setAttribute('aria-invalid', 'true');
+          password.focus();
+          password.select();
+          return;
+        }
+
+        password.value = '';
+        gate.hidden = true;
+        content.hidden = false;
+        content.inert = false;
+        document.body.classList.remove('page-locked');
+        document.dispatchEvent(new Event('page-unlocked'));
+
+        let target = content.querySelector('h1');
+        try {
+          const linkedSection = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+          if (linkedSection && content.contains(linkedSection)) target = linkedSection;
+        } catch (_) { /* Invalid URL fragments fall back to the page heading. */ }
+        target.setAttribute('tabindex', '-1');
+        target.focus({ preventScroll: true });
+        if (location.hash) target.scrollIntoView({ behavior: 'instant', block: 'start' });
+        else window.scrollTo({ top: 0, behavior: 'instant' });
+        window.dispatchEvent(new Event('scroll'));
+      });
+    })();
+  </script>
+
+  <script>
+    document.addEventListener('page-unlocked', () => {
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -1645,10 +1766,10 @@
         stage.addEventListener('click', () => show(current + 1));
         show(0);
       });
-    })();
+    }, { once: true });
   </script>
   <script>
-    (() => {
+    document.addEventListener('page-unlocked', () => {
       const tools = document.querySelector('[data-page-tools]');
       if (!tools) return;
 
@@ -1937,10 +2058,10 @@
           input.focus();
         });
       });
-    })();
+    }, { once: true });
   </script>
   <script>
-    (() => {
+    document.addEventListener('page-unlocked', () => {
       const launch = document.querySelector('[data-page-ai-launch]');
       const dialog = document.querySelector('[data-page-ai-dialog]');
       if (!launch || !dialog) return;
@@ -2895,7 +3016,7 @@
           closeAi();
         }
       });
-    })();
+    }, { once: true });
   </script>
   <!-- Design system attribution: esthersjw/esther-design-system, CC BY-NC-SA 4.0 -->
 </body>
